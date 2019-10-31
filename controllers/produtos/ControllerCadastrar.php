@@ -40,6 +40,7 @@ $("#botaoCadastrarProduto").click(function(){
         if (request.readyState == 4 && request.status == 200) {
           contentExibirProdutos.innerHTML = request.responseText
           eval(document.getElementById('scriptDataTable').innerHTML);
+          eval(document.getElementById('scriptControllerEditar').innerHTML);          
         }
       });
       request.send();
@@ -71,7 +72,7 @@ $("#botaoCadastrarProduto").click(function(){
 
 });
 
-  button.setAttribute("class","btn btn-primary");
+button.setAttribute("class","btn btn-primary");
 
 
 }
@@ -82,14 +83,6 @@ $("#botaoCadastrarProduto").click(function(){
 </script>
 
 
-<script id="scriptDataTable">
-  // Call the dataTables jQuery plugin
-  $(document).ready(function() {
-    $('#dataTable').DataTable({
-      "language": {
-        "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Portuguese.json"
-      }
-    });
-  });
 
-  </script>
+
+  

@@ -56,7 +56,7 @@ include('../../inc/header.php');
           <?php include ('templates/FormularioCadastrar.php'); ?>
 
           <!-- Formulario  Editar Produtos -->
-          <div id="contentExibirProdutos">
+          <div id="contentEditarProdutos">
             <?php include ('templates/FormularioEditar.php'); ?>
           </div>
 
@@ -92,6 +92,21 @@ include('../../inc/header.php');
 
   <!-- Controller Cadastrar Produtos-->
   <?php include('../../controllers/produtos/ControllerCadastrar.php'); ?>
+
+  <!-- Controller Editar Produtos-->
+  <?php include($ControllerEditarProduto); ?>
+
+  <script id="scriptDataTable">
+  // Call the dataTables jQuery plugin
+  $(document).ready(function() {
+    $('#dataTable').DataTable({
+      "language": {
+        "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Portuguese.json"
+      }
+    });
+  });
+
+  </script>
 
   
 

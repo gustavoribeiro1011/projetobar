@@ -65,15 +65,11 @@
                   </td>
                   <td align="right">
                     <span id="acoes">
-                      <button class="btn btn-warning btn-circle btn-sm" id="botaoEditarProduto.entry[<?=$i?>]" idproduto="<?=$row['id']?>" ><i class="fas fa-pencil-alt"></i></button>
+                      <button class="btn btn-warning btn-circle btn-sm botaoEditarProdutoTransicao" idproduto="<?=$row['id']?>" ><i class="fas fa-pencil-alt"></i></button>
                       <button class="btn btn-danger btn-circle btn-sm"> <i class="fas fa-trash"></i> 
-
-
                       </span>
                     </td>
-                  </tr>
-
-                  <?php include($ControllerEditarProduto); ?>
+                  </tr>                 
 
                   <?php    
 
