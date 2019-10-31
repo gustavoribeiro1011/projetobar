@@ -1,6 +1,6 @@
 <!-- Transição de dados da 'tabela' para 'formulário' Editar-->
 
-<script type="text/javascript" id="scriptControllerEditar">
+<script type="text/javascript" id="scriptControllerTransicaoEditar">
 $(".botaoEditarProdutoTransicao").click(function(){
 
 
@@ -33,6 +33,10 @@ $(".botaoEditarProdutoTransicao").click(function(){
 
 
 });
+</script>
+
+
+<script type="text/javascript">
 
 $(".botaoCancelarProduto").click(function(){
 	$(".FormularioCadastrarProduto").css('display','block');
@@ -70,13 +74,14 @@ if(!produto){ // se variavel é vazia
 
 			if(data == 'sucesso'){
 
+
 				var request = new XMLHttpRequest();
 				request.open("GET", url, true);
 				request.addEventListener("readystatechange", function (event) {
 					if (request.readyState == 4 && request.status == 200) {
 						contentExibirProdutos.innerHTML = request.responseText
 						eval(document.getElementById('scriptDataTable').innerHTML);
-						eval(document.getElementById('scriptControllerEditar').innerHTML);          
+						eval(document.getElementById('scriptControllerTransicaoEditar').innerHTML);          
 					}
 				});
 				request.send();

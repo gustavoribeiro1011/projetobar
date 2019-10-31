@@ -26,7 +26,7 @@
 
 
 
-    $sql="SELECT * FROM produtos ORDER BY id";
+    $sql="SELECT * FROM produtos ORDER BY produto ASC";
 
     if ($result=mysqli_query($conecta,$sql))
 
