@@ -2,9 +2,9 @@
 
 // @Criação 28/10/2019
 
-$app_name= 'Bar 123';
+$app_name= 'projeto bar';
 
-$app_directory= 'projeto';
+$app_directory= 'projetobar';
 
 
 $app_token= 'appbar1';
