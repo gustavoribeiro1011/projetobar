@@ -1,12 +1,11 @@
-<script>
-var url = 'templates/FormularioExibir.php';
-var contentExibirMesas = document.getElementById("contentExibirMesas");
+<script id="scriptControllerCadastrar">
+var url = 'templates/TemplateMasterUpdateContent.php';
+var contentTemplateMaster = document.getElementById("contentTemplateMaster");
 
 $("#form-cad-mesa").click(function(){
 
   var button = document.querySelector("#form-cad-mesa"); 
   
-
   button.setAttribute("class","btn btn-success btn-circle disabled");
 
   var qtd_mesas = document.getElementById("qtd_mesas").value;
@@ -35,11 +34,13 @@ $("#form-cad-mesa").click(function(){
 
      if (data == 'sucesso'){
 
+
       var request = new XMLHttpRequest();
       request.open("GET", url, true);
       request.addEventListener("readystatechange", function (event) {
         if (request.readyState == 4 && request.status == 200) {
-          contentExibirMesas.innerHTML = request.responseText
+          contentTemplateMaster.innerHTML = request.responseText
+            eval(document.getElementById('scriptControllerCadastrar').innerHTML);  
         }
       });
       request.send();

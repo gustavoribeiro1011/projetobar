@@ -43,37 +43,24 @@ include('../../inc/header.php');
         <!-- Alerta Cadastrar Mesa-->
         <?php include ('templates/AlertaCadastrar.php'); ?>
 
-          <!-- Content Row -->
-        <div class="row">
-
-         <div class="col-xl-4 col-lg-5">
-          <!-- Formulario  Cadastrar Mesas -->
-          <?php include ('templates/FormularioCadastrar.php'); ?>
+        <div id="contentTemplateMaster">
+          <?php include ('templates/TemplateMaster.php'); ?>
         </div>
 
-        <div class="col-xl-8 col-lg-7">
-          <!-- Formulario  Exibir Mesas -->
-          <div id="contentExibirMesas">
-            <?php include ('templates/FormularioExibir.php'); ?>
-          </div>
 
-
-
-
-
-        </div>
 
       </div>
 
     </div>
-    <!-- /.container-fluid -->
 
   </div>
-  <!-- End of Main Content -->
+  <!-- /.container-fluid -->
 
-  <?php include('../../inc/footer.php'); ?>
+</div>
+<!-- End of Main Content -->
 
-  <!-- Controller Cadastrar Mesa-->
-  <?php include('../../controllers/mesas/ControllerCadastrar.php'); ?>
+<?php include('../../inc/footer.php'); ?>
 
- 
+<!-- Controller Cadastrar Mesa-->
+<?php include('../../controllers/mesas/ControllerCadastrar.php'); ?>
+
