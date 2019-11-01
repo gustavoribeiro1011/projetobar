@@ -12,7 +12,7 @@
                     <label>Categoria</label>
 
                     <select id="categoria_editar" class="form-control">
-                      <option id="teste" value=""></option>
+                      <option id="teste"></option>
                       <?php include($ModelSelectCategoria); ?>
                     </select>
 
