@@ -1,13 +1,13 @@
 <!-- Formulário Exibir Produto -->
 <style>
-  #acoes{
-    display: none;
-  }
-
-  tr:hover #acoes {
-   display: inline;
-
- }
+ /* #acoes{
+ /*   display: none;
+ /* }
+/*
+ /* tr:hover #acoes {
+ /*  display: inline;
+/*
+ /*}
 </style>
 <!-- Formulario Exibir Mesas -->
 <div class="card shadow mb-12">
@@ -65,31 +65,32 @@
                   </td>
                   <td align="right">
                     <span id="acoes">
-                      <button class="btn btn-warning btn-circle btn-sm botaoEditarProdutoTransicao" idproduto="<?=$row['id']?>" ><i class="fas fa-pencil-alt"></i></button>
-                      <button class="btn btn-danger btn-circle btn-sm"> <i class="fas fa-trash"></i> 
-                      </span>
-                    </td>
-                  </tr>                 
+                      <button class="btn btn-secondary btn-circle btn-sm botaoEditarProdutoTransicao" idproduto="<?=$row['id']?>">
+                        <i class="fas fa-pencil-alt"></i></button>
+                        <button class="btn btn-secondary btn-circle btn-sm botaoExcluirProdutoTransicao" data-toggle="modal" data-target="#modalExcluirProduto" idproduto="<?=$row['id']?>"> <i class="fas fa-trash"></i> 
+                        </span>
+                      </td>
+                    </tr>                 
 
-                  <?php    
+                    <?php    
 
-                }
+                  }
 
-                ?>
+                  ?>
 
-              </tbody>
-            </table>
+                </tbody>
+              </table>
+            </div>
           </div>
-        </div>
 
 
-        <?php
+          <?php
 
-        mysqli_free_result($result);
-      }
+          mysqli_free_result($result);
+        }
 
-      ?>
+        ?>
 
+      </div>
     </div>
-  </div>
 

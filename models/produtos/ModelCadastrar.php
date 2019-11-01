@@ -1,4 +1,9 @@
 <?php
+/**
+ *
+ *	Model Cadastra Produto
+ *
+ */ 
 session_start();
 include ('../../config.php');
 

@@ -1,7 +1,7 @@
 <?php
 /**
  *
- *	Model Editar
+ *	Model Editar Produto
  *
  */ 
 session_start();

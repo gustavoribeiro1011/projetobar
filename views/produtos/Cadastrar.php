@@ -45,58 +45,42 @@ include('../../inc/header.php');
           <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
         </div>
 
-        <!-- Alerta Cadastrar Mesa-->
-        <?php include ('templates/AlertaCadastrar.php'); ?>
+         <!-- Alerta Cadastrar Mesa-->
+        <?php include ($AlertasProduto); ?>
 
-        <!-- Content Row -->
-        <div class="row">
+        <div id="contentTemplateMaster">
+         <?php include ('templates/TemplateMaster.php'); ?>
+       </div>
 
-         <div class="col-xl-4 col-lg-5">
-          <!-- Formulario  Cadastrar Produtos -->
-          <?php include ('templates/FormularioCadastrar.php'); ?>
+     </div>
 
-          <!-- Formulario  Editar Produtos -->
-          <div id="contentEditarProdutos">
-            <?php include ('templates/FormularioEditar.php'); ?>
-          </div>
+   </div>
 
-        </div>
+ </div>
+ <!-- /.container-fluid -->
 
-        <div class="col-xl-8 col-lg-7">
+</div>
+<!-- End of Main Content -->
 
-          <!-- Formulario  Exibir Produtos -->
-          <div id="contentExibirProdutos">
-            <?php include ('templates/FormularioExibir.php'); ?>
-          </div>
+<?php include('../../inc/footer.php'); ?>
 
 
 
-
-        </div>
-
-      </div>
-
-    </div>
-    <!-- /.container-fluid -->
-
-  </div>
-  <!-- End of Main Content -->
-
-  <?php include('../../inc/footer.php'); ?>
+<!-- Page level plugins -->
+<script src="<?php echo BASEURL;?>vendor/datatables/jquery.dataTables.min.js"></script>
+<script src="<?php echo BASEURL;?>vendor/datatables/dataTables.bootstrap4.min.js"></script>
 
 
+<!-- Controller Cadastrar Produtos-->
+<?php include($ControllerCadastrarProduto); ?>
 
-  <!-- Page level plugins -->
-  <script src="<?php echo BASEURL;?>vendor/datatables/jquery.dataTables.min.js"></script>
-  <script src="<?php echo BASEURL;?>vendor/datatables/dataTables.bootstrap4.min.js"></script>
+<!-- Controller Editar Produtos-->
+<?php include($ControllerEditarProduto); ?>
 
-  <!-- Controller Cadastrar Produtos-->
-  <?php include('../../controllers/produtos/ControllerCadastrar.php'); ?>
+<!-- Controller Cadastrar Produtos-->
+<?php include($ControllerExcluirProduto); ?>
 
-  <!-- Controller Editar Produtos-->
-  <?php include($ControllerEditarProduto); ?>
-
-  <script id="scriptDataTable">
+<script id="scriptDataTable">
   // Call the dataTables jQuery plugin
   $(document).ready(function() {
     $('#dataTable').DataTable({
@@ -106,7 +90,7 @@ include('../../inc/header.php');
     });
   });
 
-  </script>
+</script>
 
-  
+
 

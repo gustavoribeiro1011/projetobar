@@ -27,7 +27,7 @@ if ( !defined('URLSERVER') )
  *	CONEXÃO INTERNA
  *
  */ 
-define('DB_NAME', 'projeto');
+define('DB_NAME', 'projetobar');
 define('DB_USER', 'root');
 define('DB_PASS', 'usbw');
 define('DB_HOST', 'localhost');
@@ -50,12 +50,25 @@ date_default_timezone_set('America/Sao_Paulo');
  *  ROTAS
  *
  */ 
+
+//Sidebar
 $ControllerSidebar = $_SERVER['DOCUMENT_ROOT'];
 $ControllerSidebar .= BASEURL . "controllers/sidebar/ControllerSidebar.php";
 
 $ControllerSidebarToggle = $_SERVER['DOCUMENT_ROOT'];
 $ControllerSidebarToggle .= BASEURL . "controllers/sidebar/ControllerSidebarToggle.php";
 
+// Produtos
+$AlertasProduto = $_SERVER['DOCUMENT_ROOT'];
+$AlertasProduto .= BASEURL . "views/produtos/templates/Alertas.php";
+
+$ControllerCadastrarProduto = $_SERVER['DOCUMENT_ROOT'];
+$ControllerCadastrarProduto .= BASEURL . "controllers/produtos/ControllerCadastrar.php";
+
 $ControllerEditarProduto = $_SERVER['DOCUMENT_ROOT'];
 $ControllerEditarProduto .= BASEURL . "controllers/produtos/ControllerEditar.php";
+
+$ControllerExcluirProduto = $_SERVER['DOCUMENT_ROOT'];
+$ControllerExcluirProduto .= BASEURL . "controllers/produtos/ControllerExcluir.php";
+
 
