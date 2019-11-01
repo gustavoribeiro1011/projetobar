@@ -71,4 +71,21 @@ $ControllerEditarProduto .= BASEURL . "controllers/produtos/ControllerEditar.php
 $ControllerExcluirProduto = $_SERVER['DOCUMENT_ROOT'];
 $ControllerExcluirProduto .= BASEURL . "controllers/produtos/ControllerExcluir.php";
 
+// Categorias
+$AlertasCategoria = $_SERVER['DOCUMENT_ROOT'];
+$AlertasCategoria .= BASEURL . "views/produtos/templates/Alertas.php";
+
+$ControllerCadastrarCategoria = $_SERVER['DOCUMENT_ROOT'];
+$ControllerCadastrarCategoria .= BASEURL . "controllers/categorias/ControllerCadastrar.php";
+
+$ControllerEditarCategoria = $_SERVER['DOCUMENT_ROOT'];
+$ControllerEditarCategoria .= BASEURL . "controllers/categorias/ControllerEditar.php";
+
+$ControllerExcluirCategoria = $_SERVER['DOCUMENT_ROOT'];
+$ControllerExcluirCategoria .= BASEURL . "controllers/categorias/ControllerExcluir.php";
+
+$ModelSelectCategoria = $_SERVER['DOCUMENT_ROOT'];
+$ModelSelectCategoria .= BASEURL . "models/categorias/ModelSelect.php";
+
+
 

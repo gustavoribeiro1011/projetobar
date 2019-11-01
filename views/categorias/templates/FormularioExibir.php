@@ -1,7 +1,7 @@
-<!-- Formulário Exibir Produto -->
+<!-- Formulário Exibir Categoria -->
 <div class="card shadow mb-12">
   <div class="card-header py-3">
-    <h6 class="m-0 font-weight-bold text-primary">Todos os produtos</h6>
+    <h6 class="m-0 font-weight-bold text-primary">Todas as categorias</h6>
   </div>
   <div class="card-body">
     <?php
@@ -10,7 +10,7 @@
   // do something
     }
 
-    $sql="SELECT * FROM produtos ORDER BY produto ASC";
+    $sql="SELECT * FROM categorias ORDER BY categoria ASC";
 
     if ($result=mysqli_query($conecta,$sql))
 
@@ -23,11 +23,11 @@
           <table class="table cell-border table-hover" id="dataTable" width="100%" cellspacing="0">
             <thead>
               <tr style="display:none;">
-                <th>Produto</th>
+                <th>Categoria</th>
                 <th></th>                              
               </tr>
               <tr>
-                <th colspan="2">Produto</th>           
+                <th colspan="2">Categoria</th>           
               </tr>
             </thead>
             <tfoot>
@@ -42,13 +42,13 @@
 
                  <tr>
                   <td>                   
-                    <?php echo $row['produto'];?>           
+                    <?php echo $row['categoria'];?>           
                   </td>
                   <td align="right">
                     <span id="acoes">
-                      <button class="btn btn-secondary btn-circle btn-sm botaoEditarProdutoTransicao" idproduto="<?=$row['id']?>">
+                      <button class="btn btn-secondary btn-circle btn-sm botaoEditarCategoriaTransicao" idcategoria="<?=$row['id']?>">
                         <i class="fas fa-pencil-alt"></i></button>
-                        <button class="btn btn-secondary btn-circle btn-sm botaoExcluirProdutoTransicao" data-toggle="modal" data-target="#modalExcluirProduto" idproduto="<?=$row['id']?>"> <i class="fas fa-trash"></i> 
+                        <button class="btn btn-secondary btn-circle btn-sm botaoExcluirCategoriaTransicao" data-toggle="modal" data-target="#modalExcluirCategoria" idcategoria="<?=$row['id']?>"> <i class="fas fa-trash"></i> 
                         </span>
                       </td>
                     </tr>                 

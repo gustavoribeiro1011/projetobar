@@ -1,4 +1,4 @@
-<!-- Modal Excluir Categoria-->
+<!-- Modal Excluir-->
 <div class="modal fade" id="modalExcluirCategoria" tabindex="-1" role="dialog" aria-labelledby="modalExcluirCategoria" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">

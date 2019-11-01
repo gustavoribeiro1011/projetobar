@@ -1,61 +1,44 @@
 <!-- SCRIPT: Controller Transicao Editar -->
 <script type="text/javascript" id="scriptControllerTransicaoEditar">
-$(".botaoEditarProdutoTransicao").click(function(){
-
-
-	$(".FormularioCadastrarProduto").css('display','none');
-	$(".FormularioEditarProduto").css('display','block'); 
-	var idproduto = $(this).attr('idproduto'); 
-	$.ajax({
-		type: "POST",
-		url: '../../models/produtos/ModelTransicaoEditar.php',
-		data: {
-			idproduto:idproduto
-		},
-		success: function(data) {
-
-
-			var idproduto   = data['id'];
-			var produto     = data['produto'];
-			var categoria_id   = data['categoria'];
-			var categoria_nome   = data['categoria_nome'];
-
-	 //document.getElementById("categoria_nome").innerHTML = "New Heading";
-
-			document.getElementById("id_editar").value = idproduto;
-			document.getElementById("produto_editar").value = produto;
-			//document.getElementById("categoria_id").value = produto;
-			//document.querySelector("categoria_id").setAttribute("value", "categoria_id");
-			
-
-
-		},
-		dataType:"json"
+	$(".botaoEditarCategoriaTransicao").click(function(){
+		$(".FormularioCadastrarCategoria").css('display','none');
+		$(".FormularioEditarCategoria").css('display','block');  
+		var idcategoria = $(this).attr('idcategoria'); 
+		$.ajax({
+			type: "POST",
+			url: '../../models/categorias/ModelTransicaoEditar.php',
+			data: {
+				idcategoria:idcategoria
+			},
+			success: function(data) {
+				var idcategoria = data['id'];
+				var categoria = data['categoria'];
+				document.getElementById("id_editar").value = idcategoria;
+				document.getElementById("categoria_editar").value = categoria;
+			},
+			dataType:"json"
+		});
 	});
-});
 </script>
 
 
 <script type="text/javascript" id="scriptControllerEditarCancelar">
-$(".botaoCancelarProduto").click(function(){
-	$(".FormularioCadastrarProduto").css('display','block');
-	$(".FormularioEditarProduto").css('display','none');  
-});
+	$(".botaoCancelarCategoria").click(function(){
+		$(".FormularioCadastrarCategoria").css('display','block');
+		$(".FormularioEditarCategoria").css('display','none');  
+	});
 </script>
 
 <!-- SCRIPT: Controller Editar -->
 <script type="text/javascript" id="scriptControllerEditar">
-$(".botaoEditarProduto").click(function(){
-	var url = 'templates/TemplateMasterUpdateContent.php';
-	var contentTemplateMaster = document.getElementById("contentTemplateMaster");
-	//$(".FormularioCadastrarProduto").css('display','none');
-	//$(".FormularioEditarProduto").css('display','block');  
-
-	var idproduto = document.getElementById("id_editar").value;
-	var produto =  document.getElementById("produto_editar").value;
-
-
-if(!produto){ // se variavel é vazia
+	$(".botaoEditarCategoria").click(function(){
+		var url = 'templates/TemplateMasterUpdateContent.php';
+		var contentTemplateMaster = document.getElementById("contentTemplateMaster");
+	//$(".FormularioCadastrarCategoria").css('display','none');
+	//$(".FormularioEditarCategoria").css('display','block');  
+	var idcategoria = document.getElementById("id_editar").value;
+	var categoria =  document.getElementById("categoria_editar").value;
+if(!categoria){ // se variavel é vazia
 	$("#alertaAvisoEditar").fadeIn().show();  
 	setTimeout(function() {
 		$("#alertaAvisoEditar").fadeOut();
@@ -63,10 +46,10 @@ if(!produto){ // se variavel é vazia
 } else {
 	$.ajax({
 		type: "POST",
-		url: '../../models/produtos/ModelEditar.php',
+		url: '../../models/categorias/ModelEditar.php',
 		data: {
-			idproduto:idproduto,
-			produto:produto
+			idcategoria:idcategoria,
+			categoria:categoria
 		},
 		success: function(data) {
 			if(data == 'sucesso'){

@@ -5,14 +5,19 @@
               </div>
               <div class="card-body">
                 <div class="row">
-                  <div class="col-8 col-md-10 col-xl-9 col-lg-9 py-1">
-
-                    
+                  <div class="col-8 col-md-10 col-xl-9 col-lg-9 py-1">                    
                     <input type="text" id="id_editar" class="form-control" disabled style="display:none;"/>
-
-
                     <label>Produto</label>
                     <input type="text" id="produto_editar" class="form-control"  required />
+                    <label>Categoria</label>
+                    <select id="categoria_editar" class="form-control">
+                      <option id="categoria_id"><p id="categoria_nome">Aqui</p></option>
+                    </select>
+
+                    
+
+                
+
                   </div>
                 </div>
                 <div class="row"> 
