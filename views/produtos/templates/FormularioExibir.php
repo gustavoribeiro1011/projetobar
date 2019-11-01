@@ -10,7 +10,13 @@
   // do something
     }
 
-    $sql="SELECT * FROM produtos ORDER BY produto ASC";
+    $sql="
+    SELECT 
+    a.id,
+    a.produto,
+    b.categoria
+    FROM produtos a
+    LEFT JOIN categorias b on (a.categoria=b.id) order by produto ASC";
 
     if ($result=mysqli_query($conecta,$sql))
 
@@ -24,10 +30,13 @@
             <thead>
               <tr style="display:none;">
                 <th>Produto</th>
-                <th></th>                              
+                <th>Categoria</th>
+                <th>Ações</th>                              
               </tr>
               <tr>
-                <th colspan="2">Produto</th>           
+                <th>Produto</th>
+                <th>Categoria</th>
+                <th></th>           
               </tr>
             </thead>
             <tfoot>
@@ -41,9 +50,8 @@
                  ?>
 
                  <tr>
-                  <td>                   
-                    <?php echo $row['produto'];?>           
-                  </td>
+                  <td><?php echo $row['produto'];?></td>
+                  <td><?php echo $row['categoria'];?></td>
                   <td align="right">
                     <span id="acoes">
                       <button class="btn btn-secondary btn-circle btn-sm botaoEditarProdutoTransicao" idproduto="<?=$row['id']?>">

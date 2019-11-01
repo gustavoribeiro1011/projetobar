@@ -2,6 +2,7 @@
 <script type="text/javascript" id="scriptControllerTransicaoEditar">
 $(".botaoEditarProdutoTransicao").click(function(){
 
+	$('#optionTemp').remove(); 
 
 	$(".FormularioCadastrarProduto").css('display','none');
 	$(".FormularioEditarProduto").css('display','block'); 
@@ -14,21 +15,16 @@ $(".botaoEditarProdutoTransicao").click(function(){
 		},
 		success: function(data) {
 
-
 			var idproduto   = data['id'];
 			var produto     = data['produto'];
-			var categoria_id   = data['categoria'];
-			var categoria_nome   = data['categoria_nome'];
-
-	 //document.getElementById("categoria_nome").innerHTML = "New Heading";
-
 			document.getElementById("id_editar").value = idproduto;
 			document.getElementById("produto_editar").value = produto;
-			//document.getElementById("categoria_id").value = produto;
-			//document.querySelector("categoria_id").setAttribute("value", "categoria_id");
+
+            // Categoria (FK) 
+            var categoriaFK   = data['categoria_nome'];              
+            if(categoriaFK == undefined){categoria = "-- Selecione --";}else{categoria = categoriaFK;}		
+			$('#teste').prepend('<option id="optionTemp">'+categoria+'</option>');
 			
-
-
 		},
 		dataType:"json"
 	});
@@ -53,7 +49,7 @@ $(".botaoEditarProduto").click(function(){
 
 	var idproduto = document.getElementById("id_editar").value;
 	var produto =  document.getElementById("produto_editar").value;
-
+	var categoria =  document.getElementById("categoria_editar").value;
 
 if(!produto){ // se variavel é vazia
 	$("#alertaAvisoEditar").fadeIn().show();  
@@ -66,7 +62,8 @@ if(!produto){ // se variavel é vazia
 		url: '../../models/produtos/ModelEditar.php',
 		data: {
 			idproduto:idproduto,
-			produto:produto
+			produto:produto,
+			categoria
 		},
 		success: function(data) {
 			if(data == 'sucesso'){

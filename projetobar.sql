@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Máquina: localhost
--- Data de Criação: 31-Out-2019 às 23:23
+-- Data de Criação: 01-Nov-2019 às 19:30
 -- Versão do servidor: 5.6.13
 -- versão do PHP: 5.4.17
 
@@ -21,6 +21,30 @@ SET time_zone = "+00:00";
 --
 CREATE DATABASE IF NOT EXISTS `projetobar` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
 USE `projetobar`;
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `categorias`
+--
+
+CREATE TABLE IF NOT EXISTS `categorias` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `categoria` varchar(200) NOT NULL,
+  `usuario` int(11) NOT NULL COMMENT 'FK',
+  `cadastro` datetime NOT NULL,
+  `modificado` datetime NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
+
+--
+-- Extraindo dados da tabela `categorias`
+--
+
+INSERT INTO `categorias` (`id`, `categoria`, `usuario`, `cadastro`, `modificado`) VALUES
+(2, 'BEBIDAS', 1, '2019-11-01 10:41:28', '0000-00-00 00:00:00'),
+(3, 'SANDUÍCHES', 1, '2019-11-01 10:41:41', '0000-00-00 00:00:00'),
+(4, 'PORÇÕES', 1, '2019-11-01 10:43:02', '0000-00-00 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -80,37 +104,38 @@ INSERT INTO `mesas` (`id`, `usuario`, `cadastro`) VALUES
 CREATE TABLE IF NOT EXISTS `produtos` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `produto` varchar(200) NOT NULL,
-  `usuario` int(11) NOT NULL,
+  `categoria` int(11) NOT NULL COMMENT 'FK',
+  `usuario` int(11) NOT NULL COMMENT 'FK',
   `cadastro` datetime NOT NULL,
   `modificado` datetime NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=95 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=101 ;
 
 --
 -- Extraindo dados da tabela `produtos`
 --
 
-INSERT INTO `produtos` (`id`, `produto`, `usuario`, `cadastro`, `modificado`) VALUES
-(59, 'X-SALADA', 1, '2019-10-31 18:48:02', '2019-10-31 18:55:45'),
-(67, 'X-PICANHA', 1, '2019-10-31 18:55:26', '2019-10-31 21:07:03'),
-(70, 'X-TUDO', 1, '2019-10-31 19:01:12', '2019-10-31 21:07:08'),
-(73, 'X-BACON', 1, '2019-10-31 19:09:14', '2019-10-31 21:07:15'),
-(77, 'X-FRANGO', 1, '2019-10-31 21:07:20', '0000-00-00 00:00:00'),
-(79, 'COCA-COLA', 1, '2019-10-31 21:19:03', '0000-00-00 00:00:00'),
-(80, 'FANTA', 1, '2019-10-31 21:19:07', '0000-00-00 00:00:00'),
-(81, 'GUARANÁ', 1, '2019-10-31 21:19:13', '0000-00-00 00:00:00'),
-(82, 'SPRITE', 1, '2019-10-31 21:19:16', '0000-00-00 00:00:00'),
-(83, 'SUBZERO', 1, '2019-10-31 21:19:53', '0000-00-00 00:00:00'),
-(84, 'SKOL', 1, '2019-10-31 21:19:57', '0000-00-00 00:00:00'),
-(85, 'BRAHMA', 1, '2019-10-31 21:20:13', '0000-00-00 00:00:00'),
-(86, 'STELLA', 1, '2019-10-31 21:20:18', '0000-00-00 00:00:00'),
-(87, 'PROIBIDA', 1, '2019-10-31 21:20:25', '0000-00-00 00:00:00'),
-(88, 'JOIBICO', 1, '2019-10-31 21:20:35', '0000-00-00 00:00:00'),
-(89, 'SUCO DE LARANJA', 1, '2019-10-31 21:20:40', '0000-00-00 00:00:00'),
-(90, 'SUCO DE LIMÃO', 1, '2019-10-31 21:20:45', '0000-00-00 00:00:00'),
-(91, 'SUCO DE MORANGO', 1, '2019-10-31 21:20:49', '0000-00-00 00:00:00'),
-(92, 'SUCO DE UVA', 1, '2019-10-31 21:20:56', '0000-00-00 00:00:00'),
-(93, 'SUCO DE MARACUJA', 1, '2019-10-31 21:21:10', '0000-00-00 00:00:00');
+INSERT INTO `produtos` (`id`, `produto`, `categoria`, `usuario`, `cadastro`, `modificado`) VALUES
+(67, 'X-PICANHA', 3, 1, '2019-10-31 18:55:26', '2019-11-01 15:19:29'),
+(70, 'X-TUDO', 3, 1, '2019-10-31 19:01:12', '2019-11-01 15:19:17'),
+(73, 'X-BACON', 3, 1, '2019-10-31 19:09:14', '2019-11-01 15:28:42'),
+(77, 'X-FRANGO', 3, 1, '2019-10-31 21:07:20', '2019-11-01 15:19:36'),
+(79, 'COCA-COLA', 2, 1, '2019-10-31 21:19:03', '2019-11-01 15:09:31'),
+(80, 'FANTA', 2, 1, '2019-10-31 21:19:07', '2019-11-01 15:09:35'),
+(81, 'GUARANÁ', 2, 1, '2019-10-31 21:19:13', '2019-11-01 15:09:40'),
+(82, 'SPRITE', 2, 1, '2019-10-31 21:19:16', '2019-11-01 15:17:39'),
+(83, 'SUBZERO', 2, 1, '2019-10-31 21:19:53', '2019-11-01 15:17:52'),
+(84, 'SKOL', 2, 1, '2019-10-31 21:19:57', '2019-11-01 15:17:30'),
+(85, 'BRAHMA', 2, 1, '2019-10-31 21:20:13', '2019-11-01 15:09:27'),
+(86, 'STELLA', 2, 1, '2019-10-31 21:20:18', '2019-11-01 15:17:43'),
+(87, 'PROIBIDA', 2, 1, '2019-10-31 21:20:25', '2019-11-01 15:17:27'),
+(88, 'JOIBICO', 2, 1, '2019-10-31 21:20:35', '2019-11-01 15:15:35'),
+(89, 'SUCO DE LARANJA', 2, 1, '2019-10-31 21:20:40', '2019-11-01 15:18:02'),
+(90, 'SUCO DE LIMÃO', 2, 1, '2019-10-31 21:20:45', '2019-11-01 15:18:22'),
+(91, 'SUCO DE MORANGO', 2, 1, '2019-10-31 21:20:49', '2019-11-01 15:18:50'),
+(92, 'SUCO DE UVA', 2, 1, '2019-10-31 21:20:56', '2019-11-01 15:19:05'),
+(93, 'SUCO DE MARACUJA', 2, 1, '2019-10-31 21:21:10', '2019-11-01 15:18:30'),
+(98, 'X-SALADA', 3, 1, '2019-11-01 15:20:24', '0000-00-00 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -131,7 +156,7 @@ CREATE TABLE IF NOT EXISTS `sidebar` (
 --
 
 INSERT INTO `sidebar` (`id`, `id_usuario`, `status`, `cadastro`) VALUES
-(4, 1, 'toggled', '2019-10-31 21:21:34');
+(4, 1, 'toggled', '2019-11-01 15:35:16');
 
 -- --------------------------------------------------------
 

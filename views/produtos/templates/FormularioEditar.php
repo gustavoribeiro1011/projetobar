@@ -10,8 +10,10 @@
                     <label>Produto</label>
                     <input type="text" id="produto_editar" class="form-control"  required />
                     <label>Categoria</label>
+
                     <select id="categoria_editar" class="form-control">
-                      <option id="categoria_id"><p id="categoria_nome">Aqui</p></option>
+                      <option id="teste" value=""></option>
+                      <?php include($ModelSelectCategoria); ?>
                     </select>
 
                     
