@@ -62,7 +62,8 @@ if(!categoria){ // se variavel é vazia
 						eval(document.getElementById('scriptControllerTransicaoEditar').innerHTML); 
 						eval(document.getElementById('scriptControllerEditar').innerHTML);  
 						eval(document.getElementById('scriptControllerEditarCancelar').innerHTML);   
-						eval(document.getElementById('scriptControllerCadastrar').innerHTML);   
+						eval(document.getElementById('scriptControllerCadastrar').innerHTML);  
+						eval(document.getElementById('scriptControllerVerificaProdutosVinculados').innerHTML);   
 						eval(document.getElementById('scriptControllerExcluir').innerHTML);  
 						eval(document.getElementById('scriptControllerExcluirTransicao').innerHTML);    
 					}

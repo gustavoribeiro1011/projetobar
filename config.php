@@ -73,7 +73,7 @@ $ControllerExcluirProduto .= BASEURL . "controllers/produtos/ControllerExcluir.p
 
 // Categorias
 $AlertasCategoria = $_SERVER['DOCUMENT_ROOT'];
-$AlertasCategoria .= BASEURL . "views/produtos/templates/Alertas.php";
+$AlertasCategoria .= BASEURL . "views/categorias/templates/Alertas.php";
 
 $ControllerCadastrarCategoria = $_SERVER['DOCUMENT_ROOT'];
 $ControllerCadastrarCategoria .= BASEURL . "controllers/categorias/ControllerCadastrar.php";

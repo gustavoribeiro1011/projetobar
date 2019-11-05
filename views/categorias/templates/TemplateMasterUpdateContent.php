@@ -3,6 +3,9 @@
 
 require('../../../config.php');
 
+$ModalVerificaProdutosVinculados= $_SERVER['DOCUMENT_ROOT'];
+$ModalVerificaProdutosVinculados.= BASEURL . "views/categorias/templates/ModalVerificaProdutosVinculados.php";
+
 $ModalExcluir = $_SERVER['DOCUMENT_ROOT'];
 $ModalExcluir .= BASEURL . "views/categorias/templates/ModalExcluir.php";
 
@@ -24,13 +27,16 @@ $FormularioExibir .= BASEURL . "views/categorias/templates/FormularioExibir.php"
 
 <div class="col-xl-4 col-lg-5">
 
-<!-- Formulario  Cadastrar Categorias -->          
+<!-- $Modal Verifica Produtos Vinculados -->          
+<?php include ($ModalVerificaProdutosVinculados); ?>
+
+<!-- Modal Excluir -->          
 <?php include ($ModalExcluir); ?>
 
-<!-- Formulario  Cadastrar Categorias -->          
+<!-- Formulario  Cadastrar -->          
 <?php include ($FormularioCadastrar); ?>
 
-<!-- Formulario  Editar Categorias -->          
+<!-- Formulario  Editar -->          
 <?php include ($FormularioEditar); ?>
 
 </div>

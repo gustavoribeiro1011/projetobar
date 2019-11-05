@@ -17,8 +17,11 @@
 
 				var idproduto   = data['id'];
 				var produto     = data['produto'];
+				var preco     = data['preco'];
 				document.getElementById("id_editar").value = idproduto;
 				document.getElementById("produto_editar").value = produto;
+				document.getElementById("preco_editar").value = preco;
+				
 
             // Categoria (FK) 
             var categoriaIdFK   = data['categoria'];      
@@ -52,6 +55,7 @@
 	var idproduto = document.getElementById("id_editar").value;
 	var produto =  document.getElementById("produto_editar").value;
 	var categoria =  document.getElementById("categoria_editar").value;
+	var preco =  document.getElementById("preco_editar").value;
 
 if(!produto){ // se variavel é vazia
 	$("#alertaAvisoEditar").fadeIn().show();  
@@ -65,7 +69,8 @@ if(!produto){ // se variavel é vazia
 		data: {
 			idproduto:idproduto,
 			produto:produto,
-			categoria
+			categoria:categoria,
+			preco:preco
 		},
 		success: function(data) {
 			if(data == 'sucesso'){

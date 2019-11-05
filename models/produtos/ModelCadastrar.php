@@ -9,10 +9,12 @@ include ('../../config.php');
 
 $produto = $_POST['produto'];
 $categoria = $_POST['categoria'];
+$preco = $_POST['preco'];
 
 
-$cadastrarProduto = "INSERT INTO produtos (produto,categoria,usuario,cadastro) 
-VALUES ('$produto','$categoria',".$_SESSION['id'.$app_token].", now() ) "; 
+
+$cadastrarProduto = "INSERT INTO produtos (produto,categoria,preco,usuario,cadastro) 
+VALUES ('$produto','$categoria','$preco',".$_SESSION['id'.$app_token].", now() ) "; 
 
 		if ($conecta->query($cadastrarProduto) === TRUE) {
 			echo "sucesso";

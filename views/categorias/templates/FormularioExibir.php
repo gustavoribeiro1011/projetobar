@@ -48,7 +48,7 @@
                     <span id="acoes">
                       <button class="btn btn-secondary btn-circle btn-sm botaoEditarCategoriaTransicao" idcategoria="<?=$row['id']?>">
                         <i class="fas fa-pencil-alt"></i></button>
-                        <button class="btn btn-secondary btn-circle btn-sm botaoExcluirCategoriaTransicao" data-toggle="modal" data-target="#modalExcluirCategoria" idcategoria="<?=$row['id']?>"> <i class="fas fa-trash"></i> 
+                        <button class="btn btn-secondary btn-circle btn-sm botaoVerificaProdutosVinculados"  idcategoria="<?=$row['id']?>"> <i class="fas fa-trash"></i> 
                         </span>
                       </td>
                     </tr>                 

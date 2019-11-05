@@ -8,10 +8,16 @@
                   <div class="col-8 col-md-10 col-xl-9 col-lg-9 py-1">
                     <label>Produto</label>
                     <input type="text" id="produto" class="form-control"  required />
+                  </div>
+                  <div class="col-8 col-md-10 col-xl-9 col-lg-9 py-1">    
                     <label>Categoria</label>
                     <select class="form-control" id="categoria">                      
                       <?php include($ModelSelectCategoria); ?>
                     </select>
+                  </div>
+                  <div class="col-8 col-md-10 col-xl-9 col-lg-9 py-1">    
+                    <label>Preço</label>
+                    <input type="text" id="preco" class="form-control" />
                   </div>
                 </div>
                 <div class="row"> 

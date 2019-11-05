@@ -5,15 +5,26 @@
 ![](https://img.shields.io/github/stars/pandao/editor.md.svg) ![](https://img.shields.io/github/forks/pandao/editor.md.svg) ![](https://img.shields.io/github/tag/pandao/editor.md.svg) ![](https://img.shields.io/github/release/pandao/editor.md.svg) ![](https://img.shields.io/github/issues/pandao/editor.md.svg) ![](https://img.shields.io/bower/v/editor.md.svg)
 
 # **Sobre**
-Projeto Bar surgiu em 28 de Outubro de 2019 com a idéia de se tornar um sistema de gerenciamento de bares e restaurantes. 
+Projeto Bar surgiu em 28 de Outubro de 2019 com o propósito de atender bares e restaurantes que necessitam de sistema para o gerenciamento do estabelicimento. 
+Com a plataforma Projeto Bar é possível gerenciar tudo isso de forma simples e oferecer uma expericnia muito agradável e ágil para seus clientes.
 
 ### Funcionalidades:
-- Gerenciamento de mesas
-- controle de produtos,
-- cardápio online,
-- reservas de mesas
-- monitoramento de pedidos
+- Sistema PDV
+- Controle de mesas
+- Comanda eletronica
+- Impressão para cozinha
+- Relatórios completos
+- 100% responsivo
+- Monitoramento de pedidos
 
-### Desenvolvedores:
+
+## Site:
+- Reservas de mesas 
+- Cardápio online
+- Localização
+- Fotos do estabelimento
+- Sobre
+
+
+### Desenvolvedor:
 Gustavo Henrique Ribeiro
-Mateus Nunes

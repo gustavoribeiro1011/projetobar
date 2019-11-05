@@ -1,3 +1,55 @@
+<!-- SCRIPT: Controller Verifica PRodutos Vinculados -->
+<script type="text/javascript" id="scriptControllerVerificaProdutosVinculados">
+	$(".botaoVerificaProdutosVinculados").click(function(){
+		var idcategoria = $(this).attr('idcategoria'); 
+		
+		$.ajax({
+			type: "POST",
+			url: '../../models/categorias/ModelVerificaProdutosVinculados.php',
+			data: {
+				idcategoria:idcategoria
+			},
+			success: function(data) {
+				
+				var msg = data['msg'];
+
+
+				if(data['msg'] =='existe produtos vinculados'){
+
+					var resultado = data['resultado'];
+					var nomeCategoria = data['nome_categoria'];
+
+					if(resultado>1){
+						document.getElementById("spanResultado").innerHTML = "<b>" + resultado + "</b>" + " produtos estão vinculados";
+					} else {
+						document.getElementById("spanResultado").innerHTML = "<b>" + resultado + "</b>" + " produto está vinculado";
+					}
+					
+					document.getElementById("spanNomeCategoria").innerHTML = nomeCategoria;
+					document.getElementById("resgataIDcategoria").value = idcategoria;
+
+
+					$('#ModalVerificaProdutosVinculados').modal('show');
+
+					
+
+				} else if (data['msg'] =='nao existe produtos vinculados'){
+
+					document.getElementById("resgataIDcategoria").value = idcategoria;
+					$('#modalExcluirCategoria').modal('show');
+
+				} else if (data['msg'] =='falha'){
+					$("#alertaFalhaExcluir").fadeIn().show();  
+					setTimeout(function() {
+						$("#alertaFalhaExcluir").fadeOut();
+					}, 4000);
+				}
+			},
+			dataType:"json"
+		});
+	});
+</script>
+
 <!-- SCRIPT: Controller Excluir -->
 <script type="text/javascript" id="scriptControllerExcluirTransicao">
 	$(".botaoExcluirCategoriaTransicao").click(function(){
@@ -25,11 +77,14 @@
 					request.addEventListener("readystatechange", function (event) {
 						if (request.readyState == 4 && request.status == 200) {
 							contentTemplateMaster.innerHTML = request.responseText
+							
+
 							eval(document.getElementById('scriptDataTable').innerHTML);  
 							eval(document.getElementById('scriptControllerCadastrar').innerHTML);  
 							eval(document.getElementById('scriptControllerTransicaoEditar').innerHTML);  
 							eval(document.getElementById('scriptControllerEditar').innerHTML); 
-							eval(document.getElementById('scriptControllerEditarCancelar').innerHTML);   
+							eval(document.getElementById('scriptControllerEditarCancelar').innerHTML);  
+							eval(document.getElementById('scriptControllerVerificaProdutosVinculados').innerHTML);  
 							eval(document.getElementById('scriptControllerExcluir').innerHTML);  
 							eval(document.getElementById('scriptControllerExcluirTransicao').innerHTML);    
 						}

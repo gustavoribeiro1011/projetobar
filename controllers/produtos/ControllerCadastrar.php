@@ -12,6 +12,7 @@ $("#botaoCadastrarProduto").click(function(){
 
   var produto = document.getElementById("produto").value;
   var categoria = document.getElementById("categoria").value;
+  var preco = document.getElementById("preco").value;
   
   if (!produto){ // se variavel for vazia
 
@@ -39,7 +40,8 @@ $("#botaoCadastrarProduto").click(function(){
       url: '../../models/produtos/ModelCadastrar.php',
       data: {
         produto:produto,
-        categoria:categoria
+        categoria:categoria,
+        preco:preco
       },
       success: function(data) {
        if (data == 'sucesso'){

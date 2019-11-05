@@ -9,17 +9,17 @@
                     <input type="text" id="id_editar" class="form-control" disabled style="display:none;"/>
                     <label>Produto</label>
                     <input type="text" id="produto_editar" class="form-control"  required />
+                  </div>
+                  <div class="col-8 col-md-10 col-xl-9 col-lg-9 py-1">    
                     <label>Categoria</label>
-
                     <select id="categoria_editar" class="form-control">
                       <option id="teste"></option>
                       <?php include($ModelSelectCategoria); ?>
-                    </select>
-
-                    
-
-                
-
+                    </select>    
+                  </div>
+                  <div class="col-8 col-md-10 col-xl-9 col-lg-9 py-1">    
+                    <label>Preço</label>                
+                    <input type="text" id="preco_editar" class="form-control" />
                   </div>
                 </div>
                 <div class="row"> 

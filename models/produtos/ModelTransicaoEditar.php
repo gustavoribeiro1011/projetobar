@@ -13,6 +13,7 @@ $consultarProduto = "
 SELECT 
 a.id,
 a.produto,
+a.preco,
 a.categoria,
 b.categoria categoria_nome
 FROM produtos a
@@ -30,7 +31,8 @@ if ($result=mysqli_query($conecta,$consultarProduto))
 			"id"      => $row['id'],
 			"produto" => $row['produto'],
 			"categoria" => $row['categoria'],
-			"categoria_nome" => $row['categoria_nome']
+			"categoria_nome" => $row['categoria_nome'],
+			"preco" => $row['preco'],
 			);
 
 		
