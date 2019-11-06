@@ -25,6 +25,3 @@ Projeto Bar surgiu em 28 de Outubro de 2019 com o propósito de atender bares e 
 - Fotos do estabelimento
 - Sobre
 
-
-### Desenvolvedor:
-Gustavo Henrique Ribeiro

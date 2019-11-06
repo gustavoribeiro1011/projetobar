@@ -1,27 +1,26 @@
 <!-- SCRIPT: Controller Transicao Editar -->
 <script type="text/javascript" id="scriptControllerTransicaoEditar">
-	$(".botaoEditarProdutoTransicao").click(function(){
+$(".botaoEditarProdutoTransicao").click(function(){
 
-		$('#optionTemp').remove(); 
+	$('#optionTemp').remove(); 
 
-		$(".FormularioCadastrarProduto").css('display','none');
-		$(".FormularioEditarProduto").css('display','block'); 
-		var idproduto = $(this).attr('idproduto'); 
-		$.ajax({
-			type: "POST",
-			url: '../../models/produtos/ModelTransicaoEditar.php',
-			data: {
-				idproduto:idproduto
-			},
-			success: function(data) {
+	$(".FormularioCadastrarProduto").css('display','none');
+	$(".FormularioEditarProduto").css('display','block'); 
+	var idproduto = $(this).attr('idproduto'); 
+	$.ajax({
+		type: "POST",
+		url: '../../models/produtos/ModelTransicaoEditar.php',
+		data: {
+			idproduto:idproduto
+		},
+		success: function(data) {
 
-				var idproduto   = data['id'];
-				var produto     = data['produto'];
-				var preco     = data['preco'];
-				document.getElementById("id_editar").value = idproduto;
-				document.getElementById("produto_editar").value = produto;
-				document.getElementById("preco_editar").value = preco;
-				
+			var formato = { minimumFractionDigits: 2 }
+
+			document.getElementById("id_editar").value = data['id'];
+			document.getElementById("produto_editar").value = data['produto'];
+			document.getElementById("preco_editar").value = (parseFloat(data['preco'])).toLocaleString('pt-BR',formato); //converte para formato brasileiro ex. 9.999,99
+			
 
             // Categoria (FK) 
             var categoriaIdFK   = data['categoria'];      
@@ -33,29 +32,26 @@
         },
         dataType:"json"
     });
-	});
+});
 </script>
 
 
 <script type="text/javascript" id="scriptControllerEditarCancelar">
-	$(".botaoCancelarProduto").click(function(){
-		$(".FormularioCadastrarProduto").css('display','block');
-		$(".FormularioEditarProduto").css('display','none');  
-	});
+$(".botaoCancelarProduto").click(function(){
+	$(".FormularioCadastrarProduto").css('display','block');
+	$(".FormularioEditarProduto").css('display','none');  
+});
 </script>
 
 <!-- SCRIPT: Controller Editar -->
 <script type="text/javascript" id="scriptControllerEditar">
-	$(".botaoEditarProduto").click(function(){
-		var url = 'templates/TemplateMasterUpdateContent.php';
-		var contentTemplateMaster = document.getElementById("contentTemplateMaster");
-	//$(".FormularioCadastrarProduto").css('display','none');
-	//$(".FormularioEditarProduto").css('display','block');  
-
+$(".botaoEditarProduto").click(function(){
+	var url = 'templates/TemplateMasterUpdateContent.php';
+	var contentTemplateMaster = document.getElementById("contentTemplateMaster");
 	var idproduto = document.getElementById("id_editar").value;
 	var produto =  document.getElementById("produto_editar").value;
 	var categoria =  document.getElementById("categoria_editar").value;
-	var preco =  document.getElementById("preco_editar").value;
+	var preco =  $('#preco_editar').val().replace(".", "").replace(",","."); // converte para formato americano ex. 9999.99
 
 if(!produto){ // se variavel é vazia
 	$("#alertaAvisoEditar").fadeIn().show();  
@@ -79,6 +75,7 @@ if(!produto){ // se variavel é vazia
 				request.addEventListener("readystatechange", function (event) {
 					if (request.readyState == 4 && request.status == 200) {
 						contentTemplateMaster.innerHTML = request.responseText
+						eval(document.getElementById('scriptMaskMoney').innerHTML); 
 						eval(document.getElementById('scriptDataTable').innerHTML);  
 						eval(document.getElementById('scriptControllerTransicaoEditar').innerHTML); 
 						eval(document.getElementById('scriptControllerEditar').innerHTML);  

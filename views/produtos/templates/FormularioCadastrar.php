@@ -15,15 +15,20 @@
                       <?php include($ModelSelectCategoria); ?>
                     </select>
                   </div>
-                  <div class="col-8 col-md-10 col-xl-9 col-lg-9 py-1">    
-                    <label>Preço</label>
-                    <input type="text" id="preco" class="form-control" />
-                  </div>
+                  <div class="col-8 col-md-10 col-xl-9 col-lg-9 py-1">  
+                   <label>Preço</label>
+                   <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text">R$</span>
+                    </div>
+                    <input type="text" class="form-control moedaBRL" id="preco" aria-label="Preço">
+                  </div>                   
                 </div>
-                <div class="row"> 
-                  <div class="col-2 col-md-2 col-xl-1 col-lg-1 py-1">                 
-                    <button class="btn btn-primary" id="botaoCadastrarProduto">Cadastrar</button>
-                  </div>
-                </div>       
               </div>
+              <div class="row"> 
+                <div class="col-2 col-md-2 col-xl-1 col-lg-1 py-1">                 
+                  <button class="btn btn-primary" id="botaoCadastrarProduto">Cadastrar</button>
+                </div>
+              </div>       
             </div>
+          </div>

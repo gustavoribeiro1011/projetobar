@@ -17,17 +17,22 @@
                       <?php include($ModelSelectCategoria); ?>
                     </select>    
                   </div>
-                  <div class="col-8 col-md-10 col-xl-9 col-lg-9 py-1">    
-                    <label>Preço</label>                
-                    <input type="text" id="preco_editar" class="form-control" />
-                  </div>
+                  <div class="col-8 col-md-10 col-xl-9 col-lg-9 py-1">  
+                   <label>Preço</label>
+                   <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text">R$</span>
+                    </div>
+                    <input type="text" class="form-control moedaBRL" id="preco_editar" aria-label="Preço">
+                  </div>                   
                 </div>
-                <div class="row"> 
-                  <div class="col-12 col-md-12 col-xl-12 col-lg-12 py-1">                 
-                    <button class="btn btn-primary botaoEditarProduto">Salvar</button>
-                    <button class="btn btn-light botaoCancelarProduto">Cancelar</button>
-
-                  </div>
-                </div>       
               </div>
+              <div class="row"> 
+                <div class="col-12 col-md-12 col-xl-12 col-lg-12 py-1">                 
+                  <button class="btn btn-primary botaoEditarProduto">Salvar</button>
+                  <button class="btn btn-light botaoCancelarProduto">Cancelar</button>
+
+                </div>
+              </div>       
             </div>
+          </div>

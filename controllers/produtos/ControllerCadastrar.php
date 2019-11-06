@@ -1,5 +1,12 @@
+
 <!-- SCRIPT: Controller Cadastrar -->
 <script id="scriptControllerCadastrar">
+$(function() {
+  $('.moedaBRL').maskMoney({
+      thousands: '.', //separador milhar
+      decimal: ',' // separador decimal
+    });
+})
 
 var url = 'templates/TemplateMasterUpdateContent.php';
 var contentTemplateMaster = document.getElementById("contentTemplateMaster");
@@ -10,10 +17,13 @@ $("#botaoCadastrarProduto").click(function(){
 
   button.setAttribute("class","btn btn-primary disabled"); // desativando o botao enquanto processa
 
-  var produto = document.getElementById("produto").value;
-  var categoria = document.getElementById("categoria").value;
-  var preco = document.getElementById("preco").value;
-  
+
+
+  var produto = $('#produto').val();
+  var categoria = $('#categoria').val();
+  var preco = $('#preco').val().replace(".", "").replace(",","."); // converte para formato americano ex. 9999.99
+
+
   if (!produto){ // se variavel for vazia
 
    $("#alertaAvisoCadastrar").fadeIn().show();  
@@ -49,7 +59,8 @@ $("#botaoCadastrarProduto").click(function(){
         request.open("GET", url, true);
         request.addEventListener("readystatechange", function (event) {
           if (request.readyState == 4 && request.status == 200) {
-            contentTemplateMaster.innerHTML = request.responseText
+            contentTemplateMaster.innerHTML = request.responseText            
+            eval(document.getElementById('scriptMaskMoney').innerHTML); 
             eval(document.getElementById('scriptDataTable').innerHTML);  
             eval(document.getElementById('scriptControllerCadastrar').innerHTML);  
             eval(document.getElementById('scriptControllerTransicaoEditar').innerHTML);  

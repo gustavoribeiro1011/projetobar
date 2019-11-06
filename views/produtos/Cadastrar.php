@@ -69,6 +69,7 @@ include('../../inc/header.php');
 <!-- Page level plugins -->
 <script src="<?php echo BASEURL;?>vendor/datatables/jquery.dataTables.min.js"></script>
 <script src="<?php echo BASEURL;?>vendor/datatables/dataTables.bootstrap4.min.js"></script>
+<script src="<?php echo BASEURL;?>vendor/maskmoney/dist/jquery.maskMoney.js" id="scriptMaskMoney"></script>
 
 
 <!-- Controller Cadastrar Produtos-->
@@ -89,8 +90,9 @@ include('../../inc/header.php');
       }
     });
   });
-
 </script>
+
+
 
 
 
