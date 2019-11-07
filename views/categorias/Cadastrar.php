@@ -3,7 +3,7 @@
 session_start();
 
 $app_item="controle";
-$app_page_name="categoria";
+$app_page_name="categorias";
 
 
 include ('../../config.php');

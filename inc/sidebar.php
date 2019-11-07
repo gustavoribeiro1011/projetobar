@@ -21,102 +21,64 @@
         <span>Dashboard</span></a>
       </li>
 
-      <!-- Divider -->
-      <hr class="sidebar-divider">
-
-      <!-- Heading -->
-       <!-- <div class="sidebar-heading">
-          INICIO
-        </div>-->
-
-        <!-- Nav Item - Pages Collapse Menu -->
-        <li class="nav-item <?php  if( $app_item == 'mesa' ) { echo "active"; } else { echo""; } ?>">
-          <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
-            <i class="fas fa-th-list"></i>
-            <span>Mesas</span>
-          </a>
-          <div id="collapseTwo" class="collapse 
-          <?php  
-
-          if( $app_item == 'mesa' ) {
-            if($CosultaToggle['status'] == 'toggled'){
-              echo "";
-            }else{
-             echo "show"; 
-           }
-         } else {
-          echo"";
-        }
-
-        ?>
-        " aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-        <div class="bg-white py-2 collapse-inner rounded">
-          <h6 class="collapse-header">Gerenciamento de mesas:</h6>
-          <a class="collapse-item  <?php  if( $app_page_name == 'cadastrar mesa' ) { echo "active"; } else { echo""; } ?>" 
-            href="<?php echo BASEURL . "views/mesas/Cadastrar.php";?>">Cadastrar</a>
-          </div>
-        </div>
-      </li>
-
-      <!-- Nav Item - Utilities Collapse Menu -->
-    <!--  <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities">
-          <i class="fas fa-fw fa-wrench"></i>
-          <span>Utilities</span>
-        </a>
-        <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
-          <div class="bg-white py-2 collapse-inner rounded">
-            <h6 class="collapse-header">Custom Utilities:</h6>
-            <a class="collapse-item" href="utilities-color.html">Colors</a>
-            <a class="collapse-item" href="utilities-border.html">Borders</a>
-            <a class="collapse-item" href="utilities-animation.html">Animations</a>
-            <a class="collapse-item" href="utilities-other.html">Other</a>
-          </div>
-        </div>
-      </li>-->
-
-      <!-- Divider -->
-      <hr class="sidebar-divider">
-
-      <!-- Heading -->
-      <!--<div class="sidebar-heading">
-        Gerenciamento
-      </div>-->
 
       <!-- Nav Item - Pages Collapse Menu -->
       <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="true" aria-controls="collapsePages">
-          <i class="fas fa-th-list"></i>
-          <span>BAR</span>
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePage1" aria-expanded="true" aria-controls="collapsePages">
+          <i class="fas fa-clipboard"></i>
+          <span>Comanda Eletrônica</span>
         </a>
-        <div id="collapsePages" class="collapse
+        <div id="collapsePage1" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+        <div class="bg-white py-2 collapse-inner rounded">
 
-        <?php  
+          <a class="collapse-item" href="<?php echo BASEURL; ?>views/comanda-eletronica/index.php">Novo pedido</a>
+         
+          <div class="collapse-divider"></div>
+        </div>
+      </div>
+    </li>
 
-        if( $app_item == 'controle' ) {
-          if($CosultaToggle['status'] == 'toggled'){
-            echo "";
-          }else{
-           echo "show"; 
-         }
-       } else {
-        echo"";
-      }
 
-      ?>
-      " aria-labelledby="headingPages" data-parent="#accordionSidebar">
+    <!-- Nav Item - Pages Collapse Menu -->
+    <li class="nav-item">
+      <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePage2" aria-expanded="true" aria-controls="collapsePages">
+        <i class="fas fa-desktop"></i>
+        <span>Monitor</span>
+      </a>
+      <div id="collapsePage2" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
       <div class="bg-white py-2 collapse-inner rounded">
-        <h6 class="collapse-header">Controle:</h6>
+        <!-- Menu: Mesas -->
+        <a class="collapse-item" href="#">Pedido</a>  
+          <a class="collapse-item" href="#">Estoque</a>           
+        <div class="collapse-divider"></div>
+      </div>
+    </div>
+  </li>
 
+
+
+  <!-- Nav Item - Pages Collapse Menu -->
+  <li class="nav-item">
+    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages3" aria-expanded="true" aria-controls="collapsePages">
+      <i class="fas fa-plus"></i>
+      <span>Cadastro</span>
+    </a>
+    <div id="collapsePages3" class="collapse
+
+    <?php if($app_item=='controle'){if($CosultaToggle['status']=='toggled'){echo"";}else{echo"show";}}else{echo"";}?>
+    " aria-labelledby="headingPages" data-parent="#accordionSidebar">
+    <div class="bg-white py-2 collapse-inner rounded">
+      <!-- Menu: Mesas -->
+      <a class="collapse-item  <?php if($app_page_name=='mesas'){echo "active";}else{echo"";} ?>" 
+        href="<?php echo BASEURL."views/mesas/Cadastrar.php";?>">Mesas</a>
+        <!-- Menu: Produtos -->
         <a class="collapse-item
-        <?php  if( $app_page_name == 'produto' ) { echo "active"; } else { echo""; } ?>
-        " href="<?php echo BASEURL . "views/produtos/Cadastrar.php";?>">Produtos</a>
-
+        <?php  if( $app_page_name=='produtos' ) { echo "active"; } else {echo""; } ?>
+        " href="<?php echo BASEURL."views/produtos/Cadastrar.php";?>">Produtos</a>
+        <!-- Menu: Categorias -->
         <a class="collapse-item
-        <?php  if( $app_page_name == 'categoria' ) { echo "active"; } else { echo""; } ?>
-        " href="<?php echo BASEURL . "views/categorias/Cadastrar.php";?>">Categorias</a>
-        <a class="collapse-item" href="#">..</a>
-
+        <?php  if( $app_page_name=='categorias' ){echo "active"; }else{echo""; } ?>
+        " href="<?php echo BASEURL."views/categorias/Cadastrar.php";?>">Categorias</a>
         <div class="collapse-divider"></div>
         <!--
         <h6 class="collapse-header">Other Pages:</h6>

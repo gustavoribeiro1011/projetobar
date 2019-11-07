@@ -3,7 +3,7 @@
 session_start();
 
 $app_item="controle";
-$app_page_name="produto";
+$app_page_name="produtos";
 
 
 include ('../../config.php');

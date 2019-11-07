@@ -2,8 +2,8 @@
 
 session_start();
 
-$app_item="mesa";
-$app_page_name="cadastrar mesa";
+$app_item="controle";
+$app_page_name="mesas";
 
 
 include ('../../config.php');

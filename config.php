@@ -87,5 +87,7 @@ $ControllerExcluirCategoria .= BASEURL . "controllers/categorias/ControllerExclu
 $ModelSelectCategoria = $_SERVER['DOCUMENT_ROOT'];
 $ModelSelectCategoria .= BASEURL . "models/categorias/ModelSelect.php";
 
-
+// Comanda Eletronica
+$ControllerCapturaDados = $_SERVER['DOCUMENT_ROOT'];
+$ControllerCapturaDados .= BASEURL . "controllers/comanda-eletronica/ControllerCapturaDados.php";
 
