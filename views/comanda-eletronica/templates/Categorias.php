@@ -12,6 +12,7 @@
           <h6 class="m-0 font-weight-bold text-primary">Selecione uma categoria</h6>
         </div>
         <div class="col-xl-6 col-lg-7" align="right">
+         <button class="btn btn-sm btn-primary" id="btn-voltar-mesa"><i class="fas fa-arrow-left"></i> Voltar</button>
          <button class="btn btn-sm btn-primary"> <i class="fas fa-th-large"></i></button>
          <button class="btn btn-sm btn-primary"><i class="fas fa-list"></i></button> 
        </div>
@@ -44,18 +45,18 @@
           </div>
         </div>
 
-      <?php     }
+        <?php     }
 
 
-      mysqli_free_result($result);
-    }
+        mysqli_free_result($result);
+      }
 
 
-    ?>
+      ?>
+    </div>
+
+
   </div>
-
-
-</div>
 </div>
 </div>
 
