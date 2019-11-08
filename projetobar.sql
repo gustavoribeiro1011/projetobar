@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Máquina: localhost
--- Data de Criação: 07-Nov-2019 às 23:51
+-- Data de Criação: 08-Nov-2019 às 19:26
 -- Versão do servidor: 5.6.13
 -- versão do PHP: 5.4.17
 
@@ -122,6 +122,8 @@ CREATE TABLE IF NOT EXISTS `pedidos` (
   `id_categoria` int(11) NOT NULL,
   `categoria` varchar(200) NOT NULL,
   `status` varchar(100) NOT NULL,
+  `id_usuario` int(11) NOT NULL COMMENT 'FK',
+  `usuario` varchar(200) NOT NULL,
   `cadastro` datetime NOT NULL,
   `modificado` datetime NOT NULL,
   PRIMARY KEY (`num_pedido`)
@@ -131,8 +133,8 @@ CREATE TABLE IF NOT EXISTS `pedidos` (
 -- Extraindo dados da tabela `pedidos`
 --
 
-INSERT INTO `pedidos` (`num_pedido`, `mesa`, `origem`, `id_produto`, `produto`, `preco`, `id_categoria`, `categoria`, `status`, `cadastro`, `modificado`) VALUES
-(1, 0, '', 0, '', 0, 0, '', '', '0000-00-00 00:00:00', '0000-00-00 00:00:00');
+INSERT INTO `pedidos` (`num_pedido`, `mesa`, `origem`, `id_produto`, `produto`, `preco`, `id_categoria`, `categoria`, `status`, `id_usuario`, `usuario`, `cadastro`, `modificado`) VALUES
+(1, 0, 'comanda eletronica', 0, '', 0, 0, '', 'em atendimento', 1, 'projetobar ', '2019-11-08 16:08:42', '0000-00-00 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -149,18 +151,26 @@ CREATE TABLE IF NOT EXISTS `produtos` (
   `cadastro` datetime NOT NULL,
   `modificado` datetime NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=102 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=110 ;
 
 --
 -- Extraindo dados da tabela `produtos`
 --
 
 INSERT INTO `produtos` (`id`, `produto`, `categoria`, `preco`, `usuario`, `cadastro`, `modificado`) VALUES
-(67, 'X-PICANHA', 3, 12, 1, '2019-10-31 18:55:26', '2019-11-06 19:39:56'),
-(73, 'X-BACON', 3, 12, 1, '2019-10-31 19:09:14', '2019-11-06 19:39:47'),
+(67, 'X-PICANHA', 3, 14, 1, '2019-10-31 18:55:26', '2019-11-08 11:36:06'),
+(73, 'X-BACON', 3, 13, 1, '2019-10-31 19:09:14', '2019-11-08 11:36:15'),
 (77, 'X-FRANGO', 3, 12, 1, '2019-10-31 21:07:20', '2019-11-06 19:39:51'),
-(98, 'X-SALADA', 3, 12, 1, '2019-11-01 15:20:24', '2019-11-06 19:40:01'),
-(101, 'CALABRESA', 8, 20, 1, '2019-11-07 19:31:53', '0000-00-00 00:00:00');
+(98, 'X-SALADA', 3, 12, 1, '2019-11-01 15:20:24', '2019-11-08 11:37:26'),
+(101, 'CALABRESA', 8, 20, 1, '2019-11-07 19:31:53', '0000-00-00 00:00:00'),
+(102, 'MODA DA CASA', 8, 50, 1, '2019-11-08 11:17:59', '0000-00-00 00:00:00'),
+(103, 'COCA-COLA 1,5L', 2, 6, 1, '2019-11-08 11:18:26', '2019-11-08 11:18:55'),
+(104, 'FANTA 1,5L', 2, 6, 1, '2019-11-08 11:18:40', '2019-11-08 11:19:00'),
+(105, 'SKOL', 2, 5, 1, '2019-11-08 11:19:38', '0000-00-00 00:00:00'),
+(106, 'CALABRESA', 4, 15, 1, '2019-11-08 11:19:47', '0000-00-00 00:00:00'),
+(107, 'BATATA FRITA COM QUEIJO', 4, 19.9, 1, '2019-11-08 11:20:05', '0000-00-00 00:00:00'),
+(108, 'PEIXE FRITO', 4, 22, 1, '2019-11-08 11:20:23', '0000-00-00 00:00:00'),
+(109, 'CAMARAO', 4, 25, 1, '2019-11-08 11:20:32', '0000-00-00 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -181,7 +191,7 @@ CREATE TABLE IF NOT EXISTS `sidebar` (
 --
 
 INSERT INTO `sidebar` (`id`, `id_usuario`, `status`, `cadastro`) VALUES
-(4, 1, 'toggled', '2019-11-07 20:01:40');
+(4, 1, 'toggled', '2019-11-08 15:43:14');
 
 -- --------------------------------------------------------
 
