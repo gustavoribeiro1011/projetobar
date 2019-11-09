@@ -1,80 +1,108 @@
+<script>
+		var data = "";
+	$.ajax({
+		type: "POST",
+		url: '../../models/comanda-eletronica/ModelVerificaPedido.php',
+		data: {
+			data:data
+		},
+		success: function(data) {	
+			var num_pedido = data['num_pedido'];
+			$('#spanPedido').text(num_pedido);
+			$('#inputPedido').val(num_pedido);
+        },
+        dataType:"json"
+    });
+
+</script>
 <script id="scriptControllerCapturaDados">
 
-$(".btnMesa").click(function(){
-
-	setTimeout(function() {
-		$("#cardMesa").fadeOut();
-	}, 150);
-	setTimeout(function() {
-		$("#cardCategoria").fadeIn();
-	}, 600	);
-
-	var num_mesa =  $(this).attr('num_mesa');
-	document.getElementById("inputMesa").value = num_mesa;	
-});
-
-$("#btn-voltar-mesa").click(function(){
-
-	setTimeout(function() {
-		$("#cardCategoria").fadeOut();
-	}, 150);
-	setTimeout(function() {
-		$("#cardMesa").fadeIn();
-	}, 600	);
-	
-});
 
 
 
-$(".btnCategoria").click(function(){
-	
-	var id_categoria=  $(this).attr('id_categoria');
-	var categoria=  $(this).attr('categoria');
-	document.getElementById("inputIdCategoria").value = id_categoria;
-	document.getElementById("inputCategoria").value = categoria;
+	$(".btnMesa").click(function(){
+
+		setTimeout(function() {
+			$("#cardMesa").fadeOut();
+		}, 150);
+		setTimeout(function() {
+			$("#cardCategoria").fadeIn();
+		}, 600	);
+
+		var num_mesa =  $(this).attr('num_mesa');
+		document.getElementById("inputMesa").value = num_mesa;	
 
 
-	$.post("<?php echo BASEURL; ?>views/comanda-eletronica/templates/Produtos.php",
-	{
-		id_categoria:id_categoria
-	},
-	function (resultado){
-		$('#includeDivProdutos').html(resultado);
-		eval(document.getElementById('scriptControllerCapturaDados').innerHTML);  
-				setTimeout(function() {
-		$("#cardCategoria").fadeOut();
-	}, 150);
-	setTimeout(function() {
-		$("#cardProduto").fadeIn();
-	}, 600	);
+
+
 
 
 
 	});
 
-});
+	$("#btn-voltar-mesa").click(function(){
 
-$("#btn-voltar-categoria").click(function(){
-	setTimeout(function() {
-		$("#cardProduto").fadeOut();
-	}, 150);
-	setTimeout(function() {
-		$("#cardCategoria").fadeIn();
-	}, 500	);
-});
+		setTimeout(function() {
+			$("#cardCategoria").fadeOut();
+		}, 150);
+		setTimeout(function() {
+			$("#cardMesa").fadeIn();
+		}, 600	);
 
-$(".btnProduto").click(function(){
-
-	var num_mesa      = document.getElementById("inputMesa").value;
-	var id_categoria  =  document.getElementById("inputIdCategoria").value;
-	var categoria     =  document.getElementById("inputCategoria").value;
-	var id_produto=  $(this).attr('id_produto');
-	var produto=  $(this).attr('produto');
-
-	document.getElementById("inputIdProduto").value = id_produto;
-	document.getElementById("inputProduto").value = produto;	
+	});
 
 
-});
+
+	$(".btnCategoria").click(function(){
+
+		var id_categoria=  $(this).attr('id_categoria');
+		var categoria=  $(this).attr('categoria');
+		document.getElementById("inputIdCategoria").value = id_categoria;
+		document.getElementById("inputCategoria").value = categoria;
+
+
+		$.post("<?php echo BASEURL; ?>views/comanda-eletronica/templates/Produtos.php",
+		{
+			id_categoria:id_categoria
+		},
+		function (resultado){
+			$('#includeDivProdutos').html(resultado);
+			eval(document.getElementById('scriptControllerCapturaDados').innerHTML);  
+			setTimeout(function() {
+				$("#cardCategoria").fadeOut();
+			}, 150);
+			setTimeout(function() {
+				$("#cardProduto").fadeIn();
+			}, 600	);
+
+
+
+		});
+
+	});
+
+	$("#btn-voltar-categoria").click(function(){
+		setTimeout(function() {
+			$("#cardProduto").fadeOut();
+		}, 150);
+		setTimeout(function() {
+			$("#cardCategoria").fadeIn();
+		}, 500	);
+	});
+
+	$(".btnProduto").click(function(){
+
+		var num_mesa      = document.getElementById("inputMesa").value;
+		var id_categoria  =  document.getElementById("inputIdCategoria").value;
+		var categoria     =  document.getElementById("inputCategoria").value;
+		var id_produto=  $(this).attr('id_produto');
+		var produto=  $(this).attr('produto');
+
+		document.getElementById("inputIdProduto").value = id_produto;
+		document.getElementById("inputProduto").value = produto;	
+
+		alert("Agora precisa fazer o insert de tudo que esta no formulario.");
+alert("depois precisa setar os values do formulario e exibir a tela de categorias");
+	});
 
 </script>

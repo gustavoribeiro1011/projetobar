@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Máquina: localhost
--- Data de Criação: 08-Nov-2019 às 19:26
+-- Data de Criação: 09-Nov-2019 às 01:06
 -- Versão do servidor: 5.6.13
 -- versão do PHP: 5.4.17
 
@@ -128,13 +128,6 @@ CREATE TABLE IF NOT EXISTS `pedidos` (
   `modificado` datetime NOT NULL,
   PRIMARY KEY (`num_pedido`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Extraindo dados da tabela `pedidos`
---
-
-INSERT INTO `pedidos` (`num_pedido`, `mesa`, `origem`, `id_produto`, `produto`, `preco`, `id_categoria`, `categoria`, `status`, `id_usuario`, `usuario`, `cadastro`, `modificado`) VALUES
-(1, 0, 'comanda eletronica', 0, '', 0, 0, '', 'em atendimento', 1, 'projetobar ', '2019-11-08 16:08:42', '0000-00-00 00:00:00');
 
 -- --------------------------------------------------------
 

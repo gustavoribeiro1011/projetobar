@@ -52,35 +52,7 @@ include('../../inc/header.php');
           <div class="col-sm-12">
             <div class="card shadow">
               <div class="card-header py-3">
-                <?php
-
-                $verificarPedidoExistente = "SELECT num_pedido FROM pedidos ORDER BY num_pedido DESC LIMIT 1"; 
-
-                if ($result=mysqli_query($conecta,$verificarPedidoExistente))
-
-                {
-
-                $row=mysqli_fetch_row($result);
-
-                if ($row['0'] > 0){ // se existe pedidos
-                 
-
-                  $num_pedido = $row['0']+1;
-
-
-
-                } else { // se nao existe pedidos
-                  $num_pedido = 1;
-                }
-
-                }
-
-
-
-
-
-                ?>
-                <h4 class="m-0 font-weight-bold text-primary">Pedido nº <?=$num_pedido;?></h4></div>
+                <h4 class="m-0 font-weight-bold text-primary">Pedido nº <span id="spanPedido"></span></h4></div>
               </div>
             </div>
           </div>
