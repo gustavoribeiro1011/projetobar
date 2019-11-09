@@ -88,6 +88,11 @@ $ModelSelectCategoria = $_SERVER['DOCUMENT_ROOT'];
 $ModelSelectCategoria .= BASEURL . "models/categorias/ModelSelect.php";
 
 // Comanda Eletronica
+
+
+$AlertasComandaEletronica = $_SERVER['DOCUMENT_ROOT'];
+$AlertasComandaEletronica .= BASEURL . "views/comanda-eletronica/templates/Alertas.php";
+
 $ControllerCapturaDados = $_SERVER['DOCUMENT_ROOT'];
 $ControllerCapturaDados .= BASEURL . "controllers/comanda-eletronica/ControllerCapturaDados.php";
 

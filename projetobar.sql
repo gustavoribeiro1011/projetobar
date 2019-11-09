@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Máquina: localhost
--- Data de Criação: 09-Nov-2019 às 01:06
+-- Data de Criação: 09-Nov-2019 às 14:51
 -- Versão do servidor: 5.6.13
 -- versão do PHP: 5.4.17
 
@@ -113,6 +113,7 @@ INSERT INTO `mesas` (`id`, `usuario`, `cadastro`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `pedidos` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `num_pedido` int(11) NOT NULL,
   `mesa` int(11) NOT NULL,
   `origem` varchar(100) NOT NULL,
@@ -126,8 +127,24 @@ CREATE TABLE IF NOT EXISTS `pedidos` (
   `usuario` varchar(200) NOT NULL,
   `cadastro` datetime NOT NULL,
   `modificado` datetime NOT NULL,
-  PRIMARY KEY (`num_pedido`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=161 ;
+
+--
+-- Extraindo dados da tabela `pedidos`
+--
+
+INSERT INTO `pedidos` (`id`, `num_pedido`, `mesa`, `origem`, `id_produto`, `produto`, `preco`, `id_categoria`, `categoria`, `status`, `id_usuario`, `usuario`, `cadastro`, `modificado`) VALUES
+(151, 9, 0, 'comanda eletronica', 0, '', 0, 0, '', 'pedido aberto', 1, 'projetobar ', '2019-11-09 11:48:50', '0000-00-00 00:00:00'),
+(152, 9, 1, 'comanda eletronica', 103, 'COCA-COLA 1,5L', 6, 2, 'BEBIDAS', 'item cadastrado', 1, 'projetobar ', '2019-11-09 11:48:54', '0000-00-00 00:00:00'),
+(153, 9, 1, 'comanda eletronica', 98, 'X-SALADA', 12, 3, 'SANDUÍCHES', 'item cadastrado', 1, 'projetobar ', '2019-11-09 11:49:09', '0000-00-00 00:00:00'),
+(154, 10, 0, 'comanda eletronica', 0, '', 0, 0, '', 'pedido aberto', 1, 'projetobar ', '2019-11-09 11:49:55', '0000-00-00 00:00:00'),
+(155, 10, 1, 'comanda eletronica', 103, 'COCA-COLA 1,5L', 6, 2, 'BEBIDAS', 'item cadastrado', 1, 'projetobar ', '2019-11-09 11:49:58', '0000-00-00 00:00:00'),
+(156, 10, 1, 'comanda eletronica', 73, 'X-BACON', 13, 3, 'SANDUÍCHES', 'item cadastrado', 1, 'projetobar ', '2019-11-09 11:50:05', '0000-00-00 00:00:00'),
+(157, 10, 1, 'comanda eletronica', 101, 'CALABRESA', 20, 8, 'PIZZAS', 'item cadastrado', 1, 'projetobar ', '2019-11-09 11:50:10', '0000-00-00 00:00:00'),
+(158, 10, 1, 'comanda eletronica', 105, 'SKOL', 5, 2, 'BEBIDAS', 'item cadastrado', 1, 'projetobar ', '2019-11-09 11:50:19', '0000-00-00 00:00:00'),
+(159, 10, 1, 'comanda eletronica', 77, 'X-FRANGO', 12, 3, 'SANDUÍCHES', 'item cadastrado', 1, 'projetobar ', '2019-11-09 11:50:29', '0000-00-00 00:00:00'),
+(160, 10, 1, 'comanda eletronica', 102, 'MODA DA CASA', 50, 8, 'PIZZAS', 'item cadastrado', 1, 'projetobar ', '2019-11-09 11:51:02', '0000-00-00 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -184,7 +201,7 @@ CREATE TABLE IF NOT EXISTS `sidebar` (
 --
 
 INSERT INTO `sidebar` (`id`, `id_usuario`, `status`, `cadastro`) VALUES
-(4, 1, 'toggled', '2019-11-08 15:43:14');
+(4, 1, 'toggled', '2019-11-09 10:15:48');
 
 -- --------------------------------------------------------
 

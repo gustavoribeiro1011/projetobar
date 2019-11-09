@@ -45,7 +45,13 @@ include('../../inc/header.php');
           <h1 class="h3 mb-0 text-gray-800"><?php echo ucfirst($app_page_name); ?></h1>
           <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
         </div>
+
+        <!-- Alertas Categoria-->
+        <?php include ($AlertasComandaEletronica); ?>
+        
       </div>
+
+
 
       <div class="container-fluid">
         <div class="row">
@@ -85,10 +91,25 @@ include('../../inc/header.php');
     <script src="<?php echo BASEURL;?>vendor/datatables/jquery.dataTables.min.js"></script>
     <script src="<?php echo BASEURL;?>vendor/datatables/dataTables.bootstrap4.min.js"></script>
 
+    
+    <script id="scriptDataTable">
+  // Call the dataTables jQuery plugin
+  $(document).ready(function() {
+    $('#dataTable').DataTable({
+      "language": {
+        "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Portuguese.json"
+      }
+    });
+  });
+
+  </script>
 
 
-    <!-- Controller Cadastrar Produtos-->
-    <?php include($ControllerCapturaDados ); ?>
+
+
+
+  <!-- Controller Cadastrar Produtos-->
+  <?php include($ControllerCapturaDados ); ?>
 
 
 

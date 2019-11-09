@@ -26,9 +26,11 @@ $Produtos .= BASEURL . "views/comanda-eletronica/templates/Produtos.php";
 </div>
 <div class="container-fluid" id="includeDivProdutos"></div> 
 
+<div class="container-fluid" id="includeResumoPedido"></div> 
+
 
 <!-- Início: Formulário para cadastro de pedido -->
-<div class="container-fluid" style="display:block;">
+<div class="container-fluid" style="display:none;">
   <div class="row">
     <div class="col-sm-12">
       <div class="card shadow">
@@ -43,6 +45,7 @@ $Produtos .= BASEURL . "views/comanda-eletronica/templates/Produtos.php";
                 <label for="">Categoria:</label>  <input type='text' class="form-control" id="inputCategoria" disabled></input>
                 <label for="">ID Produto:</label>   <input type='text' class="form-control" id="inputIdProduto" disabled></input>
                 <label for="">Produto:</label>  <input type='text' class="form-control" id="inputProduto" disabled></input>
+                <label for="">Preco:</label>  <input type='text' class="form-control" id="inputPreco" disabled></input>
 
               </form>
             </div>
@@ -55,5 +58,6 @@ $Produtos .= BASEURL . "views/comanda-eletronica/templates/Produtos.php";
 
 
 
-  <div class="col-xl-8 col-lg-7">
+
+    <div class="col-xl-8 col-lg-7">
 
