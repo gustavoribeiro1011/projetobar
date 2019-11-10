@@ -6,7 +6,7 @@ $app_page_name="Dashboard";
 
 include ('config.php');
 
-include('/inc/header.php'); ?>
+include('inc/header.php'); ?>
 
 <body id="page-top">
 

@@ -8,7 +8,7 @@ $num_pedido= $_POST['num_pedido'];
 ?>
 
 <div class="row">
-   <?php echo $data_hora_atual; ?>
+ 
 
   <div class="col-sm-12" id="cardResumoPedido"  style="display:none;">
     <div class="card shadow">

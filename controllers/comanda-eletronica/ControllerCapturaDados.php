@@ -90,11 +90,11 @@ $(".btn-voltar-categoria").click(function(){
 
 	  setTimeout(function() {
 		$("#cardResumoPedido").fadeOut();
-	}, 600	);
+	}, 500	);
 
 	setTimeout(function() {
 		$("#cardCategoria").fadeIn();
-	}, 500	);
+	}, 1000	);
 });
 
 $(".btnProduto").click(function(){

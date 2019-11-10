@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Máquina: localhost
--- Data de Criação: 09-Nov-2019 às 14:51
+-- Data de Criação: 10-Nov-2019 às 12:34
 -- Versão do servidor: 5.6.13
 -- versão do PHP: 5.4.17
 
@@ -35,7 +35,7 @@ CREATE TABLE IF NOT EXISTS `categorias` (
   `cadastro` datetime NOT NULL,
   `modificado` datetime NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=10 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=9 ;
 
 --
 -- Extraindo dados da tabela `categorias`
@@ -128,23 +128,7 @@ CREATE TABLE IF NOT EXISTS `pedidos` (
   `cadastro` datetime NOT NULL,
   `modificado` datetime NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=161 ;
-
---
--- Extraindo dados da tabela `pedidos`
---
-
-INSERT INTO `pedidos` (`id`, `num_pedido`, `mesa`, `origem`, `id_produto`, `produto`, `preco`, `id_categoria`, `categoria`, `status`, `id_usuario`, `usuario`, `cadastro`, `modificado`) VALUES
-(151, 9, 0, 'comanda eletronica', 0, '', 0, 0, '', 'pedido aberto', 1, 'projetobar ', '2019-11-09 11:48:50', '0000-00-00 00:00:00'),
-(152, 9, 1, 'comanda eletronica', 103, 'COCA-COLA 1,5L', 6, 2, 'BEBIDAS', 'item cadastrado', 1, 'projetobar ', '2019-11-09 11:48:54', '0000-00-00 00:00:00'),
-(153, 9, 1, 'comanda eletronica', 98, 'X-SALADA', 12, 3, 'SANDUÍCHES', 'item cadastrado', 1, 'projetobar ', '2019-11-09 11:49:09', '0000-00-00 00:00:00'),
-(154, 10, 0, 'comanda eletronica', 0, '', 0, 0, '', 'pedido aberto', 1, 'projetobar ', '2019-11-09 11:49:55', '0000-00-00 00:00:00'),
-(155, 10, 1, 'comanda eletronica', 103, 'COCA-COLA 1,5L', 6, 2, 'BEBIDAS', 'item cadastrado', 1, 'projetobar ', '2019-11-09 11:49:58', '0000-00-00 00:00:00'),
-(156, 10, 1, 'comanda eletronica', 73, 'X-BACON', 13, 3, 'SANDUÍCHES', 'item cadastrado', 1, 'projetobar ', '2019-11-09 11:50:05', '0000-00-00 00:00:00'),
-(157, 10, 1, 'comanda eletronica', 101, 'CALABRESA', 20, 8, 'PIZZAS', 'item cadastrado', 1, 'projetobar ', '2019-11-09 11:50:10', '0000-00-00 00:00:00'),
-(158, 10, 1, 'comanda eletronica', 105, 'SKOL', 5, 2, 'BEBIDAS', 'item cadastrado', 1, 'projetobar ', '2019-11-09 11:50:19', '0000-00-00 00:00:00'),
-(159, 10, 1, 'comanda eletronica', 77, 'X-FRANGO', 12, 3, 'SANDUÍCHES', 'item cadastrado', 1, 'projetobar ', '2019-11-09 11:50:29', '0000-00-00 00:00:00'),
-(160, 10, 1, 'comanda eletronica', 102, 'MODA DA CASA', 50, 8, 'PIZZAS', 'item cadastrado', 1, 'projetobar ', '2019-11-09 11:51:02', '0000-00-00 00:00:00');
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=185 ;
 
 -- --------------------------------------------------------
 
@@ -161,7 +145,7 @@ CREATE TABLE IF NOT EXISTS `produtos` (
   `cadastro` datetime NOT NULL,
   `modificado` datetime NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=110 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=119 ;
 
 --
 -- Extraindo dados da tabela `produtos`
@@ -180,7 +164,16 @@ INSERT INTO `produtos` (`id`, `produto`, `categoria`, `preco`, `usuario`, `cadas
 (106, 'CALABRESA', 4, 15, 1, '2019-11-08 11:19:47', '0000-00-00 00:00:00'),
 (107, 'BATATA FRITA COM QUEIJO', 4, 19.9, 1, '2019-11-08 11:20:05', '0000-00-00 00:00:00'),
 (108, 'PEIXE FRITO', 4, 22, 1, '2019-11-08 11:20:23', '0000-00-00 00:00:00'),
-(109, 'CAMARAO', 4, 25, 1, '2019-11-08 11:20:32', '0000-00-00 00:00:00');
+(109, 'CAMARAO', 4, 25, 1, '2019-11-08 11:20:32', '0000-00-00 00:00:00'),
+(110, 'X-TUDO', 3, 20, 1, '2019-11-10 10:30:45', '0000-00-00 00:00:00'),
+(111, 'GUARANÁ 600ml', 2, 6, 1, '2019-11-10 10:31:07', '0000-00-00 00:00:00'),
+(112, 'GUARANÁ 1,5L', 2, 8, 1, '2019-11-10 10:31:25', '0000-00-00 00:00:00'),
+(113, 'PORTUGUESA', 8, 22, 1, '2019-11-10 10:31:38', '0000-00-00 00:00:00'),
+(114, 'QUATRO QUEIJO', 8, 22, 1, '2019-11-10 10:31:50', '0000-00-00 00:00:00'),
+(115, 'Strogonoff de Carne', 8, 25, 1, '2019-11-10 10:32:07', '0000-00-00 00:00:00'),
+(116, 'AMERICANA', 8, 20, 1, '2019-11-10 10:32:21', '0000-00-00 00:00:00'),
+(117, 'SUCO DE MORANGO', 2, 6, 1, '2019-11-10 10:32:41', '0000-00-00 00:00:00'),
+(118, 'SUCO DE LARANJA', 2, 6, 1, '2019-11-10 10:32:52', '0000-00-00 00:00:00');
 
 -- --------------------------------------------------------
 
