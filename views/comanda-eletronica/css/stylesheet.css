@@ -1,6 +1,40 @@
-@media only screen and (max-width: 800px) {
-  #txtStatusMesa {
-    font-size:0.6em;
+   #adicionar-item-desktop{
+   	display:block;
    }
-}
+
+   #adicionar-item-mobile{
+   	display:none;
+   }
+
+   #table-responsive{
+      display: block;
+   }
+
+   #table-responsive-mobile{
+      display: none;
+   }
+
+
+   @media only screen and (max-width: 800px) {
+   	#txtStatusMesa {
+   		font-size:0.6em;
+   	}
+   	#adicionar-item-desktop{
+   		display:none;
+   	}
+   	#adicionar-item-mobile{
+   		display:block;
+   	}
+      #table-responsive{
+         display: none;
+      }
+
+      #table-responsive-mobile{
+         display: block;
+            }
+
+
+   }
+
+
 

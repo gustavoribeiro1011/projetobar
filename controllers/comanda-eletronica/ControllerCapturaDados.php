@@ -88,7 +88,7 @@ $(".btn-voltar-categoria").click(function(){
 		$("#cardProduto").fadeOut();
 	}, 150);
 
-	  setTimeout(function() {
+	setTimeout(function() {
 		$("#cardResumoPedido").fadeOut();
 	}, 500	);
 
@@ -99,9 +99,9 @@ $(".btn-voltar-categoria").click(function(){
 
 $(".btnProduto").click(function(){
 
-    setTimeout(function() {
-        	$("#cardProduto").fadeOut();
-        }, 200);
+	setTimeout(function() {
+		$("#cardProduto").fadeOut();
+	}, 200);
 	
 	var num_pedido = $("#inputPedido").val();
 	var num_mesa      = document.getElementById("inputMesa").value;
@@ -131,26 +131,21 @@ $.ajax({
 
 		if(data == 'sucesso'){			
 
-			$("#alertaItemSucessoCadastrar").fadeIn().show();
-			setTimeout(function() {
-				$("#alertaItemSucessoCadastrar").fadeOut();
-			}, 1000);
-
 			//exibe o resumo do pedido
 
-$.post("<?php echo BASEURL; ?>views/comanda-eletronica/templates/ResumoPedido.php",
-{
-	num_pedido:$("#inputPedido").val()
-},
-function (resultado){
-	$('#includeResumoPedido').html(resultado);
-	eval(document.getElementById('scriptControllerCapturaDados').innerHTML);  
-	eval(document.getElementById('scriptDataTable').innerHTML); 
+			$.post("<?php echo BASEURL; ?>views/comanda-eletronica/templates/ResumoPedido.php",
+			{
+				num_pedido:$("#inputPedido").val()
+			},
+			function (resultado){
+				$('#includeResumoPedido').html(resultado);
+				eval(document.getElementById('scriptControllerCapturaDados').innerHTML);  
+				eval(document.getElementById('scriptDataTable').innerHTML); 
 
-});
-  setTimeout(function() {
-		$("#cardResumoPedido").fadeIn();
-	}, 600	);
+			});
+			setTimeout(function() {
+				$("#cardResumoPedido").fadeIn();
+			}, 600	);
 
 
 
@@ -161,29 +156,55 @@ function (resultado){
         $("#inputProduto").val("");
         $("#inputPreco").val("");
 
-    
 
-    
 
-		}else if (data == 'falha'){
 
-			$("#alertaItemFalhaCadastrar").fadeIn().show();
-			setTimeout(function() {
-				$("#alertaItemFalhaCadastrar").fadeOut();
-			}, 1000);
 
-		}
+    }else if (data == 'falha'){
 
-	}
+    	$("#alertaItemFalhaCadastrar").fadeIn().show();
+    	setTimeout(function() {
+    		$("#alertaItemFalhaCadastrar").fadeOut();
+    	}, 1000);
+
+    }
+
+}
+
+});
+
 
 });
 
 
-
-  
-
-
-
+$(".btnRemoverItem").click(function(){
+	var item =  $(this).attr('item');
+	var num_pedido = $(this).attr('num_pedido');
+	$.ajax({
+		type: "POST",
+		url: '../../models/comanda-eletronica/ModelExcluiItem.php',
+		data: {item:item},
+		success: function(data) {
+			if(data == 'sucesso'){	
+            // [INICIO / INCLUINDO A TELA RESUMO PEDIDO DEPOIS DA EXCLUSAO DO ITEM]
+            $.post("<?php echo BASEURL; ?>views/comanda-eletronica/templates/ResumoPedido.php",
+            {num_pedido:num_pedido},
+            function (resultado){
+            	$( "#cardResumoPedido" ).remove();
+            	$('#includeResumoPedido').html(resultado);
+            	eval(document.getElementById('scriptControllerCapturaDados').innerHTML);  
+            	eval(document.getElementById('scriptDataTable').innerHTML); 
+            	setTimeout(function() {
+            		$("#cardResumoPedido").fadeIn();
+            	}, 600	);
+            });
+            // [FIM / INCLUINDO A TELA RESUMO PEDIDO DEPOIS DA EXCLUSAO DO ITEM]
+        }else if (data == 'falha'){
+        	alert("falha ao excluir item");
+        }
+    }
+	});//fim do ajax
 });
+
 
 </script>

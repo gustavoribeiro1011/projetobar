@@ -102,6 +102,14 @@ include('../../inc/header.php');
     });
   });
 
+   $(document).ready(function() {
+    $('#dataTable_mobile').DataTable({
+      "language": {
+        "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Portuguese.json"
+      }
+    });
+  });
+
   </script>
 
 

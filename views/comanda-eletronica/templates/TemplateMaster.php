@@ -26,7 +26,8 @@ $Produtos .= BASEURL . "views/comanda-eletronica/templates/Produtos.php";
 </div>
 <div class="container-fluid" id="includeDivProdutos"></div> 
 
-<div class="container-fluid" id="includeResumoPedido"></div> 
+
+<div class="container-fluid" id="includeResumoPedido"></div>
 
 
 <!-- Início: Formulário para cadastro de pedido -->
