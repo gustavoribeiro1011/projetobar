@@ -1,4 +1,4 @@
-<div class="col-sm-12" id="cardMesa">
+<div class="col-sm-12" id="cardMesa" style="display:none;">
   <div class="card shadow">
     <div class="card-header py-3">
       <div class="progress" style="height: 2px;">

@@ -7,9 +7,101 @@ $.ajax({
 		data:data
 	},
 	success: function(data) {	
+		
+		//alert(data['status']);
+
 		var num_pedido = data['num_pedido'];
-		$('#spanPedido').text(num_pedido);
-		$('#inputPedido').val(num_pedido);
+		var mesa = data['mesa'];
+
+		if (data['status'] == '1'){
+
+			//alert("1 - Inclusao do primeiro pedido.");
+			
+			$('#spanPedido').text(num_pedido);
+
+			$('#inputPedido').val(num_pedido);
+
+			setTimeout(function() {
+				$("#cardMesa").fadeIn();
+			}, 200	);
+
+		} else 	if (data['status'] == '2'){ //2 - Existe 1 pedido sem finaliza
+
+			$(".btnDescartarPedido").click(function(){
+				//exclui o pedido
+				$.ajax({
+					type: "POST",
+					url: '../../models/comanda-eletronica/ModelDescartaPedido.php',
+					data: {num_pedido:num_pedido},
+					success: function(data) {
+
+						if(data == 'sucesso'){	
+			//recarrega a página
+			location.reload();
+		}else if (data == 'falha'){
+
+			$("#alertaFalhaDescartarPedido").fadeIn().show();
+			setTimeout(function() {
+				$("#alertaFalhaDescartarPedido").fadeOut();
+			}, 1000);
+
+		}
+
+	}
+
+});
+
+			});
+
+			$(".btnRetomarPedido").click(function(){
+
+		//exibe o resumo do pedido
+		$.post("<?php echo BASEURL; ?>views/comanda-eletronica/templates/ResumoPedido.php",
+		{
+			num_pedido:num_pedido
+		},
+		function (resultado){
+			$('#includeResumoPedido').html(resultado);
+			eval(document.getElementById('scriptControllerCapturaDados').innerHTML);  
+			eval(document.getElementById('scriptDataTable').innerHTML); 
+
+		});
+
+		$("#spanPedido").html(num_pedido);
+
+		setTimeout(function() {
+			$("#cardResumoPedido").fadeIn();
+		}, 600	);
+
+
+
+        //depois precisa setar os values do formulario
+        $("#inputPedido").val(num_pedido);
+        $("#inputMesa").val(mesa);
+     
+
+
+
+    });
+
+
+			$('#spanNumPedido').html(num_pedido);
+
+			$(document).ready(function() {
+				$('#modaoPedidoExistente').modal('show');
+			})
+
+
+
+
+
+		} else 	if (data['status'] == '3'){
+
+			alert("3 - Existe mais de 1 pedido sem finalizar");
+		}
+
+
+
 	},
 	dataType:"json"
 });
@@ -83,7 +175,7 @@ $(".btnCategoria").click(function(){
 });
 
 $(".btn-voltar-categoria").click(function(){
-	
+
 	setTimeout(function() {
 		$("#cardProduto").fadeOut();
 	}, 150);
@@ -102,7 +194,7 @@ $(".btnProduto").click(function(){
 	setTimeout(function() {
 		$("#cardProduto").fadeOut();
 	}, 200);
-	
+
 	var num_pedido = $("#inputPedido").val();
 	var num_mesa      = document.getElementById("inputMesa").value;
 	var id_categoria  =  document.getElementById("inputIdCategoria").value;
@@ -132,7 +224,6 @@ $.ajax({
 		if(data == 'sucesso'){			
 
 			//exibe o resumo do pedido
-
 			$.post("<?php echo BASEURL; ?>views/comanda-eletronica/templates/ResumoPedido.php",
 			{
 				num_pedido:$("#inputPedido").val()
@@ -188,16 +279,16 @@ $(".btnRemoverItem").click(function(){
 			if(data == 'sucesso'){	
             // [INICIO / INCLUINDO A TELA RESUMO PEDIDO DEPOIS DA EXCLUSAO DO ITEM]
             $.post("<?php echo BASEURL; ?>views/comanda-eletronica/templates/ResumoPedido.php",
-            {num_pedido:num_pedido},
-            function (resultado){
-            	$( "#cardResumoPedido" ).remove();
-            	$('#includeResumoPedido').html(resultado);
-            	eval(document.getElementById('scriptControllerCapturaDados').innerHTML);  
-            	eval(document.getElementById('scriptDataTable').innerHTML); 
-            	setTimeout(function() {
-            		$("#cardResumoPedido").fadeIn();
-            	}, 600	);
-            });
+            	{num_pedido:num_pedido},
+            	function (resultado){
+            		$( "#cardResumoPedido" ).remove();
+            		$('#includeResumoPedido').html(resultado);
+            		eval(document.getElementById('scriptControllerCapturaDados').innerHTML);  
+            		eval(document.getElementById('scriptDataTable').innerHTML); 
+            		setTimeout(function() {
+            			$("#cardResumoPedido").fadeIn();
+            		}, 600	);
+            	});
             // [FIM / INCLUINDO A TELA RESUMO PEDIDO DEPOIS DA EXCLUSAO DO ITEM]
         }else if (data == 'falha'){
         	alert("falha ao excluir item");

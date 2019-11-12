@@ -46,8 +46,12 @@ include('../../inc/header.php');
           <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
         </div>
 
-        <!-- Alertas Categoria-->
+        <!-- Alertas -->
         <?php include ($AlertasComandaEletronica); ?>
+
+        <!-- Modal Pedido Existente-->
+        <?php include ($ModalPedidoExistente); ?>
+
         
       </div>
 
@@ -98,26 +102,76 @@ include('../../inc/header.php');
     $('#dataTable').DataTable({
       "language": {
         "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Portuguese.json"
-      }
-    });
+      },
+
+      columns: [
+      { data: "0", render: $.fn.dataTable.render},
+      { data: "1", render: $.fn.dataTable.render}, 
+      {
+        data: "2", render: function(data, type, row) {
+          if (type === "display" || type === "filter") {
+            return parseFloat(data).toLocaleString('pt-br',{style: 'currency', currency: 'BRL'});
+          }
+          if (type === "export") {
+            return data;
+          }
+          return data;
+        }
+      },  
+      null
+      ],
+
+      "footerCallback": function ( row, data, start, end, display ) {
+        var api = this.api(), data;
+
+            // Remove the formatting to get integer data for summation
+            var intVal = function ( i ) {
+              return typeof i === 'string' ?
+              i.replace(/[\$,]/g, '')*1 :
+              typeof i === 'number' ?
+              i : 0;
+            };
+
+            // Total over all pages
+            total = api
+            .column( 2 )
+            .data()
+            .reduce( function (a, b) {
+              return intVal(a) + intVal(b);
+            }, 0 );
+
+            // Total over this page
+            pageTotal = api
+            .column( 2, { page: 'current'} )
+            .data()
+            .reduce( function (a, b) {
+              return intVal(a) + intVal(b);
+            }, 0 );
+
+            // Update footer
+            $( api.column( 2 ).footer() ).html(
+              (pageTotal).toLocaleString('pt-BR', {minimumFractionDigits: 2}) +' ('+ ((total).toLocaleString('pt-BR', {minimumFractionDigits: 2}) + " total comanda").toLocaleString('pt-BR', {minimumFractionDigits: 2}) +')'
+              );
+          }
+        });
+});
+
+$(document).ready(function() {
+  $('#dataTable_mobile').DataTable({
+    "language": {
+      "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Portuguese.json"
+    }
   });
+});
 
-   $(document).ready(function() {
-    $('#dataTable_mobile').DataTable({
-      "language": {
-        "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Portuguese.json"
-      }
-    });
-  });
-
-  </script>
+</script>
 
 
 
 
 
-  <!-- Controller Cadastrar Produtos-->
-  <?php include($ControllerCapturaDados ); ?>
+<!-- Controller Cadastrar Produtos-->
+<?php include($ControllerCapturaDados ); ?>
 
 
 

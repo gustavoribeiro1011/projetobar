@@ -7,6 +7,12 @@
        	Falha ao incluir item no pedido    
        </div>
 
-  
+       <div class="alert alert-danger" role="alert" style="display:none;" id="alertaFalhaDescartarPedido">
+       	Falha ao descartar o pedido    
+       </div>
+
+
+
+
 
 
