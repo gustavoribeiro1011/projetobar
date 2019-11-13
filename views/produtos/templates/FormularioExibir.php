@@ -1,5 +1,5 @@
 <!-- Formulário Exibir Produto -->
-<div class="card shadow mb-12">
+<div class="card shadow mb-12" id="cardFormularioExibir" style="display:none;">
   <div class="card-header py-3">
     <h6 class="m-0 font-weight-bold text-primary">Todos os produtos</h6>
   </div>

@@ -26,6 +26,7 @@ $(".botaoExcluirProdutoModal").click(function(){
 					if (request.readyState == 4 && request.status == 200) {
 						eval(document.getElementById('scriptMaskMoney').innerHTML); 
 						contentTemplateMaster.innerHTML = request.responseText
+						eval(document.getElementById('scriptControllerMain').innerHTML);              
 						eval(document.getElementById('scriptDataTable').innerHTML);  
 						eval(document.getElementById('scriptControllerCadastrar').innerHTML);  
 						eval(document.getElementById('scriptControllerTransicaoEditar').innerHTML);  

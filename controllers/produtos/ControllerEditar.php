@@ -54,10 +54,7 @@ $(".botaoEditarProduto").click(function(){
 	var preco =  $('#preco_editar').val().replace(".", "").replace(",","."); // converte para formato americano ex. 9999.99
 
 if(!produto){ // se variavel é vazia
-	$("#alertaAvisoEditar").fadeIn().show();  
-	setTimeout(function() {
-		$("#alertaAvisoEditar").fadeOut();
-	}, 4000);
+alertify.warning('<font color="#6D6F76">O campo <b>produto</b> precisa ser preenchido</font>');
 } else {
 	$.ajax({
 		type: "POST",
@@ -75,6 +72,7 @@ if(!produto){ // se variavel é vazia
 				request.addEventListener("readystatechange", function (event) {
 					if (request.readyState == 4 && request.status == 200) {
 						contentTemplateMaster.innerHTML = request.responseText
+						eval(document.getElementById('scriptControllerMain').innerHTML);             
 						eval(document.getElementById('scriptMaskMoney').innerHTML); 
 						eval(document.getElementById('scriptDataTable').innerHTML);  
 						eval(document.getElementById('scriptControllerTransicaoEditar').innerHTML); 
@@ -85,16 +83,10 @@ if(!produto){ // se variavel é vazia
 						eval(document.getElementById('scriptControllerExcluirTransicao').innerHTML);    
 					}
 				});
-				request.send();				
-				$("#alertaSucessoEditar").fadeIn().show();  
-				setTimeout(function() {
-					$("#alertaSucessoEditar").fadeOut();
-				}, 4000);
+				request.send();	
+				alertify.success('<font color="white">Editado com sucesso</font>');
 			}else if (data == 'falha'){
-				$("#alertaFalhaEditar").fadeIn().show();  
-				setTimeout(function() {
-					$("#alertaFalhaEditar").fadeOut();
-				}, 4000);
+	alertify.error('<font color="white">Falha ao editar</font>');
 			}
 		}		
 	});

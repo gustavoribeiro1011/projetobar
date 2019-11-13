@@ -25,21 +25,14 @@ $("#botaoCadastrarProduto").click(function(){
 
 
   if (!produto){ // se variavel for vazia
+    alertify.warning('<font color="#6D6F76">O campo <b>produto</b> precisa ser preenchido</font>');
+    button.setAttribute("class","btn btn-primary");
 
-   $("#alertaAvisoCadastrar").fadeIn().show();  
-   setTimeout(function() {
-     $("#alertaAvisoCadastrar").fadeOut();
-   }, 4000);
-   button.setAttribute("class","btn btn-primary");
-
- }else{
+  }else{
 
   if (!categoria){ // se variavel for vazia
 
-    $("#alertaAviso2Cadastrar").fadeIn().show();  
-    setTimeout(function() {
-     $("#alertaAviso2Cadastrar").fadeOut();
-   }, 4000);
+    alertify.warning('<font color="#6D6F76">O campo <b>categoria</b> precisa ser preenchido</font>');
     button.setAttribute("class","btn btn-primary");
 
   } else{
@@ -59,7 +52,8 @@ $("#botaoCadastrarProduto").click(function(){
         request.open("GET", url, true);
         request.addEventListener("readystatechange", function (event) {
           if (request.readyState == 4 && request.status == 200) {
-            contentTemplateMaster.innerHTML = request.responseText            
+            contentTemplateMaster.innerHTML = request.responseText
+            eval(document.getElementById('scriptControllerMain').innerHTML);              
             eval(document.getElementById('scriptMaskMoney').innerHTML); 
             eval(document.getElementById('scriptDataTable').innerHTML);  
             eval(document.getElementById('scriptControllerCadastrar').innerHTML);  
@@ -71,16 +65,10 @@ $("#botaoCadastrarProduto").click(function(){
           }
         });
         request.send();
-        $("#alertaSucessoCadastrar").fadeIn().show();
-        setTimeout(function() {
-         $("#alertaSucessoCadastrar").fadeOut();
-       }, 4000);
+        alertify.success('<font color="white">Produto cadastrado</font>');
         button.setAttribute("class","btn btn-primary");
       } else if (data == 'falha'){
-        $("#alertaFalhaCadastrar").fadeIn().show();  
-        setTimeout(function() {
-         $("#alertaFalhaCadastrar").fadeOut();
-       }, 4000);
+        alertify.error('<font color="white">Falha ao editar</font>');
         button.setAttribute("class","btn btn-primary");
       }
     } 

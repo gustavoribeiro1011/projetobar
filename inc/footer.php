@@ -55,6 +55,8 @@
   <!-- Page level custom scripts -->
   <script src="<?php echo BASEURL;?>js/demo/chart-area-demo.js"></script>
   <script src="<?php echo BASEURL;?>js/demo/chart-pie-demo.js"></script>
+  <script src="<?php echo BASEURL;?>vendor/alertify/alertify.min.js"></script>
+
 
   <!-- Controller Sidebar -->
   <?php include_once($ControllerSidebar);?>

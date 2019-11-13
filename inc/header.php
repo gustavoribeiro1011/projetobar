@@ -26,8 +26,10 @@ null;
 
   <!-- Custom styles for this template-->
   <link href="<?php echo BASEURL; ?>css/sb-admin-2.css" rel="stylesheet">
+  
+  <script src="<?php echo BASEURL;?>vendor/jquery/jquery.min.js"></script>
 
-    <script src="<?php echo BASEURL;?>vendor/jquery/jquery.min.js"></script>
+  <link href="<?php echo BASEURL;?>vendor/alertify/css/alertify.min.css" rel="stylesheet">
 
 
 </head>

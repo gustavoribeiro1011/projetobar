@@ -59,9 +59,6 @@ $ControllerSidebarToggle = $_SERVER['DOCUMENT_ROOT'];
 $ControllerSidebarToggle .= BASEURL . "controllers/sidebar/ControllerSidebarToggle.php";
 
 // Produtos
-$AlertasProduto = $_SERVER['DOCUMENT_ROOT'];
-$AlertasProduto .= BASEURL . "views/produtos/templates/Alertas.php";
-
 $ControllerCadastrarProduto = $_SERVER['DOCUMENT_ROOT'];
 $ControllerCadastrarProduto .= BASEURL . "controllers/produtos/ControllerCadastrar.php";
 
@@ -70,6 +67,9 @@ $ControllerEditarProduto .= BASEURL . "controllers/produtos/ControllerEditar.php
 
 $ControllerExcluirProduto = $_SERVER['DOCUMENT_ROOT'];
 $ControllerExcluirProduto .= BASEURL . "controllers/produtos/ControllerExcluir.php";
+
+$ControllerMainProduto = $_SERVER['DOCUMENT_ROOT'];
+$ControllerMainProduto .= BASEURL . "controllers/produtos/ControllerMain.php";
 
 // Categorias
 $AlertasCategoria = $_SERVER['DOCUMENT_ROOT'];

@@ -13,7 +13,9 @@
    #table-responsive-mobile{
       display: none;
    }
-
+   #txtStatusMesaMobile{
+      display: none;
+   }
 
    @media only screen and (max-width: 800px) {
    	#txtStatusMesa {
@@ -31,7 +33,15 @@
 
       #table-responsive-mobile{
          display: block;
-            }
+      }
+
+      #txtStatusMesa{
+         display: none;
+      }
+      #txtStatusMesaMobile{
+         display: block;
+         color:white;
+              }
 
 
    }

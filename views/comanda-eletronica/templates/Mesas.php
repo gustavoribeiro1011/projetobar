@@ -35,10 +35,11 @@
           
            <div class="col-4 col-md-4 col-xl-2" align="center">
             <div class="card">
-            <button class="btn btn-primary  btn-block btnMesa" num_mesa="<?php echo $i; ?>">
+            <button class="btn btn-success  btn-block btnMesa" num_mesa="<?php echo $i; ?>">
               Mesa
               <h3><b><?php echo $i; ?></b></h3> 
               <span class="badge badge-success" id="txtStatusMesa">Disponível</span>
+              <span id="txtStatusMesaMobile">Disp.</span>
             </button>
         </div>
         </div>

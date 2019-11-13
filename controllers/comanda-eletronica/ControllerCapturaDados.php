@@ -40,10 +40,8 @@ $.ajax({
 			location.reload();
 		}else if (data == 'falha'){
 
-			$("#alertaFalhaDescartarPedido").fadeIn().show();
-			setTimeout(function() {
-				$("#alertaFalhaDescartarPedido").fadeOut();
-			}, 1000);
+			alertify.error('<font color="white">Falha ao descartar pedido</font>');
+
 
 		}
 
@@ -78,7 +76,7 @@ $.ajax({
         //depois precisa setar os values do formulario
         $("#inputPedido").val(num_pedido);
         $("#inputMesa").val(mesa);
-     
+
 
 
 
@@ -221,7 +219,9 @@ $.ajax({
 	},
 	success: function(data) {
 
-		if(data == 'sucesso'){			
+		if(data == 'sucesso'){		
+
+			alertify.success('<font color="white">Item adicionado</font>');	
 
 			//exibe o resumo do pedido
 			$.post("<?php echo BASEURL; ?>views/comanda-eletronica/templates/ResumoPedido.php",
@@ -253,10 +253,8 @@ $.ajax({
 
     }else if (data == 'falha'){
 
-    	$("#alertaItemFalhaCadastrar").fadeIn().show();
-    	setTimeout(function() {
-    		$("#alertaItemFalhaCadastrar").fadeOut();
-    	}, 1000);
+    	alertify.error('<font color="white">Falha ao adicionar item</font>');
+
 
     }
 
@@ -277,6 +275,7 @@ $(".btnRemoverItem").click(function(){
 		data: {item:item},
 		success: function(data) {
 			if(data == 'sucesso'){	
+				alertify.error('<font color="white">Item removido</font>');
             // [INICIO / INCLUINDO A TELA RESUMO PEDIDO DEPOIS DA EXCLUSAO DO ITEM]
             $.post("<?php echo BASEURL; ?>views/comanda-eletronica/templates/ResumoPedido.php",
             	{num_pedido:num_pedido},
@@ -291,7 +290,7 @@ $(".btnRemoverItem").click(function(){
             	});
             // [FIM / INCLUINDO A TELA RESUMO PEDIDO DEPOIS DA EXCLUSAO DO ITEM]
         }else if (data == 'falha'){
-        	alert("falha ao excluir item");
+				alertify.error('<font color="white">Falha ao remover item</font>');
         }
     }
 	});//fim do ajax
