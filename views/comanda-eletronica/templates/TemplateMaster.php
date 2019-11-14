@@ -31,7 +31,7 @@ $Produtos .= BASEURL . "views/comanda-eletronica/templates/Produtos.php";
 
 
 <!-- Início: Formulário para cadastro de pedido -->
-<div class="container-fluid" style="display:none;">
+<div class="container-fluid" style="display:block;">
   <div class="row">
     <div class="col-sm-12">
       <div class="card shadow">

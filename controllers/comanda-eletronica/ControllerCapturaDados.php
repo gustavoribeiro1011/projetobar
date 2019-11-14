@@ -10,9 +10,12 @@ $.ajax({
 		
 		//alert(data['status']);
 
-		var num_pedido = data['num_pedido'];
-		var mesa = data['mesa'];
 
+		var num_pedido = data['num_pedido'];
+		var num_mesa = data['num_mesa'];
+
+		 
+       
 		if (data['status'] == '1'){
 
 			//alert("1 - Inclusao do primeiro pedido.");
@@ -28,6 +31,8 @@ $.ajax({
 		} else 	if (data['status'] == '2'){ //2 - Existe 1 pedido sem finaliza
 
 			$(".btnDescartarPedido").click(function(){
+
+
 				//exclui o pedido
 				$.ajax({
 					type: "POST",
@@ -36,18 +41,45 @@ $.ajax({
 					success: function(data) {
 
 						if(data == 'sucesso'){	
-			//recarrega a página
-			location.reload();
-		}else if (data == 'falha'){
+                                   
 
-			alertify.error('<font color="white">Falha ao descartar pedido</font>');
+                                     // aLtera status da mesa para indisponivel
+                                     $.ajax({
+                                     type: "POST",
+                                     url: '../../models/comanda-eletronica/ModelAlteraStatusMesa.php',
+                                     data: {
+                                     	instrucao:'disponivel',
+                                     	num_mesa:num_mesa
+                                     },
+                                     success: function(data) {
+                                     if(data == 'sucesso'){
+
+                                     	//alert("status alterado para disponivel");
+
+                                     //recarrega a página
+                                     location.reload();
+
+                                     }else 	if(data == 'falha'){
+                                     alertify.error('<font color="white">Falha ao alterar status da mesa</font>');
+                                     } else {
+                                     alertify.error('<font color="white">Erro desconhecido</font>');
+
+                                     }
+                                     }                                     
+                                     });//fim ajax
+                                     
 
 
-		}
+						}else if (data == 'falha'){
 
-	}
+							alertify.error('<font color="white">Falha ao descartar pedido</font>');
 
-});
+
+						}
+
+					}
+
+				});
 
 			});
 
@@ -113,6 +145,8 @@ $.ajax({
 
 $(".btnMesa").click(function(){
 
+
+
 	setTimeout(function() {
 		$("#cardMesa").fadeOut();
 	}, 150);
@@ -121,8 +155,53 @@ $(".btnMesa").click(function(){
 	}, 600	);
 
 	var num_mesa =  $(this).attr('num_mesa');
-	document.getElementById("inputMesa").value = num_mesa;	
+	var num_pedido = $('#inputPedido').val();
+	$("#inputMesa").val(num_mesa);
 
+	
+
+
+// cadastra mesa na tabela pedidos na coluna principal do pedido.
+
+$.ajax({
+	type: "POST",
+	url: '../../models/comanda-eletronica/ModelCadastraMesa.php',
+	data: {
+    num_pedido:num_pedido,
+	num_mesa:num_mesa
+	},
+	success: function(data) {
+
+		if (data == 'sucesso'){
+
+    	//alertify.success('<font color="white">"num_mesa" cadastrada com sucesso</font>');
+
+		}else if (data == 'falha'){
+
+    	//alertify.error('<font color="white">Falha ao cadastrar "num_mesa" na tabela "pedidos"</font>');
+
+		} else {
+
+    	alertify.error('<font color="white">Erro desconhecido ao cadastrar numero da mesa na tabela pedidos</font>');
+		}
+	}
+
+});//fim ajax
+
+
+// aLtera status da mesa para indisponivel
+$.ajax({
+	type: "POST",
+	url: '../../models/comanda-eletronica/ModelAlteraStatusMesa.php',
+	data: {
+		instrucao:'indisponivel',
+		num_mesa:num_mesa
+	},
+	success: function(data) {
+		
+	}
+
+});//fim ajax
 
 
 
@@ -290,7 +369,7 @@ $(".btnRemoverItem").click(function(){
             	});
             // [FIM / INCLUINDO A TELA RESUMO PEDIDO DEPOIS DA EXCLUSAO DO ITEM]
         }else if (data == 'falha'){
-				alertify.error('<font color="white">Falha ao remover item</font>');
+        	alertify.error('<font color="white">Falha ao remover item</font>');
         }
     }
 	});//fim do ajax

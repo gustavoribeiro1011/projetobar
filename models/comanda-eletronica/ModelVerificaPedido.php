@@ -56,6 +56,7 @@ echo json_encode($array);
 		$result=mysqli_query($conecta,$pegaUltimoPedido);
 		$row=mysqli_fetch_assoc($result);
 		$num_pedido = $row['num_pedido'] + 1;
+		
 
 		$inserePedido = "INSERT INTO pedidos (num_pedido,origem,status,id_usuario,usuario,cadastro)
 		VALUES (
@@ -79,7 +80,7 @@ $pegaUltimoPedidoSemFinalizar = "SELECT * FROM pedidos WHERE id_usuario = '$id_u
 $result=mysqli_query($conecta,$pegaUltimoPedidoSemFinalizar);
 $row=mysqli_fetch_assoc($result);
 
-$array= array('status' => '2', 'num_pedido' => $row['num_pedido'], 'mesa' => $row['mesa']);
+$array= array('status' => '2', 'num_pedido' => $row['num_pedido'], 'num_mesa' => $row['mesa']);
 echo json_encode($array);
 
 } else if ($row['count'] == 1) { // se existir mais de um pedido sem finalizar

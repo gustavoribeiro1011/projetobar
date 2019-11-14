@@ -18,39 +18,59 @@
    </div>
    <div class="card-body">
     <div class="col-xl-12">
-    <div class="row" >
-      <?php
-      if(!@include_once('../../../config.php')) {
-      }
+      <div class="row" >
+        <?php
+        if(!@include_once('../../../config.php')) {
+        }
 
-      $sql="SELECT * FROM mesas ORDER BY id";
-      if ($result=mysqli_query($conecta,$sql))
-      {
-        $i='0';
-        echo '<div class="row">';
-        while ($row=mysqli_fetch_assoc($result))
+        $sql="SELECT * FROM mesas ORDER BY num_mesa ASC";
+        if ($result=mysqli_query($conecta,$sql))
         {
-          $i++;
-          ?>
-          
-           <div class="col-4 col-md-4 col-xl-2" align="center">
-            <div class="card">
-            <button class="btn btn-success  btn-block btnMesa" num_mesa="<?php echo $i; ?>">
-              Mesa
-              <h3><b><?php echo $i; ?></b></h3> 
-              <span class="badge badge-success" id="txtStatusMesa">Disponível</span>
-              <span id="txtStatusMesaMobile">Disp.</span>
-            </button>
-        </div>
-        </div>
-      <?php     }
-      echo '</div>'; 
-      mysqli_free_result($result);
-    }
-    ?>
+          $i='0';
+        
+          while ($row=mysqli_fetch_assoc($result))
+          {
+            $i++;
+
+            if ($row['status'] == 'disponivel'){
+              ?>
+
+              <div class="col-4 col-md-4 col-xl-2" align="center">
+                <div class="card">
+                  <button class="btn btn-success  btn-block btnMesa" num_mesa="<?=$row['num_mesa'];?>">
+                    Mesa
+                    <h3><b><?php echo $row['num_mesa']; ?></b></h3> 
+                    <span id="txtStatusMesa">Disponível</span>
+                    <span id="txtStatusMesaMobile">Disp.</span>
+                  </button>
+                </div>
+              </div>
+
+              <?php
+            } else if ($row['status'] == 'indisponivel'){
+              ?>
+              
+              <div class="col-4 col-md-4 col-xl-2" align="center">
+                <div class="card">
+                  <button class="btn btn-danger  btn-block btnMesa" num_mesa="<?php  $row['num_mesa']; ?>" disabled>
+                    Mesa
+                    <h3><b><?php echo $row['num_mesa']; ?></b></h3> 
+                    <span id="txtStatusMesa">Indisponível</span>
+                    <span id="txtStatusMesaMobile">Ind.</span>
+                  </button>
+                </div>
+              </div>
+              <?php
+            }
+            
+          }
+        
+          mysqli_free_result($result);
+        }
+        ?>
       </div>
+    </div>
   </div>
-</div>
 </div>
 </div>
 

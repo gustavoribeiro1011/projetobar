@@ -40,21 +40,20 @@ include('../../inc/header.php');
           <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
         </div>
 
-        <!-- Alerta Cadastrar Mesa-->
-        <?php include ('templates/AlertaCadastrar.php'); ?>
 
         <div id="contentTemplateMaster">
-          <?php include ('templates/TemplateMaster.php'); ?>
-        </div>
+
+         <?php include ('templates/TemplateMaster.php'); ?>
+       </div>
 
 
 
-      </div>
+     </div>
 
-    </div>
+   </div>
 
-  </div>
-  <!-- /.container-fluid -->
+ </div>
+ <!-- /.container-fluid -->
 
 </div>
 <!-- End of Main Content -->
