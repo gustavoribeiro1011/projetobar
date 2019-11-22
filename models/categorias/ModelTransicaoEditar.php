@@ -9,7 +9,15 @@ include ('../../config.php');
 
 $idcategoria = $_POST['idcategoria'];
 
-$consultarCategoria = "SELECT * FROM categorias WHERE id='".$idcategoria."'"; 
+$consultarCategoria = "
+select 
+a.id,
+a.categoria,
+a.usuario,
+a.cadastro,
+a.modificado
+from categorias a 
+where a.id='".$idcategoria."'"; 
 
 if ($result=mysqli_query($conecta,$consultarCategoria))
 
@@ -18,7 +26,10 @@ if ($result=mysqli_query($conecta,$consultarCategoria))
 	while ($row=mysqli_fetch_assoc($result))
 
 	{
-		$array= array("id" => $row['id'],"categoria" => $row['categoria']);
+		$array= array(
+			"id" => $row['id'],
+			"categoria" => $row['categoria']
+			);
 
 		
 		echo json_encode($array);

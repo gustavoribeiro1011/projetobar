@@ -1,39 +1,45 @@
 <!-- SCRIPT: Controller Transicao Editar -->
 <script type="text/javascript" id="scriptControllerTransicaoEditar">
-	$(".botaoEditarCategoriaTransicao").click(function(){
-		$(".FormularioCadastrarCategoria").css('display','none');
-		$(".FormularioEditarCategoria").css('display','block');  
-		var idcategoria = $(this).attr('idcategoria'); 
-		$.ajax({
-			type: "POST",
-			url: '../../models/categorias/ModelTransicaoEditar.php',
-			data: {
-				idcategoria:idcategoria
-			},
-			success: function(data) {
-				var idcategoria = data['id'];
-				var categoria = data['categoria'];
-				document.getElementById("id_editar").value = idcategoria;
-				document.getElementById("categoria_editar").value = categoria;
-			},
-			dataType:"json"
-		});
-	});
+$(".botaoEditarCategoriaTransicao").click(function(){
+
+
+
+	$(".FormularioCadastrarCategoria").css('display','none');
+	$(".FormularioEditarCategoria").css('display','block');  
+	var idcategoria = $(this).attr('idcategoria'); 
+	$.ajax({
+		type: "POST",
+		url: '../../models/categorias/ModelTransicaoEditar.php',
+		data: {
+			idcategoria:idcategoria
+		},
+		success: function(data) {
+			var idcategoria = data['id'];
+			var categoria = data['categoria'];
+			document.getElementById("id_editar").value = idcategoria;
+			document.getElementById("categoria_editar").value = categoria;
+
+
+
+},
+dataType:"json"
+});
+});
 </script>
 
 
 <script type="text/javascript" id="scriptControllerEditarCancelar">
-	$(".botaoCancelarCategoria").click(function(){
-		$(".FormularioCadastrarCategoria").css('display','block');
-		$(".FormularioEditarCategoria").css('display','none');  
-	});
+$(".botaoCancelarCategoria").click(function(){
+	$(".FormularioCadastrarCategoria").css('display','block');
+	$(".FormularioEditarCategoria").css('display','none');  
+});
 </script>
 
 <!-- SCRIPT: Controller Editar -->
 <script type="text/javascript" id="scriptControllerEditar">
-	$(".botaoEditarCategoria").click(function(){
-		var url = 'templates/TemplateMasterUpdateContent.php';
-		var contentTemplateMaster = document.getElementById("contentTemplateMaster");
+$(".botaoEditarCategoria").click(function(){
+	var url = 'templates/TemplateMasterUpdateContent.php';
+	var contentTemplateMaster = document.getElementById("contentTemplateMaster");
 	//$(".FormularioCadastrarCategoria").css('display','none');
 	//$(".FormularioEditarCategoria").css('display','block');  
 	var idcategoria = document.getElementById("id_editar").value;

@@ -22,6 +22,9 @@ $("#botaoCadastrarProduto").click(function(){
   var produto = $('#produto').val();
   var categoria = $('#categoria').val();
   var preco = $('#preco').val().replace(".", "").replace(",","."); // converte para formato americano ex. 9999.99
+  var unidade_medida = $('#unidade_medida').val();
+  var medida = $('#medida').val();
+
 
 
   if (!produto){ // se variavel for vazia
@@ -44,7 +47,9 @@ $("#botaoCadastrarProduto").click(function(){
       data: {
         produto:produto,
         categoria:categoria,
-        preco:preco
+        preco:preco,
+        unidade_medida:unidade_medida,
+        medida:medida
       },
       success: function(data) {
        if (data == 'sucesso'){

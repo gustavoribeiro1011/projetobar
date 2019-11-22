@@ -98,3 +98,10 @@ $ModalPedidoExistente = $_SERVER['DOCUMENT_ROOT'];
 $ModalPedidoExistente .= BASEURL . "views/comanda-eletronica/templates/ModalPedidoExistente.php";
 
 
+$ModalMesaInexistente = $_SERVER['DOCUMENT_ROOT'];
+$ModalMesaInexistente .= BASEURL . "views/comanda-eletronica/templates/ModalMesaInexistente.php";
+
+// Unidade Medida
+$ModelSelectUnidadeMedida = $_SERVER['DOCUMENT_ROOT'];
+$ModelSelectUnidadeMedida .= BASEURL . "models/unidade_medida/ModelSelect.php";
+

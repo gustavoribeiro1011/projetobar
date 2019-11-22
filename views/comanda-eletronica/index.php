@@ -52,6 +52,9 @@ include('../../inc/header.php');
         <!-- Modal Pedido Existente-->
         <?php include ($ModalPedidoExistente); ?>
 
+        <!-- Modal Mesa Inexistente-->
+        <?php include ($ModalMesaInexistente); ?>
+
         
       </div>
 

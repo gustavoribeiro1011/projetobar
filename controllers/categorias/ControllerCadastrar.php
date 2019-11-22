@@ -1,9 +1,9 @@
 <!-- SCRIPT: Controller Cadastrar -->
 <script id="scriptControllerCadastrar">
-  var url = 'templates/TemplateMasterUpdateContent.php';
-  var contentTemplateMaster = document.getElementById("contentTemplateMaster");
-  $("#botaoCadastrarCategoria").click(function(){
-    var button = document.querySelector("#botaoCadastrarCategoria"); 
+var url = 'templates/TemplateMasterUpdateContent.php';
+var contentTemplateMaster = document.getElementById("contentTemplateMaster");
+$("#botaoCadastrarCategoria").click(function(){
+  var button = document.querySelector("#botaoCadastrarCategoria"); 
   button.setAttribute("class","btn btn-primary disabled"); // desativando o botao enquanto processa
   var categoria = document.getElementById("categoria").value;
   if (!categoria){ // se variavel for vazia
@@ -17,7 +17,7 @@
     type: "POST",
     url: '../../models/categorias/ModelCadastrar.php',
     data: {
-      categoria:categoria
+      categoria:categoria      
     },
     success: function(data) {
      if (data == 'sucesso'){
@@ -51,7 +51,7 @@
     }
   } 
 });
-  button.setAttribute("class","btn btn-primary");
+button.setAttribute("class","btn btn-primary");
 }
 });
 </script>

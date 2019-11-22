@@ -128,6 +128,13 @@ $.ajax({
 		} else 	if (data['status'] == '3'){
 
 			alert("3 - Existe mais de 1 pedido sem finalizar");
+
+		} else if (data['status'] == '4'){
+
+				$(document).ready(function() {
+				$('#modalMesaInexistente').modal('show');
+			})
+
 		}
 
 
@@ -375,5 +382,26 @@ $(".btnRemoverItem").click(function(){
 	});//fim do ajax
 });
 
+
+$("#btnFinalizarPedido").click(function(){
+var num_pedido = $(this).attr('num_pedido');
+	$.ajax({
+		type: "POST",
+		url: '../../models/comanda-eletronica/ModelFinalizarPedido.php',
+		data: {num_pedido:num_pedido},
+		success: function(data) {
+			if(data == 'sucesso'){	
+				alertify.success('<font color="white">Pedido finalizado</font>');	
+
+// dar um reload na pagina
+
+        }else if (data == 'falha'){
+
+        	alertify.error('<font color="white">Falha ao finalizar pedido</font>');
+        }
+    }
+	});//fim do ajax
+
+});
 
 </script>

@@ -61,66 +61,72 @@
               <td><?=$row['categoria'];?></td>
               <td><?=number_format((float)$row['preco'],2,".","");?></td>    
               <td align="right">                                
-                  <button type="button" class="btn btn-danger btnRemoverItem" item="<?=$row['id']?>" num_pedido="<?=$row['num_pedido'];?>"><i class="fas fa-minus"></i></button>
-                </td>
-              </tr>             
-              <?php }//while?>
-            </tbody>
-            <tfoot>
-              <tr>
-                <th colspan="2" style="text-align:right">Total:</th>
-                <th colspan="2"></th>
-              </tr>
-            </tfoot>
-          </table>
-        </div>
+                <button type="button" class="btn btn-danger btnRemoverItem" item="<?=$row['id']?>" num_pedido="<?=$row['num_pedido'];?>"><i class="fas fa-minus"></i></button>
+              </td>
+            </tr>             
+            <?php }//while?>
+          </tbody>
+          <tfoot>
+            <tr>
+              <th colspan="2" style="text-align:right">Total:</th>
+              <th colspan="2"></th>
+            </tr>
+          </tfoot>
+        </table>
       </div>
-      <?php }?>
-
-
       <br>
-      <br>
+      <div class="row">
+        <div class="col-md-12 col-sm-12 col-xl-12 col-lg-12" align="right" id="adicionar-item-desktop">
+          <button class="btn btn-lg btn-warning" id="btnFinalizarPedido" num_pedido="<?=$row['num_pedido'];?>">Finalizar pedido</button>
+       </div>
+     </div>   
+   </div>
+   <?php }?>
 
-      <!-- Datatable para versão mobile-->
-      <?php
-      $sql2="SELECT * FROM pedidos WHERE num_pedido=".$num_pedido." and id_produto>0 ORDER BY cadastro ASC";
-      if ($result2=mysqli_query($conecta,$sql2))
-        {?>
-      <div class="card-body">
-        <!-- versão desktop/tablet -->
-        <div class="table-responsive" id="table-responsive-mobile">
-          <table class="table cell-border table-hover" id="dataTable_mobile" width="100%" cellspacing="0">
-            <thead>
-              <tr>
-                <th>Item</th> 
-              </tr>
-            </thead>
-            <tfoot>
-              <tbody>  
-                <?php while ($row2=mysqli_fetch_assoc($result2)) { ?>
-                <tr>
-                  <td>                         
-                   <div class="col-xl-3 col-md-6 mb-4">
-                    <div class="card border-left-primary shadow h-100 py-0">
-                      <div class="card-body">
-                        <div class="row no-gutters align-items-center">
-                          <div class="col mr-2">
-                            <div class="h7 mb-0 font-weight-bold text-gray-800"><?=$row2['produto'];?></div>
-                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1"><?=$row2['categoria'];?> - R$<?= number_format($row2['preco'], 2, ',', '.');?></div>
 
-                          </div>
-                          <div class="col-auto">
-                            <button type="button" class="btn btn-danger btnRemoverItem" item="<?=$row2['id']?>" num_pedido="<?=$row2['num_pedido'];?>"><i class="fas fa-minus"></i></button>
-                          </div>
-                        </div>
+   <br>
+   <br>
+
+   <!-- Datatable para versão mobile-->
+   <?php
+   $sql2="SELECT * FROM pedidos WHERE num_pedido=".$num_pedido." and id_produto>0 ORDER BY cadastro ASC";
+   if ($result2=mysqli_query($conecta,$sql2))
+    {?>
+  <div class="card-body">
+    <!-- versão desktop/tablet -->
+    <div class="table-responsive" id="table-responsive-mobile">
+      <table class="table cell-border table-hover" id="dataTable_mobile" width="100%" cellspacing="0">
+        <thead>
+          <tr>
+            <th>Item</th> 
+          </tr>
+        </thead>
+        <tfoot>
+          <tbody>  
+            <?php while ($row2=mysqli_fetch_assoc($result2)) { ?>
+            <tr>
+              <td>                         
+               <div class="col-xl-3 col-md-6 mb-4">
+                <div class="card border-left-primary shadow h-100 py-0">
+                  <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                      <div class="col mr-2">
+                        <div class="h7 mb-0 font-weight-bold text-gray-800"><?=$row2['produto'];?></div>
+                        <div class="text-xs font-weight-bold text-primary text-uppercase mb-1"><?=$row2['categoria'];?> - R$<?= number_format($row2['preco'], 2, ',', '.');?></div>
+
+                      </div>
+                      <div class="col-auto">
+                        <button type="button" class="btn btn-danger btnRemoverItem" item="<?=$row2['id']?>" num_pedido="<?=$row2['num_pedido'];?>"><i class="fas fa-minus"></i></button>
                       </div>
                     </div>
                   </div>
-                </td>
-              </tr>       
-              <?php }//while?>
-            </tbody>
-          </table>
-        </div>
-      </div>
-      <?php }?>
+                </div>
+              </div>
+            </td>
+          </tr>       
+          <?php }//while?>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <?php }?>

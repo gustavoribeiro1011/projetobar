@@ -15,8 +15,16 @@ $nome_usuario = $_SESSION['login_nome'.$app_token] . " ". $_SESSION['sobrenome'.
  * 1 - Inclusão do pedido
  * 2 - Existe 1 pedido sem finalizar
  * 3 - Existe mais de 1 pedido sem finalizar
+ * 4 - Nenhuma mesa foi cadastrada
  */
 
+
+$verificaMesasExistente = "SELECT count(id) count FROM mesas";
+$result=mysqli_query($conecta,$verificaMesasExistente);
+$qtd_mesas=mysqli_fetch_assoc($result);
+
+
+if ( $qtd_mesas['count'] > 0 ) {
 
 
 $verificarPedidoExistente = "SELECT COUNT(num_pedido) as count FROM pedidos ORDER BY num_pedido DESC LIMIT 1"; 
@@ -94,6 +102,9 @@ echo json_encode($array);
 }
 
 }
-
+} else {
+	$array= array('status' => '4');
+	echo json_encode($array);
+}
 
 
