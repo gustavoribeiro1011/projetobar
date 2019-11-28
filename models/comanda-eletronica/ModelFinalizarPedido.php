@@ -10,8 +10,7 @@ include ('../../config.php');
 $num_pedido = $_POST['num_pedido'];
 
 
-
-$finalizarPedido = "UPDATE pedidos SET status='pedido finalizado' WHERE num_pedido=".$num_pedido." AND status = 'pedido aberto'";
+$finalizarPedido = "UPDATE pedidos SET status='pedido em processamento' WHERE num_pedido=".$num_pedido." AND status = 'pedido aberto'";
 
 if ($conecta->query($finalizarPedido) === TRUE) {
 	echo "sucesso";

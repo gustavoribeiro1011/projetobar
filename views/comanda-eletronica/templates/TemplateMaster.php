@@ -10,6 +10,9 @@ $Categorias .= BASEURL . "views/comanda-eletronica/templates/Categorias.php";
 $Produtos = $_SERVER['DOCUMENT_ROOT'];
 $Produtos .= BASEURL . "views/comanda-eletronica/templates/Produtos.php";
 
+$FimPedido = $_SERVER['DOCUMENT_ROOT'];
+$FimPedido .= BASEURL . "views/comanda-eletronica/templates/FimPedido.php";
+
 ?>
 
 
@@ -20,12 +23,15 @@ $Produtos .= BASEURL . "views/comanda-eletronica/templates/Produtos.php";
 
    <?php include ($Categorias); ?>
 
- </div>
 
+   <?php include ($FimPedido); ?>
+
+ </div>
 
 </div>
 <div class="container-fluid" id="includeDivProdutos"></div> 
 
+<div class="container-fluid" id="includeDivVariantes"></div>
 
 <div class="container-fluid" id="includeResumoPedido"></div>
 
@@ -46,8 +52,11 @@ $Produtos .= BASEURL . "views/comanda-eletronica/templates/Produtos.php";
                 <label for="">Categoria:</label>  <input type='text' class="form-control" id="inputCategoria" disabled></input>
                 <label for="">ID Produto:</label>   <input type='text' class="form-control" id="inputIdProduto" disabled></input>
                 <label for="">Produto:</label>  <input type='text' class="form-control" id="inputProduto" disabled></input>
+                <label for="">ID Preco:</label>  <input type='text' class="form-control" id="inputIdPreco" disabled></input>
                 <label for="">Preco:</label>  <input type='text' class="form-control" id="inputPreco" disabled></input>
-
+                <label for="">ID Unidade de Medida:</label>  <input type='text' class="form-control" id="inputIdUnidadeMedida" disabled></input>
+                <label for="">Unidade de Medida:</label>  <input type='text' class="form-control" id="inputUnidadeMedida" disabled></input>
+                <label for="">Medida:</label>  <input type='text' class="form-control" id="inputMedida" disabled></input>
               </form>
             </div>
           </div>
@@ -60,5 +69,5 @@ $Produtos .= BASEURL . "views/comanda-eletronica/templates/Produtos.php";
 
 
 
-    <div class="col-xl-8 col-lg-7">
+  <div class="col-xl-8 col-lg-7">
 

@@ -13,20 +13,30 @@ $id_categoria = $_POST['id_categoria'];
 $categoria = $_POST['categoria'];
 $id_produto = $_POST['id_produto'];
 $produto = $_POST['produto'];
-$preco = $_POST['preco'];
+
+$id_preco=$_POST['id_preco'];
+$preco=$_POST['preco'];
+$id_unidade_medida=$_POST['id_unidade_medida'];
+$unidade_medida=$_POST['unidade_medida'];
+$medida=$_POST['medida'];
 
 
-$cadastraItem = "INSERT INTO pedidos 
-(num_pedido,mesa,origem,id_produto,produto,preco,id_categoria,categoria,status,id_usuario,usuario,cadastro) 
+
+$cadastraItem = "INSERT INTO pedidos
+(num_pedido,mesa,origem,id_produto,produto,id_categoria,categoria,id_preco,preco,id_unidade_medida,unidade_medida,medida,status,id_usuario,usuario,cadastro) 
 VALUES(
 	'".$num_pedido."',
 	'".$num_mesa."',
 	'comanda eletronica',
 	'".$id_produto."',
-	'".$produto."',
-	'".$preco."',
+	'".$produto."',	
 	'".$id_categoria."',
 	'".$categoria."',
+	'".$id_preco."',
+	'".$preco."',
+	'".$id_unidade_medida."',
+	'".$unidade_medida."',
+	'".$medida."',
 	'item cadastrado',
 	'".$_SESSION['id'.$app_token]."',
 	'".$_SESSION['login_nome'.$app_token]." ".$_SESSION['sobrenome'.$app_token]."',
@@ -43,9 +53,9 @@ $idPrincipalPedido = $row['id'];
 //$cadastraMesa
 
 $updateMesaNaLinhaPrincipalPedido = "UPDATE pedidos SET mesa=$num_mesa WHERE id=$idPrincipalPedido";
+$conecta->query($updateMesaNaLinhaPrincipalPedido);
 
-
-if ( $conecta->query($cadastraItem) === TRUE AND $conecta->query($updateMesaNaLinhaPrincipalPedido) === TRUE) {
+if ( $conecta->query($cadastraItem) === TRUE) {
 	echo "sucesso";
 } else {
 	echo "falha";

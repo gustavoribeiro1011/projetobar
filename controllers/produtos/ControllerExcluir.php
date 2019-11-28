@@ -10,15 +10,19 @@ $(".botaoExcluirProdutoTransicao").click(function(){
 var url = 'templates/TemplateMasterUpdateContent.php';
 var contentTemplateMaster = document.getElementById("contentTemplateMaster");
 $(".botaoExcluirProdutoModal").click(function(){
+	var instrucao = 'remover produto';
 	var idproduto = document.getElementById("resgataIDproduto").value
 
 	$.ajax({
 		type: "POST",
 		url: '../../models/produtos/ModelExcluir.php',
 		data: {
+			instrucao:instrucao,
 			idproduto:idproduto
 		},
 		success: function(data) {
+
+
 			if (data == 'sucesso'){
 				var request = new XMLHttpRequest();
 				request.open("GET", url, true);
@@ -37,16 +41,12 @@ $(".botaoExcluirProdutoModal").click(function(){
 					}
 				});
 				request.send();
-				$("#alertaSucessoExcluir").fadeIn().show();  
-				setTimeout(function() {
-					$("#alertaSucessoExcluir").fadeOut();
-				}, 4000);
+				alertify.success('<font color="white">Produto excluído</font>');
+
 
 			} else if (data == 'falha'){
-				$("#alertaFalhaExcluir").fadeIn().show();  
-				setTimeout(function() {
-					$("#alertaFalhaExcluir").fadeOut();
-				}, 4000);
+				alertify.error('<font color="white">Falha ao excluir produto</font>');
+
 			}
 		}		
 	});

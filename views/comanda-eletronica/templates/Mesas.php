@@ -55,8 +55,8 @@
                   <button class="btn btn-danger  btn-block btnMesa" num_mesa="<?php  $row['num_mesa']; ?>" disabled>
                     Mesa
                     <h3><b><?php echo $row['num_mesa']; ?></b></h3> 
-                    <span id="txtStatusMesa">Indisponível</span>
-                    <span id="txtStatusMesaMobile">Ind.</span>
+                    <span id="txtStatusMesa">Em atendimento</span>
+                    <span id="txtStatusMesaMobile">Em atendimento</span>
                   </button>
                 </div>
               </div>

@@ -41,7 +41,11 @@
             <button class="btn btn-primary btn-block btnCategoria" 
             id_categoria="<?php echo $row['id']; ?>"
             categoria="<?php echo $row['categoria']; ?>"
-            ><?php echo $row['categoria']; ?></button>
+            >
+            <div align="left">
+              <?php echo strtoupper($row['categoria']);?>
+            </div>
+            </button>
           </div>
         </div>
 

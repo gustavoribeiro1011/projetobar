@@ -273,24 +273,73 @@ $(".btn-voltar-categoria").click(function(){
 	}, 1000	);
 });
 
-$(".btnProduto").click(function(){
+$(".btn-voltar-variante").click(function(){
 
 	setTimeout(function() {
-		$("#cardProduto").fadeOut();
-	}, 200);
+		$("#cardVariante").fadeOut();
+	}, 150);
 
-	var num_pedido = $("#inputPedido").val();
-	var num_mesa      = document.getElementById("inputMesa").value;
-	var id_categoria  =  document.getElementById("inputIdCategoria").value;
-	var categoria     =  document.getElementById("inputCategoria").value;
-	var id_produto=  $(this).attr('id_produto');
-	var produto=  $(this).attr('produto');
-	var preco =  $(this).attr('preco');
+	setTimeout(function() {
+		$("#cardProduto").fadeIn();
+	}, 600	);
+
+});
+
+$(".btnProduto").click(function(){
+
+	var num_pedido	  =  $("#inputPedido").val();
+	var num_mesa      =  $("#inputMesa").val();
+	var id_categoria  =  $("#inputIdCategoria").val();
+	var categoria     =  $("#inputCategoria").val();
+	var id_produto    =  $(this).attr('id_produto');
+	var produto       =  $(this).attr('produto');
+
 	$("#inputIdProduto").val(id_produto);
 	$("#inputProduto").val(produto);
-	$("#inputPreco").val(preco);
 
-//Agora precisa fazer o insert de tudo que esta no formulario.
+	$.post("<?php echo BASEURL; ?>views/comanda-eletronica/templates/Variantes.php",
+	{
+		id_produto:id_produto
+	},
+	function (resultado){
+		$('#includeDivVariantes').html(resultado);
+		eval(document.getElementById('scriptControllerCapturaDados').innerHTML);  
+	    setTimeout(function() {
+	    	$("#cardProduto").fadeOut();
+	    }, 200);
+        setTimeout(function() {
+        	$("#cardVariante").fadeIn();
+        }, 600	);
+
+	});
+
+});
+
+$(".btnVariante").click(function(){
+
+	//resgatando os valores do formulario que já foram definidos até o momento
+	var num_pedido	  =  $("#inputPedido").val();
+	var num_mesa      =  $("#inputMesa").val();
+	var id_categoria  =  $("#inputIdCategoria").val();
+	var categoria     =  $("#inputCategoria").val();
+	var id_produto    =  $("#inputIdProduto").val();
+	var produto       =  $("#inputProduto").val();
+
+	//pegando os novos atributos do <button class="btnVariante">
+	var id_preco	        =    $(this).attr('id_preco');
+	var preco	            =    $(this).attr('preco');
+	var id_unidade_medida	=    $(this).attr('id_unidade_medida');
+	var unidade_medida	    =    $(this).attr('unidade_medida');
+	var medida	            =    $(this).attr('medida');	
+    
+    //passando os aribuitos para os inputs do formulário
+	$("#inputIdPreco").val(id_preco);
+	$("#inputPreco").val(preco);
+	$("#inputIdUnidadeMedida").val(id_unidade_medida);
+	$("#inputUnidadeMedida").val(unidade_medida);
+	$("#inputMedida").val(medida);
+
+//insert de tudo que esta no formulario para a tabela 'pedidos'
 $.ajax({
 	type: "POST",
 	url: '../../models/comanda-eletronica/ModelCadastraItem.php',
@@ -301,7 +350,12 @@ $.ajax({
 		categoria:categoria,
 		id_produto:id_produto,
 		produto:produto,
-		preco:preco
+		id_preco:id_preco,
+		preco:preco,
+		id_unidade_medida:id_unidade_medida,
+		unidade_medida:unidade_medida,
+		medida:medida
+
 	},
 	success: function(data) {
 
@@ -320,6 +374,12 @@ $.ajax({
 				eval(document.getElementById('scriptDataTable').innerHTML); 
 
 			});
+
+			setTimeout(function() {
+				$("#cardVariante").fadeOut();
+			}, 200	);
+
+
 			setTimeout(function() {
 				$("#cardResumoPedido").fadeIn();
 			}, 600	);
@@ -331,13 +391,10 @@ $.ajax({
         $("#inputCategoria").val("");
         $("#inputIdProduto").val("");
         $("#inputProduto").val("");
-        $("#inputPreco").val("");
-
-
-
 
 
     }else if (data == 'falha'){
+
 
     	alertify.error('<font color="white">Falha ao adicionar item</font>');
 
@@ -347,7 +404,6 @@ $.ajax({
 }
 
 });
-
 
 });
 
@@ -383,8 +439,16 @@ $(".btnRemoverItem").click(function(){
 });
 
 
-$("#btnFinalizarPedido").click(function(){
-var num_pedido = $(this).attr('num_pedido');
+$(".btnFinalizarPedido").click(function(){
+
+	setTimeout(function() {
+		$(".cardNumeroPedido").fadeOut();
+	}, 200	);
+
+	var num_pedido = $(this).attr('num_pedido');
+
+
+
 	$.ajax({
 		type: "POST",
 		url: '../../models/comanda-eletronica/ModelFinalizarPedido.php',
@@ -393,13 +457,28 @@ var num_pedido = $(this).attr('num_pedido');
 			if(data == 'sucesso'){	
 				alertify.success('<font color="white">Pedido finalizado</font>');	
 
+				setTimeout(function() {
+					$("#cardResumoPedido").fadeOut();
+				}, 200	);
+
+
+
+
+
+				$('#numeroPedido').html(num_pedido);
+				setTimeout(function() {
+					$("#cardFimPedido").fadeIn();
+				}, 600	);
+
+
+
 // dar um reload na pagina
 
-        }else if (data == 'falha'){
-
-        	alertify.error('<font color="white">Falha ao finalizar pedido</font>');
-        }
-    }
+}else if (data == 'falha'){
+	
+	alertify.error('<font color="white">Falha ao finalizar pedido</font>');
+}
+}
 	});//fim do ajax
 
 });

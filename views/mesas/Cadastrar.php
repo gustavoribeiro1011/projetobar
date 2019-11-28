@@ -42,10 +42,8 @@ include('../../inc/header.php');
 
 
         <div id="contentTemplateMaster">
-
          <?php include ('templates/TemplateMaster.php'); ?>
        </div>
-
 
 
      </div>

@@ -91,7 +91,8 @@ include('../../inc/header.php');
       }
     });
   });
-</script>
+
+  </script>
 
 
 

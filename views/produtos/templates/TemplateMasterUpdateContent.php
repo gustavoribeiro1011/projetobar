@@ -3,6 +3,7 @@
 
 require('../../../config.php');
 
+
 $ModalExcluir = $_SERVER['DOCUMENT_ROOT'];
 $ModalExcluir .= BASEURL . "views/produtos/templates/ModalExcluir.php";
 
@@ -15,6 +16,10 @@ $FormularioEditar .= BASEURL . "views/produtos/templates/FormularioEditar.php";
 $FormularioExibir = $_SERVER['DOCUMENT_ROOT'];
 $FormularioExibir .= BASEURL . "views/produtos/templates/FormularioExibir.php";
 
+
+$VariacaoEditar = $_SERVER['DOCUMENT_ROOT'];
+$VariacaoEditar .= BASEURL . "views/produtos/templates/VariacaoEditar.php";
+
 ?>
 
 <!-- Content Row -->
@@ -25,11 +30,14 @@ $FormularioExibir .= BASEURL . "views/produtos/templates/FormularioExibir.php";
 <!-- Formulario  Cadastrar Produtos -->          
 <?php include ($ModalExcluir); ?>
 
-<!-- Formulario  Cadastrar Produtos -->          
+<!-- Formulario  Cadastrar Produtos -->
+<div></div>          
 <?php include ($FormularioCadastrar); ?>
 
 <!-- Formulario  Editar Produtos -->          
 <?php include ($FormularioEditar); ?>
+
+
 
 </div>
 
