@@ -163,8 +163,40 @@ $(document).ready(function() {
   $('#dataTable_mobile').DataTable({
     "language": {
       "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Portuguese.json"
-    }
-  });
+    },
+    "footerCallback": function ( row, data, start, end, display ) {
+      var api = this.api(), data;
+
+            // Remove the formatting to get integer data for summation
+            var intVal = function ( i ) {
+              return typeof i === 'string' ?
+              i.replace(/[\$,]/g, '')*1 :
+              typeof i === 'number' ?
+              i : 0;
+            };
+
+            // Total over all pages
+            total = api
+            .column( 0 )
+            .data()
+            .reduce( function (a, b) {
+              return intVal(a) + intVal(b);
+            }, 0 );
+
+            // Total over this page
+            pageTotal = api
+            .column( 0, { page: 'current'} )
+            .data()
+            .reduce( function (a, b) {
+              return intVal(a) + intVal(b);
+            }, 0 );
+
+            // Update footer
+            $( api.column( 0 ).footer() ).html(
+              (pageTotal).toLocaleString('pt-BR', {minimumFractionDigits: 2}) +' ('+ ((total).toLocaleString('pt-BR', {minimumFractionDigits: 2}) + " total comanda").toLocaleString('pt-BR', {minimumFractionDigits: 2}) +')'
+              );
+          }
+        });
 });
 
 </script>

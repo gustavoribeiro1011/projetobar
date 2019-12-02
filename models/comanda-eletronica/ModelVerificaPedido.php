@@ -16,6 +16,7 @@ $nome_usuario = $_SESSION['login_nome'.$app_token] . " ". $_SESSION['sobrenome'.
  * 2 - Existe 1 pedido sem finalizar
  * 3 - Existe mais de 1 pedido sem finalizar
  * 4 - Nenhuma mesa foi cadastrada
+ * 5 - Cadastro de novo item
  */
 
 
@@ -52,7 +53,7 @@ $array= array( "status" => '1', "num_pedido" => $num_pedido );
 echo json_encode($array);
 
 
-} else if ($row['count'] > 0){// se já existir pedidos
+} else if ($row['count'] > 0){// se existir pedidos sem finalizar
 
 	$verificaPedidoNaoFinalizado = "SELECT COUNT(num_pedido) count FROM pedidos WHERE status = 'pedido aberto' AND id_usuario = '$id_usuario' ";
 	$result=mysqli_query($conecta,$verificaPedidoNaoFinalizado);
@@ -88,12 +89,25 @@ $pegaUltimoPedidoSemFinalizar = "SELECT * FROM pedidos WHERE id_usuario = '$id_u
 $result=mysqli_query($conecta,$pegaUltimoPedidoSemFinalizar);
 $row=mysqli_fetch_assoc($result);
 
+if($row['param_1'] == ''){
+
 $array= array('status' => '2', 'num_pedido' => $row['num_pedido'], 'num_mesa' => $row['mesa']);
+
 echo json_encode($array);
 
-} else if ($row['count'] == 1) { // se existir mais de um pedido sem finalizar
-	$array= array('status' => '3');
+} else if ($row['param_1'] == 'novo item'){
+
+	$array= array('status' => '5', 'num_pedido' => $row['num_pedido'], 'num_mesa' => $row['mesa']);
+
 	echo json_encode($array);
+}
+
+} else if ($row['count'] == 1) { // se existir mais de um pedido sem finalizar
+
+	$array= array('status' => '3');
+
+	echo json_encode($array);
+	
 }
 
 

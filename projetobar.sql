@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Máquina: localhost
--- Data de Criação: 28-Nov-2019 às 19:26
+-- Data de Criação: 02-Dez-2019 às 14:50
 -- Versão do servidor: 5.6.13
 -- versão do PHP: 5.4.17
 
@@ -60,7 +60,23 @@ CREATE TABLE IF NOT EXISTS `mesas` (
   `cadastro` datetime NOT NULL,
   `modificado` datetime NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=11 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=21 ;
+
+--
+-- Extraindo dados da tabela `mesas`
+--
+
+INSERT INTO `mesas` (`id`, `num_mesa`, `status`, `usuario`, `cadastro`, `modificado`) VALUES
+(11, 1, 'disponivel', 1, '2019-11-29 09:38:57', '2019-12-02 10:32:18'),
+(12, 2, 'disponivel', 1, '2019-11-29 09:38:57', '0000-00-00 00:00:00'),
+(13, 3, 'disponivel', 1, '2019-11-29 09:38:57', '0000-00-00 00:00:00'),
+(14, 4, 'disponivel', 1, '2019-11-29 09:38:57', '0000-00-00 00:00:00'),
+(15, 5, 'disponivel', 1, '2019-11-29 09:38:57', '0000-00-00 00:00:00'),
+(16, 6, 'disponivel', 1, '2019-11-29 09:38:57', '0000-00-00 00:00:00'),
+(17, 7, 'disponivel', 1, '2019-11-29 09:38:57', '0000-00-00 00:00:00'),
+(18, 8, 'disponivel', 1, '2019-11-29 09:38:57', '0000-00-00 00:00:00'),
+(19, 9, 'disponivel', 1, '2019-11-29 09:38:57', '0000-00-00 00:00:00'),
+(20, 10, 'disponivel', 1, '2019-11-29 09:38:57', '0000-00-00 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -83,12 +99,13 @@ CREATE TABLE IF NOT EXISTS `pedidos` (
   `id_categoria` int(11) NOT NULL COMMENT 'fk',
   `categoria` varchar(200) NOT NULL,
   `status` varchar(100) NOT NULL,
+  `param_1` varchar(100) NOT NULL,
   `id_usuario` int(11) NOT NULL COMMENT 'FK',
   `usuario` varchar(200) NOT NULL,
   `cadastro` datetime NOT NULL,
   `modificado` datetime NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=91 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=218 ;
 
 -- --------------------------------------------------------
 
@@ -104,7 +121,7 @@ CREATE TABLE IF NOT EXISTS `precos` (
   `cadastro` datetime NOT NULL,
   `modificado` datetime NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=22 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=23 ;
 
 --
 -- Extraindo dados da tabela `precos`
@@ -127,7 +144,8 @@ INSERT INTO `precos` (`id`, `id_produto`, `variacao`, `preco`, `cadastro`, `modi
 (18, 10, 1, 20, '2019-11-28 16:25:14', '0000-00-00 00:00:00'),
 (19, 11, 1, 15.9, '2019-11-28 16:25:31', '0000-00-00 00:00:00'),
 (20, 12, 1, 18.9, '2019-11-28 16:25:43', '0000-00-00 00:00:00'),
-(21, 13, 1, 15, '2019-11-28 16:26:07', '0000-00-00 00:00:00');
+(21, 13, 1, 15, '2019-11-28 16:26:07', '0000-00-00 00:00:00'),
+(22, 14, 1, 0.01, '2019-11-29 14:58:52', '0000-00-00 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -143,7 +161,7 @@ CREATE TABLE IF NOT EXISTS `produtos` (
   `cadastro` datetime NOT NULL,
   `modificado` datetime NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=14 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=15 ;
 
 --
 -- Extraindo dados da tabela `produtos`
@@ -161,7 +179,8 @@ INSERT INTO `produtos` (`id`, `produto`, `categoria`, `usuario`, `cadastro`, `mo
 (10, 'BATATA FRITA COM QUEIJO', 3, 1, '2019-11-28 16:25:14', '0000-00-00 00:00:00'),
 (11, 'BATATA FRITA', 3, 1, '2019-11-28 16:25:31', '0000-00-00 00:00:00'),
 (12, 'CALABRESA', 3, 1, '2019-11-28 16:25:43', '0000-00-00 00:00:00'),
-(13, 'PEIXE FRITO', 3, 1, '2019-11-28 16:26:07', '0000-00-00 00:00:00');
+(13, 'PEIXE FRITO', 3, 1, '2019-11-28 16:26:07', '0000-00-00 00:00:00'),
+(14, 'teste', 1, 1, '2019-11-29 14:58:52', '0000-00-00 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -200,7 +219,7 @@ CREATE TABLE IF NOT EXISTS `unidade_medida` (
   `cadastro` datetime NOT NULL,
   `modificado` datetime NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=22 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=23 ;
 
 --
 -- Extraindo dados da tabela `unidade_medida`
@@ -223,7 +242,8 @@ INSERT INTO `unidade_medida` (`id`, `id_produto`, `variacao`, `medida`, `unidade
 (18, 10, 1, 1, 'un', '2019-11-28 16:25:14', '0000-00-00 00:00:00'),
 (19, 11, 1, 1, 'un', '2019-11-28 16:25:31', '0000-00-00 00:00:00'),
 (20, 12, 1, 1, 'un', '2019-11-28 16:25:43', '0000-00-00 00:00:00'),
-(21, 13, 1, 1, 'un', '2019-11-28 16:26:07', '0000-00-00 00:00:00');
+(21, 13, 1, 1, 'un', '2019-11-28 16:26:07', '0000-00-00 00:00:00'),
+(22, 14, 1, 1, 'un', '2019-11-29 14:58:52', '0000-00-00 00:00:00');
 
 -- --------------------------------------------------------
 

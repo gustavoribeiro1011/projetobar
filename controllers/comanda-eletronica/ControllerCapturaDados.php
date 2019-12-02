@@ -1,5 +1,5 @@
 <script>
-var data = "";
+var data = "1";
 $.ajax({
 	type: "POST",
 	url: '../../models/comanda-eletronica/ModelVerificaPedido.php',
@@ -14,8 +14,8 @@ $.ajax({
 		var num_pedido = data['num_pedido'];
 		var num_mesa = data['num_mesa'];
 
-		 
-       
+
+
 		if (data['status'] == '1'){
 
 			//alert("1 - Inclusao do primeiro pedido.");
@@ -30,7 +30,9 @@ $.ajax({
 
 		} else 	if (data['status'] == '2'){ //2 - Existe 1 pedido sem finaliza
 
-			$(".btnDescartarPedido").click(function(){
+			//alert(' Existe 1 pedido sem finalizar');
+
+			$(".btnDescartarPedido").click(function(){ 
 
 
 				//exclui o pedido
@@ -41,49 +43,49 @@ $.ajax({
 					success: function(data) {
 
 						if(data == 'sucesso'){	
-                                   
+
 
                                      // aLtera status da mesa para indisponivel
                                      $.ajax({
-                                     type: "POST",
-                                     url: '../../models/comanda-eletronica/ModelAlteraStatusMesa.php',
-                                     data: {
-                                     	instrucao:'disponivel',
-                                     	num_mesa:num_mesa
-                                     },
-                                     success: function(data) {
-                                     if(data == 'sucesso'){
+                                     	type: "POST",
+                                     	url: '../../models/comanda-eletronica/ModelAlteraStatusMesa.php',
+                                     	data: {
+                                     		instrucao:'disponivel',
+                                     		num_mesa:num_mesa
+                                     	},
+                                     	success: function(data) {
+                                     		if(data == 'sucesso'){
 
                                      	//alert("status alterado para disponivel");
 
                                      //recarrega a página
                                      location.reload();
 
-                                     }else 	if(data == 'falha'){
-                                     alertify.error('<font color="white">Falha ao alterar status da mesa</font>');
-                                     } else {
-                                     alertify.error('<font color="white">Erro desconhecido</font>');
+                                 }else 	if(data == 'falha'){
+                                 	alertify.error('<font color="white">Falha ao alterar status da mesa</font>');
+                                 } else {
+                                 	alertify.error('<font color="white">Erro desconhecido</font>');
 
-                                     }
-                                     }                                     
+                                 }
+                             }                                     
                                      });//fim ajax
-                                     
 
 
-						}else if (data == 'falha'){
 
-							alertify.error('<font color="white">Falha ao descartar pedido</font>');
+}else if (data == 'falha'){
+
+	alertify.error('<font color="white">Falha ao descartar pedido</font>');
 
 
-						}
+}
 
-					}
+}
 
-				});
+});
 
-			});
+});
 
-			$(".btnRetomarPedido").click(function(){
+$(".btnRetomarPedido").click(function(){ 
 
 		//exibe o resumo do pedido
 		$.post("<?php echo BASEURL; ?>views/comanda-eletronica/templates/ResumoPedido.php",
@@ -115,28 +117,67 @@ $.ajax({
     });
 
 
-			$('#spanNumPedido').html(num_pedido);
+$('#spanNumPedido').html(num_pedido);
 
-			$(document).ready(function() {
-				$('#modaoPedidoExistente').modal('show');
-			})
-
-
+$(document).ready(function() {
+	$('#modaoPedidoExistente').modal('show');
+})
 
 
 
-		} else 	if (data['status'] == '3'){
 
-			alert("3 - Existe mais de 1 pedido sem finalizar");
 
-		} else if (data['status'] == '4'){
+} else 	if (data['status'] == '3'){
 
-				$(document).ready(function() {
-				$('#modalMesaInexistente').modal('show');
-			})
+	//alert("3 - Existe mais de 1 pedido sem finalizar");
 
+} else if (data['status'] == '4'){
+
+	$(document).ready(function() {
+		$('#modalMesaInexistente').modal('show');
+	})
+
+		} else 	if (data['status'] == '5'){ //5 - Cadastro de novo item
+
+			var num_pedido = data['num_pedido'];
+			var num_mesa = data['num_pedido'];
+
+			$('#spanPedido').text(num_pedido);
+
+			$('#inputPedido').val(num_pedido);
+			$('#inputMesa').val(num_mesa);
+
+			setTimeout(function() {
+				$("#cardCategoria").fadeIn();
+			}, 50	);
+			
+			// reset param_1
+			var instrucao = 'reset param_1';
+			$.ajax({
+				type: "POST",
+				url: '../../models/comanda-eletronica/ModelNovoItem.php',
+				data: {
+					instrucao:instrucao,
+					num_pedido:num_pedido	
+				},
+				success: function(data) {
+
+					if (data == 'sucesso'){} else
+
+					if (data == 'falha'){
+
+						alertify.error('<font color="white">Falha ao setar Param_1</font>');
+
+					} else {
+
+						alertify.error('<font color="white">Erro desconhecido</font>');
+					}
+				}
+
+});//fim ajax
+
+			
 		}
-
 
 
 	},
@@ -150,7 +191,7 @@ $.ajax({
 
 
 
-$(".btnMesa").click(function(){
+$(".btnMesa").click(function(){ 
 
 
 
@@ -159,7 +200,7 @@ $(".btnMesa").click(function(){
 	}, 150);
 	setTimeout(function() {
 		$("#cardCategoria").fadeIn();
-	}, 600	);
+	}, 50	);
 
 	var num_mesa =  $(this).attr('num_mesa');
 	var num_pedido = $('#inputPedido').val();
@@ -174,8 +215,8 @@ $.ajax({
 	type: "POST",
 	url: '../../models/comanda-eletronica/ModelCadastraMesa.php',
 	data: {
-    num_pedido:num_pedido,
-	num_mesa:num_mesa
+		num_pedido:num_pedido,
+		num_mesa:num_mesa
 	},
 	success: function(data) {
 
@@ -183,15 +224,15 @@ $.ajax({
 
     	//alertify.success('<font color="white">"num_mesa" cadastrada com sucesso</font>');
 
-		}else if (data == 'falha'){
+    }else if (data == 'falha'){
 
     	//alertify.error('<font color="white">Falha ao cadastrar "num_mesa" na tabela "pedidos"</font>');
 
-		} else {
+    } else {
 
     	alertify.error('<font color="white">Erro desconhecido ao cadastrar numero da mesa na tabela pedidos</font>');
-		}
-	}
+    }
+}
 
 });//fim ajax
 
@@ -217,7 +258,7 @@ $.ajax({
 
 });
 
-$("#btn-voltar-mesa").click(function(){
+$("#btn-voltar-mesa").click(function(){ 
 
 	setTimeout(function() {
 		$("#cardCategoria").fadeOut();
@@ -230,7 +271,7 @@ $("#btn-voltar-mesa").click(function(){
 
 
 
-$(".btnCategoria").click(function(){
+$(".btnCategoria").click(function(){ 
 
 	var id_categoria=  $(this).attr('id_categoria');
 	var categoria=  $(this).attr('categoria');
@@ -244,6 +285,7 @@ $(".btnCategoria").click(function(){
 	},
 	function (resultado){
 		$('#includeDivProdutos').html(resultado);
+
 		eval(document.getElementById('scriptControllerCapturaDados').innerHTML);  
 		setTimeout(function() {
 			$("#cardCategoria").fadeOut();
@@ -258,22 +300,40 @@ $(".btnCategoria").click(function(){
 
 });
 
-$(".btn-voltar-categoria").click(function(){
+$(".btnAdicionarItem").click(function(){ 
 
-	setTimeout(function() {
-		$("#cardProduto").fadeOut();
-	}, 150);
+// enviar 'numero do pedido' para o arquivo "ModelNovoItem"
+var instrucao = 'novo item';
+$.ajax({
+	type: "POST",
+	url: '../../models/comanda-eletronica/ModelNovoItem.php',
+	data: {
+		instrucao:instrucao,
+		num_pedido:num_pedido	
+	},
+	success: function(data) {
 
-	setTimeout(function() {
-		$("#cardResumoPedido").fadeOut();
-	}, 500	);
+		if (data == 'sucesso'){
 
-	setTimeout(function() {
-		$("#cardCategoria").fadeIn();
-	}, 1000	);
+    	//alertify.success('<font color="white">Sucesso</font>');
+    	location.reload(); // dar um reload na página
+
+    }else if (data == 'falha'){
+
+    	alertify.error('<font color="white">Falha</font>');
+
+    } else {
+
+    	alertify.error('<font color="white">Erro desconhecido</font>');
+    }
+}
+
+});//fim ajax
+
+
 });
 
-$(".btn-voltar-variante").click(function(){
+$(".btn-voltar-variante").click(function(){ 
 
 	setTimeout(function() {
 		$("#cardVariante").fadeOut();
@@ -285,7 +345,7 @@ $(".btn-voltar-variante").click(function(){
 
 });
 
-$(".btnProduto").click(function(){
+$(".btnProduto").click(function(){ 
 
 	var num_pedido	  =  $("#inputPedido").val();
 	var num_mesa      =  $("#inputMesa").val();
@@ -304,18 +364,18 @@ $(".btnProduto").click(function(){
 	function (resultado){
 		$('#includeDivVariantes').html(resultado);
 		eval(document.getElementById('scriptControllerCapturaDados').innerHTML);  
-	    setTimeout(function() {
-	    	$("#cardProduto").fadeOut();
-	    }, 200);
-        setTimeout(function() {
-        	$("#cardVariante").fadeIn();
-        }, 600	);
+		setTimeout(function() {
+			$("#cardProduto").fadeOut();
+		}, 200);
+		setTimeout(function() {
+			$("#cardVariante").fadeIn();
+		}, 600	);
 
 	});
 
 });
 
-$(".btnVariante").click(function(){
+$(".btnVariante").click(function(){ 
 
 	//resgatando os valores do formulario que já foram definidos até o momento
 	var num_pedido	  =  $("#inputPedido").val();
@@ -331,13 +391,13 @@ $(".btnVariante").click(function(){
 	var id_unidade_medida	=    $(this).attr('id_unidade_medida');
 	var unidade_medida	    =    $(this).attr('unidade_medida');
 	var medida	            =    $(this).attr('medida');	
-    
+
     //passando os aribuitos para os inputs do formulário
-	$("#inputIdPreco").val(id_preco);
-	$("#inputPreco").val(preco);
-	$("#inputIdUnidadeMedida").val(id_unidade_medida);
-	$("#inputUnidadeMedida").val(unidade_medida);
-	$("#inputMedida").val(medida);
+    $("#inputIdPreco").val(id_preco);
+    $("#inputPreco").val(preco);
+    $("#inputIdUnidadeMedida").val(id_unidade_medida);
+    $("#inputUnidadeMedida").val(unidade_medida);
+    $("#inputMedida").val(medida);
 
 //insert de tudo que esta no formulario para a tabela 'pedidos'
 $.ajax({
@@ -408,7 +468,7 @@ $.ajax({
 });
 
 
-$(".btnRemoverItem").click(function(){
+$(".btnRemoverItem").click(function(){ 
 	var item =  $(this).attr('item');
 	var num_pedido = $(this).attr('num_pedido');
 	$.ajax({
@@ -439,7 +499,7 @@ $(".btnRemoverItem").click(function(){
 });
 
 
-$(".btnFinalizarPedido").click(function(){
+$(".btnFinalizarPedido").click(function(){ 
 
 	setTimeout(function() {
 		$(".cardNumeroPedido").fadeOut();
