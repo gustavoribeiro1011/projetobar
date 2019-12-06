@@ -109,7 +109,7 @@ $(".btnRetomarPedido").click(function(){
 
         //depois precisa setar os values do formulario
         $("#inputPedido").val(num_pedido);
-        $("#inputMesa").val(mesa);
+       // $("#inputMesa").val(mesa);
 
 
 

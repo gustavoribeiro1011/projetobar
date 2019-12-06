@@ -161,9 +161,18 @@ include('../../inc/header.php');
 
 $(document).ready(function() {
   $('#dataTable_mobile').DataTable({
+      "dom": '<"top">rt<"bottom"ip><"clear">',
     "language": {
       "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Portuguese.json"
     },
+
+    "columnDefs": [
+            {
+                "targets": [ 1 ],
+                "visible": false,
+                "searchable": false
+            }
+        ],
     "footerCallback": function ( row, data, start, end, display ) {
       var api = this.api(), data;
 
@@ -177,7 +186,7 @@ $(document).ready(function() {
 
             // Total over all pages
             total = api
-            .column( 0 )
+            .column( 1 )
             .data()
             .reduce( function (a, b) {
               return intVal(a) + intVal(b);
@@ -185,7 +194,7 @@ $(document).ready(function() {
 
             // Total over this page
             pageTotal = api
-            .column( 0, { page: 'current'} )
+            .column( 1, { page: 'current'} )
             .data()
             .reduce( function (a, b) {
               return intVal(a) + intVal(b);
