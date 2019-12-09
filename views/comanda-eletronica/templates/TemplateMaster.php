@@ -29,9 +29,9 @@ $FimPedido .= BASEURL . "views/comanda-eletronica/templates/FimPedido.php";
  </div>
 
 </div>
-<div class="container-fluid" id="includeDivProdutos"></div> 
+<div id="includeDivProdutos"></div> 
 
-<div class="container-fluid" id="includeDivVariantes"></div>
+<div id="includeDivVariantes"></div>
 
 <div class="container-fluid" id="includeResumoPedido"></div>
 

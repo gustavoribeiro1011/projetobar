@@ -4,11 +4,11 @@ $id_categoria = $_POST['id_categoria'];
 
 
 ?>
-
+<div class="container-fluid">
 <div class="row">
  <div class="col-sm-12" id="cardProduto"  style="display:none;">
   <div class="card shadow">
-       <div class="card-body">
+   <div class="card-body">
 
     <div class="row" style="max-width: 100%">
 
@@ -30,35 +30,45 @@ $id_categoria = $_POST['id_categoria'];
 
       if ($result=mysqli_query($conecta,$sql))
       {
-        while ($row=mysqli_fetch_assoc($result))
-        {
-
-          ?>
-          <div class="col-md-3">
-           <div class="card">  
-            <button class="btn btn-primary btn-block btnProduto"
-            id_produto="<?php echo $row['id']; ?>"
-            produto="<?php echo $row['produto']; ?>">
-            <div align="left">
-              <?=strtoupper($row['produto']);?>
-            </div>
-          </button>
-        </div>
+        ?>
+        <div class="col-md-3">
+         <div class="card">  
+          <button class="btn btn-primary btn-block btnVoltarParaCategoria">
+          <div align="left"><i class="fas fa-arrow-left"></i> VOLTAR</div>
+        </button>
       </div>
+    </div>
+    <?php
+    while ($row=mysqli_fetch_assoc($result))
+    {
 
-      <?php     }
-
-
-      mysqli_free_result($result);
-    }
-
-
-    ?>
+      ?>
+      <div class="col-md-3">
+       <div class="card">  
+        <button class="btn btn-primary btn-block btnProduto"
+        id_produto="<?php echo $row['id']; ?>"
+        produto="<?php echo $row['produto']; ?>">
+        <div align="left">
+          <?=strtoupper($row['produto']);?>
+        </div>
+      </button>
+    </div>
   </div>
 
+  <?php     }
+
+
+  mysqli_free_result($result);
+}
+
+
+?>
+</div>
+
 
 </div>
 </div>
 </div>
 
 
+</div>

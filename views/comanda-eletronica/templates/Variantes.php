@@ -1,4 +1,5 @@
-<?php if ($_POST){ $id_produto = $_POST['id_produto']; ?>
+<div class="container-fluid"><?php if ($_POST){ $id_produto = $_POST['id_produto']; ?>
+	<div class="row">
 <div class="col-sm-12" id="cardVariante"  style="display:none;">
 <div class="card shadow">
 <div class="card-body">
@@ -29,6 +30,17 @@ where c.id = ".$id_produto;
 
 if ($result=mysqli_query($conecta,$sql))
 {
+	?>
+
+        <div class="col-md-3">
+         <div class="card">  
+          <button class="btn btn-primary btn-block btnVoltarParaProduto">
+          <div align="left"><i class="fas fa-arrow-left"></i> VOLTAR</div>
+        </button>
+      </div>
+    </div>
+
+	<?php
 while ($row=mysqli_fetch_assoc($result))
 {
 ?>
@@ -56,6 +68,8 @@ mysqli_free_result($result);
 
 }// if post
 ?>
+</div>
+</div>
 </div>
 </div>
 </div>

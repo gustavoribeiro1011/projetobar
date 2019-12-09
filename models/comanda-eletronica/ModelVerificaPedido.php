@@ -17,6 +17,9 @@ $nome_usuario = $_SESSION['login_nome'.$app_token] . " ". $_SESSION['sobrenome'.
  * 3 - Existe mais de 1 pedido sem finalizar
  * 4 - Nenhuma mesa foi cadastrada
  * 5 - Cadastro de novo item
+ * 6 - Voltar para tela resumo de pedidos
+ * 7 - Voltar para tela categorias
+ * 8 - Voltar para tela produtos
  */
 
 
@@ -98,6 +101,24 @@ echo json_encode($array);
 } else if ($row['param_1'] == 'novo item'){
 
 	$array= array('status' => '5', 'num_pedido' => $row['num_pedido'], 'num_mesa' => $row['mesa']);
+
+	echo json_encode($array);
+}
+else if ($row['param_1'] == 'voltar para tela resumo de pedidos'){
+
+	$array= array('status' => '6', 'num_pedido' => $row['num_pedido'], 'num_mesa' => $row['mesa']);
+
+	echo json_encode($array);
+}
+else if ($row['param_1'] == 'voltar para tela categorias'){
+
+	$array= array('status' => '7', 'num_pedido' => $row['num_pedido'], 'num_mesa' => $row['mesa']);
+
+	echo json_encode($array);
+}
+else if ($row['param_1'] == 'voltar para tela produtos'){
+
+	$array= array('status' => '8', 'num_pedido' => $row['num_pedido'], 'num_mesa' => $row['mesa'], 'id_categoria' => $row['param_2'],'categoria' => $row['param_3']);
 
 	echo json_encode($array);
 }

@@ -16,6 +16,7 @@ $.ajax({
 
 
 
+
 		if (data['status'] == '1'){
 
 			//alert("1 - Inclusao do primeiro pedido.");
@@ -103,7 +104,7 @@ $(".btnRetomarPedido").click(function(){
 
 		setTimeout(function() {
 			$("#cardResumoPedido").fadeIn();
-		}, 600	);
+		}, 200	);
 
 
 
@@ -114,7 +115,7 @@ $(".btnRetomarPedido").click(function(){
 
 
 
-    });
+   });
 
 
 $('#spanNumPedido').html(num_pedido);
@@ -155,7 +156,7 @@ $(document).ready(function() {
 			var instrucao = 'reset param_1';
 			$.ajax({
 				type: "POST",
-				url: '../../models/comanda-eletronica/ModelNovoItem.php',
+				url: '../../models/comanda-eletronica/ModelProcessaInstrucoes.php',
 				data: {
 					instrucao:instrucao,
 					num_pedido:num_pedido	
@@ -164,20 +165,182 @@ $(document).ready(function() {
 
 					if (data == 'sucesso'){} else
 
-					if (data == 'falha'){
+						if (data == 'falha'){
 
-						alertify.error('<font color="white">Falha ao setar Param_1</font>');
+							alertify.error('<font color="white">Falha ao setar Param_1</font>');
 
-					} else {
+						} else {
 
-						alertify.error('<font color="white">Erro desconhecido</font>');
+							alertify.error('<font color="white">Erro desconhecido</font>');
+						}
 					}
-				}
 
 });//fim ajax
 
 			
 		}
+
+		else if (data['status'] == '6'){ //6 - voltar para tela resumo de pedidos
+
+			var num_pedido = data['num_pedido'];
+			var num_mesa = data['num_pedido'];
+
+			//$('#spanPedido').text(num_pedido);
+			$('#inputPedido').val(num_pedido);
+			$('#inputMesa').val(num_mesa);
+
+
+//exibe o resumo do pedido
+$.post("<?php echo BASEURL; ?>views/comanda-eletronica/templates/ResumoPedido.php",
+{
+	num_pedido:num_pedido
+},
+function (resultado){
+	$('#includeResumoPedido').html(resultado);
+	eval(document.getElementById('scriptControllerCapturaDados').innerHTML);  
+	eval(document.getElementById('scriptDataTable').innerHTML); 
+
+});
+
+$("#spanPedido").html(num_pedido);
+
+setTimeout(function() {
+	$("#cardResumoPedido").fadeIn();
+}, 600	);
+
+			// reset param_1
+			var instrucao = 'reset param_1';
+			$.ajax({
+				type: "POST",
+				url: '../../models/comanda-eletronica/ModelProcessaInstrucoes.php',
+				data: {
+					instrucao:instrucao,
+					num_pedido:num_pedido	
+				},
+				success: function(data) {
+
+					if (data == 'sucesso'){} else
+
+						if (data == 'falha'){
+
+							alertify.error('<font color="white">Falha ao setar Param_1</font>');
+
+						} else {
+
+							alertify.error('<font color="white">Erro desconhecido</font>');
+						}
+					}
+
+});//fim ajax
+
+			
+		}
+
+				else if (data['status'] == '7'){ //7 - voltar para tela categorias
+
+					var num_pedido = data['num_pedido'];
+					var num_mesa = data['num_pedido'];
+
+					//$('#spanPedido').text(num_pedido);
+					$('#inputPedido').val(num_pedido);
+					$('#inputMesa').val(num_mesa);
+
+
+					$("#spanPedido").html(num_pedido);
+
+					setTimeout(function() {
+						$("#cardCategoria").fadeIn();
+					}, 600	);
+
+			// reset param_1
+			var instrucao = 'reset param_1';
+			$.ajax({
+				type: "POST",
+				url: '../../models/comanda-eletronica/ModelProcessaInstrucoes.php',
+				data: {
+					instrucao:instrucao,
+					num_pedido:num_pedido	
+				},
+				success: function(data) {
+
+					if (data == 'sucesso'){} else
+
+						if (data == 'falha'){
+
+							alertify.error('<font color="white">Falha ao setar Param_1</font>');
+
+						} else {
+
+							alertify.error('<font color="white">Erro desconhecido</font>');
+						}
+					}
+
+});//fim ajax
+
+			
+		}
+	else if (data['status'] == '8'){ //8 - voltar para tela produtos
+
+							var num_pedido = data['num_pedido'];
+							var num_mesa = data['num_pedido'];
+							var id_categoria  = data['id_categoria'];
+							var categoria  = data['categoria'];
+
+
+					//$('#spanPedido').text(num_pedido);
+					$('#inputPedido').val(num_pedido);
+					$('#inputMesa').val(num_mesa);
+					$('#inputIdCategoria').val(id_categoria);
+					$('#inputCategoria').val(categoria);
+					$("#spanPedido").html(num_pedido);
+
+
+	$.post("<?php echo BASEURL; ?>views/comanda-eletronica/templates/Produtos.php",
+	{
+		id_categoria:id_categoria
+	},
+	function (resultado){
+		$('#includeDivProdutos').html(resultado);
+
+		eval(document.getElementById('scriptControllerCapturaDados').innerHTML);  
+
+		setTimeout(function() {
+			$("#cardProduto").fadeIn();
+		}, 600	);
+
+
+
+	});					
+
+			// reset param_1
+			var instrucao = 'reset param_1';
+			$.ajax({
+				type: "POST",
+				url: '../../models/comanda-eletronica/ModelProcessaInstrucoes.php',
+				data: {
+					instrucao:instrucao,
+					num_pedido:num_pedido	
+				},
+				success: function(data) {
+
+					if (data == 'sucesso'){} else
+
+						if (data == 'falha'){
+
+							alertify.error('<font color="white">Falha ao setar Param_1</font>');
+
+						} else {
+
+							alertify.error('<font color="white">Erro desconhecido</font>');
+						}
+					}
+
+});//fim ajax
+
+			
+		}
+
+
 
 
 	},
@@ -197,10 +360,10 @@ $(".btnMesa").click(function(){
 
 	setTimeout(function() {
 		$("#cardMesa").fadeOut();
-	}, 150);
+	}, 20);
 	setTimeout(function() {
 		$("#cardCategoria").fadeIn();
-	}, 50	);
+	}, 480	);
 
 	var num_mesa =  $(this).attr('num_mesa');
 	var num_pedido = $('#inputPedido').val();
@@ -258,17 +421,126 @@ $.ajax({
 
 });
 
-$("#btn-voltar-mesa").click(function(){ 
+$(".btnVoltarParaResumoPedido").click(function(){ 
 
-	setTimeout(function() {
-		$("#cardCategoria").fadeOut();
-	}, 150);
-	setTimeout(function() {
-		$("#cardMesa").fadeIn();
-	}, 600	);
+	var num_pedido	  =  $("#inputPedido").val();
+
+	var instrucao = 'voltar para tela resumo de pedidos';
+
+	$.ajax({
+		type: "POST",
+		url: '../../models/comanda-eletronica/ModelProcessaInstrucoes.php',
+		data: {
+			instrucao:instrucao,
+			num_pedido:num_pedido	
+		},
+		success: function(data) {
+
+			if (data == 'sucesso'){
+
+    	//alertify.success('<font color="white">Sucesso</font>');
+    	location.reload(); // dar um reload na página
+
+    }else if (data == 'falha'){
+
+    	alertify.error('<font color="white">Falha</font>');
+
+    } else {
+
+    	alertify.error('<font color="white">Erro desconhecido</font>');
+    }
+}
+
+});//fim ajax
+
 
 });
 
+$(".btnVoltarParaCategoria").click(function(){ 
+
+	var num_pedido = $("#inputPedido").val();
+
+	var instrucao = 'voltar para tela categorias';
+
+	$.ajax({
+		type: "POST",
+		url: '../../models/comanda-eletronica/ModelProcessaInstrucoes.php',
+		data: {
+			instrucao:instrucao,
+			num_pedido:num_pedido	
+		},
+		success: function(data) {
+
+			if (data == 'sucesso'){
+
+    	//alertify.success('<font color="white">Sucesso</font>');
+    	location.reload(); // dar um reload na página
+
+    }else if (data == 'falha'){
+
+    	alertify.error('<font color="white">Falha</font>');
+
+    } else {
+
+    	alertify.error('<font color="white">Erro desconhecido</font>');
+    }
+}
+
+});//fim ajax
+
+
+});
+
+$(".btnVoltarParaProduto").click(function(){ 
+
+	var num_pedido = $("#inputPedido").val();
+
+	var instrucao = 'voltar para tela produtos';
+	var id_categoria  =  $("#inputIdCategoria").val();
+	var categoria = $("#inputCategoria").val();
+
+	$.ajax({
+		type: "POST",
+		url: '../../models/comanda-eletronica/ModelProcessaInstrucoes.php',
+		data: {
+			instrucao:instrucao,
+			num_pedido:num_pedido,
+			id_categoria:id_categoria,
+			categoria:categoria	
+		},
+		success: function(data) {
+
+			if (data == 'sucesso'){
+
+    	//alertify.success('<font color="white">Sucesso</font>');
+    	location.reload(); // dar um reload na página
+
+    }else if (data == 'falha'){
+
+    	alertify.error('<font color="white">Falha</font>');
+
+    } else {
+
+    	alertify.error('<font color="white">Erro desconhecido</font>');
+    }
+}
+
+});//fim ajax
+
+
+});
+
+$(".btn-voltar-variante").click(function(){ 
+
+	setTimeout(function() {
+		$("#cardVariante").fadeOut();
+	}, 150);
+
+	setTimeout(function() {
+		$("#cardProduto").fadeIn();
+	}, 600	);
+
+});
 
 
 $(".btnCategoria").click(function(){ 
@@ -302,11 +574,11 @@ $(".btnCategoria").click(function(){
 
 $(".btnAdicionarItem").click(function(){ 
 
-// enviar 'numero do pedido' para o arquivo "ModelNovoItem"
+// enviar 'numero do pedido' para o arquivo "ModelProcessaInstrucoes"
 var instrucao = 'novo item';
 $.ajax({
 	type: "POST",
-	url: '../../models/comanda-eletronica/ModelNovoItem.php',
+	url: '../../models/comanda-eletronica/ModelProcessaInstrucoes.php',
 	data: {
 		instrucao:instrucao,
 		num_pedido:num_pedido	
@@ -437,7 +709,7 @@ $.ajax({
 
 			setTimeout(function() {
 				$("#cardVariante").fadeOut();
-			}, 200	);
+			}, 150	);
 
 
 			setTimeout(function() {

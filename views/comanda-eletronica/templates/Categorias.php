@@ -14,36 +14,45 @@
       $sql="SELECT * FROM categorias ORDER BY id";
 
       if ($result=mysqli_query($conecta,$sql))
-      {
-        while ($row=mysqli_fetch_assoc($result))
         {
-
           ?>
-          <div class="col-md-3">
-           <div class="card">
-            <button class="btn btn-primary btn-block btnCategoria" 
-            id_categoria="<?php echo $row['id']; ?>"
-            categoria="<?php echo $row['categoria']; ?>"
-            >
-            <div align="left">
-              <?php echo strtoupper($row['categoria']);?>
-            </div>
-            </button>
-          </div>
-        </div>
-
-        <?php     }
-
-
-        mysqli_free_result($result);
-      }
-
-
-      ?>
+      <div class="col-md-3">
+       <div class="card">
+        <button class="btn btn-primary btn-block btnVoltarParaResumoPedido">
+        <div align="left"><i class="fas fa-arrow-left"></i> VOLTAR</div>
+      </button>
     </div>
-
-
   </div>
+  <?php
+  while ($row=mysqli_fetch_assoc($result))
+  {
+
+    ?>
+    <div class="col-md-3">
+     <div class="card">
+      <button class="btn btn-primary btn-block btnCategoria" 
+      id_categoria="<?php echo $row['id']; ?>"
+      categoria="<?php echo $row['categoria']; ?>"
+      >
+      <div align="left">
+        <?php echo strtoupper($row['categoria']);?>
+      </div>
+    </button>
+  </div>
+</div>
+
+<?php     }
+
+
+mysqli_free_result($result);
+}
+
+
+?>
+</div>
+
+
+</div>
 </div>
 </div>
 
