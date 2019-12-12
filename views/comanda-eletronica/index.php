@@ -2,8 +2,8 @@
 
 session_start();
 
-//$app_item="controle";
-$app_page_name="comanda eletronica";
+$app_item="comanda eletronica";
+$app_page_name="novo pedido";
 
 
 include ('../../config.php');
@@ -65,7 +65,7 @@ include('../../inc/header.php');
           <div class="col-sm-12">
             <div class="card shadow">
               <div class="card-header py-3">
-                <h4 class="m-0 font-weight-bold text-primary">Pedido nº <span id="spanPedido"></span></h4></div>
+                <h5 class="m-0 font-weight-bold text-primary">Pedido nº <span id="spanPedido"></span> | Mesa: <span id="spanMesa"></h5></div>
               </div>
             </div>
           </div>

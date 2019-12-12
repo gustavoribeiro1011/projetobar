@@ -2,7 +2,7 @@
 
 session_start();
 
-$app_item="controle";
+$app_item="cadastro";
 $app_page_name="mesas";
 
 

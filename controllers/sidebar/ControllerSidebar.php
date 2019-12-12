@@ -1,6 +1,6 @@
 <script>
 
-$("#sidebarToggle").on('click', function(e) {
+$(".sidebarToggle").on('click', function(e) {
 
 	var status = 'toggled';
 

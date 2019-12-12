@@ -2,7 +2,10 @@
 
 session_start();
 
-$app_page_name="Dashboard";
+
+$app_item="dashboard";
+$app_page_name="dashboard";
+
 
 include ('config.php');
 

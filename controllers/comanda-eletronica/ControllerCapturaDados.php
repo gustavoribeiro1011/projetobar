@@ -15,6 +15,8 @@ $.ajax({
 		var num_mesa = data['num_mesa'];
 
 
+		
+
 
 
 		if (data['status'] == '1'){
@@ -23,6 +25,7 @@ $.ajax({
 			
 			$('#spanPedido').text(num_pedido);
 
+			
 			$('#inputPedido').val(num_pedido);
 
 			setTimeout(function() {
@@ -110,7 +113,7 @@ $(".btnRetomarPedido").click(function(){
 
         //depois precisa setar os values do formulario
         $("#inputPedido").val(num_pedido);
-       // $("#inputMesa").val(mesa);
+        $("#inputMesa").val(num_mesa);
 
 
 
@@ -141,9 +144,11 @@ $(document).ready(function() {
 		} else 	if (data['status'] == '5'){ //5 - Cadastro de novo item
 
 			var num_pedido = data['num_pedido'];
-			var num_mesa = data['num_pedido'];
+			var num_mesa = data['num_mesa'];
 
 			$('#spanPedido').text(num_pedido);
+			$('#spanMesa').text(num_mesa);
+
 
 			$('#inputPedido').val(num_pedido);
 			$('#inputMesa').val(num_mesa);
@@ -368,6 +373,8 @@ $(".btnMesa").click(function(){
 	var num_mesa =  $(this).attr('num_mesa');
 	var num_pedido = $('#inputPedido').val();
 	$("#inputMesa").val(num_mesa);
+	$('#spanMesa').text(num_mesa);
+
 
 	
 

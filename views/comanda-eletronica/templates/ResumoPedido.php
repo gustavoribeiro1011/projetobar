@@ -20,7 +20,7 @@
                 <div class="h5 mb-0 font-weight-bold text-gray-800" id="adicionar-item-mobile" style="margin-top:7px;">Resumo pedido</div>               
               </div>
               <div class="col-auto">
-                <button type="button" class="btn btn-primary btnAdicionarItem" id="adicionar-item-mobile" style="margin-right:13px;"><i class="fas fa-plus"></i></button>
+                <button type="button" class="btn btn-primary btnAdicionarItem btn-sm" id="adicionar-item-mobile" style="margin-right:13px;"><i class="fas fa-plus"></i></button>
               </div>
             </div>    
           </div>
@@ -59,7 +59,7 @@
               <tbody>  
                 <?php while ($row=mysqli_fetch_assoc($result)) { ?>
                 <tr>
-                  <td><?=strtoupper($row['produto']);?> - <?=$row['medida'];?> <?=strtoupper($row['unidade_medida']);?></td>
+                  <td ><?=strtoupper($row['produto']);?> - <?=$row['medida'];?> <?=strtoupper($row['unidade_medida']);?></td>
                   <td><?=$row['categoria'];?></td>
                   <td><?=number_format((float)$row['preco'],2,".","");?></td>    
                   <td align="right">                                
@@ -110,11 +110,11 @@
                     <div class="card-body">
                       <div class="row no-gutters align-items-center">
                         <div class="col mr-2">
-                          <div class="h7 mb-0 font-weight-bold text-gray-800"><?=strtoupper($row['produto']);?> - <?=$row['medida'];?> <?=strtoupper($row['unidade_medida']);?></div>
-                          <div class="text-xs font-weight-bold text-primary text-uppercase mb-1"><?=$row['categoria'];?> - R$<?= number_format($row['preco'], 2, ',', '.');?></div>
+                          <div style="font-size:4vw;" class="h7 mb-0 font-weight-bold text-gray-800"><?=strtoupper($row['produto']);?> - <?=$row['medida'];?> <?=strtoupper($row['unidade_medida']);?></div>
+                          <div style="font-size:3vw;" class="text-xs font-weight-bold text-primary text-uppercase mb-1"><?=$row['categoria'];?> - R$<?= number_format($row['preco'], 2, ',', '.');?></div>
                         </div>
                         <div class="col-auto">
-                          <button type="button" class="btn btn-danger btnRemoverItem" item="<?=$row['id']?>" num_pedido="<?=$row['num_pedido'];?>"><i class="fas fa-minus"></i></button>
+                          <button type="button" class="btn btn-danger btn-sm btnRemoverItem" item="<?=$row['id']?>" num_pedido="<?=$row['num_pedido'];?>"><i class="fas fa-minus"></i></button>
                         </div>
                       </div>
                     </div>

@@ -37,12 +37,13 @@ if ( $qtd_mesas['count'] > 0 ) {
       </div>
 
       <div class="card-body">
+        
 
         <div class="row">
 
           <?php  while ($row=mysqli_fetch_assoc($result)) { ?>
 
-          <div class="col-3 col-sm-4  col-md-4 col-lg-4 col-xl-2 py-1"> 
+          <div class="card" > 
 
             <button class="btn btn-success btn-block">
 
@@ -56,10 +57,11 @@ if ( $qtd_mesas['count'] > 0 ) {
 
           <?php } ?>
 
-        </div> 
+  
 
       </div>
 
+     </div>
       <div class="card-footer py-3">
 
        <button class="btn btn-sm btn-light" id="btnAdicionarMesa"><i class="fas fa-plus"></i></button>
@@ -67,6 +69,7 @@ if ( $qtd_mesas['count'] > 0 ) {
        <button class="btn btn-sm btn-light" id="btnRemoverMesa"><i class="fas fa-minus"></i></button>
 
      </div>
+
 
    </div>
 

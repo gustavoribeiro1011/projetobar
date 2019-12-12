@@ -8,7 +8,7 @@
      </div>    
    </div>
    <div class="card-body">
-    <div class="col-xl-12">
+    <div class="col-auto">
       <div class="row" >
         <?php
         if(!@include_once('../../../config.php')) {
@@ -27,7 +27,7 @@
               ?>
 
               <!-- Desktop/Tablet-->
-              <div class="col-4 col-md-4 col-xl-2 desktop" align="center">
+              <div class=" desktop" align="center">
                 <div class="card">
                   <button class="btn btn-success  btn-block btnMesa" num_mesa="<?=$row['num_mesa'];?>">
                     <span>Mesa</span>            
@@ -37,7 +37,7 @@
               </div>
 
               <!-- Mobile -->
-              <div class="col-4 col-md-4 col-xl-2 mobile" align="center">
+              <div class="mobile" align="center">
                 <div class="card">
                   <button class="btn btn-success  btn-block btnMesa" num_mesa="<?=$row['num_mesa'];?>">
                     <span style="font-size:10px;">Mesa</span> 
@@ -50,7 +50,7 @@
               ?>
               
               <!-- Desktop/Tablet-->
-              <div class="col-4 col-md-4 col-xl-2 desktop" align="center">
+              <div class="desktop" align="center">
                 <div class="card">
                   <button class="btn btn-danger btn-block btnMesa" num_mesa="<?=$row['num_mesa'];?>" disabled>
                     <span>Mesa</span>            
@@ -60,7 +60,7 @@
               </div>
 
               <!-- Mobile -->
-              <div class="col-4 col-md-4 col-xl-2 mobile" align="center">
+              <div class="mobile" align="center">
                 <div class="card">
                   <button class="btn btn-danger  btn-block btnMesa" num_mesa="<?=$row['num_mesa'];?>" disabled>
                     <span style="font-size:10px;">Mesa</span>
