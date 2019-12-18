@@ -65,40 +65,40 @@ include('../../inc/header.php');
             <div class="card shadow">
               <div class="card-header py-3">
                 <h5 class="m-0 font-weight-bold text-primary">Pedido nº <span id="spanPedido"></span> | Mesa: <span id="spanMesa"></h5></div>
+                </div>
               </div>
             </div>
           </div>
+
+
+          <p>
+
+
+
+
+            <?php include ('templates/TemplateMaster.php'); ?>
+
+
+
+
+          </div>
+
         </div>
-
-
-        <p>
-
-
-
-
-          <?php include ('templates/TemplateMaster.php'); ?>
-
-
-
-
-        </div>
+        <!-- /.container-fluid -->
 
       </div>
-      <!-- /.container-fluid -->
+      <!-- End of Main Content -->
 
-    </div>
-    <!-- End of Main Content -->
-
-    <?php include('../../inc/footer.php'); ?>
+      <?php include('../../inc/footer.php'); ?>
 
 
 
-    <!-- Page level plugins -->
-    <script src="<?php echo BASEURL;?>vendor/datatables/jquery.dataTables.min.js"></script>
-    <script src="<?php echo BASEURL;?>vendor/datatables/dataTables.bootstrap4.min.js"></script>
+      <!-- Page level plugins -->
+      <script src="<?php echo BASEURL;?>vendor/datatables/jquery.dataTables.min.js"></script>
+      <script src="<?php echo BASEURL;?>vendor/datatables/dataTables.bootstrap4.min.js"></script>
 
-    
-    <script id="scriptDataTable">
+
+      <script id="scriptDataTable">
   // Call the dataTables jQuery plugin
   $(document).ready(function() {
     $('#dataTable').DataTable({
@@ -156,24 +156,24 @@ include('../../inc/header.php');
               );
           }
         });
-});
+  });
 
-$(document).ready(function() {
-  $('#dataTable_mobile').DataTable({
+  $(document).ready(function() {
+    $('#dataTable_mobile').DataTable({
       "dom": '<"top">rt<"bottom"ip><"clear">',
-    "language": {
-      "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Portuguese.json"
-    },
+      "language": {
+        "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Portuguese.json"
+      },
 
-    "columnDefs": [
-            {
-                "targets": [ 1 ],
-                "visible": false,
-                "searchable": false
-            }
-        ],
-    "footerCallback": function ( row, data, start, end, display ) {
-      var api = this.api(), data;
+      "columnDefs": [
+      {
+        "targets": [ 1 ],
+        "visible": false,
+        "searchable": false
+      }
+      ],
+      "footerCallback": function ( row, data, start, end, display ) {
+        var api = this.api(), data;
 
             // Remove the formatting to get integer data for summation
             var intVal = function ( i ) {
@@ -205,29 +205,59 @@ $(document).ready(function() {
               );
           }
         });
-});
+  });
 
 
-$(document).ready(function() {
-  $('#DataTableResumoMesaDesktop').DataTable({
+  $(document).ready(function() {
+    $('#DataTableResumoMesaDesktop').DataTable({
       "dom": '<"top">rt<"bottom"ip><"clear">',
-    "language": {
-      "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Portuguese.json"
-    }
+      "language": {
+        "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Portuguese.json"
+      },
+      columns: [
+      null,      
+      {
+        data: "total", render: function(data, type, row) {
+          if (type === "display" || type === "filter") {
+            return parseFloat(data).toLocaleString('pt-br',{style: 'currency', currency: 'BRL'});
+          }
+          if (type === "export") {
+            return data;
+          }
+          return data;
+        }
+      },  
+      null,
+      ]
 
-        });
-});
+    });
+  });
 
-$(document).ready(function() {
-  $('#DataTableResumoMesaMobile').DataTable({
+  $(document).ready(function() {
+    $('#DataTableResumoMesaMobile').DataTable({
       "dom": '<"top">rt<"bottom"ip><"clear">',
       
-    "language": {
-      "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Portuguese.json"
-    }
+      "language": {
+        "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Portuguese.json"
+      },
+      columns: [
+      null,      
+      {
+        data: "total", render: function(data, type, row) {
+          if (type === "display" || type === "filter") {
+            return parseFloat(data).toLocaleString('pt-br',{style: 'currency', currency: 'BRL'});
+          }
+          if (type === "export") {
+            return data;
+          }
+          return data;
+        }
+      },  
+      null,
+      ]
 
-        });
-});
+    });
+  });
 
 
 </script>

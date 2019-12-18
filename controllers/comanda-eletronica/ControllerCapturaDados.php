@@ -1,13 +1,13 @@
 <script>
-var data = "1";
-$.ajax({
-	type: "POST",
-	url: '../../models/comanda-eletronica/ModelVerificaPedido.php',
-	data: {
-		data:data
-	},
-	success: function(data) {	
-		
+	var data = "1";
+	$.ajax({
+		type: "POST",
+		url: '../../models/comanda-eletronica/ModelVerificaPedido.php',
+		data: {
+			data:data
+		},
+		success: function(data) {	
+
 		//alert(data['status']);
 
 
@@ -76,20 +76,20 @@ $.ajax({
 
 
 
-}else if (data == 'falha'){
+                                 }else if (data == 'falha'){
 
-	alertify.error('<font color="white">Falha ao descartar pedido</font>');
+                                 	alertify.error('<font color="white">Falha ao descartar pedido</font>');
 
 
-}
+                                 }
 
-}
+                             }
 
-});
+                         });
 
-});
+			});
 
-$(".btnRetomarPedido").click(function(){ 
+			$(".btnRetomarPedido").click(function(){ 
 
 		//exibe o resumo do pedido
 		$.post("<?php echo BASEURL; ?>views/comanda-eletronica/templates/ResumoPedido.php",
@@ -123,17 +123,17 @@ $(".btnRetomarPedido").click(function(){
 
 
 
-$('#spanNumPedido').html(num_pedido);
+			$('#spanNumPedido').html(num_pedido);
 
-$(document).ready(function() {
-	$('#modaoPedidoExistente').modal('show');
-})
-
-
+			$(document).ready(function() {
+				$('#modaoPedidoExistente').modal('show');
+			})
 
 
 
-} else 	if (data['status'] == '3'){
+
+
+		} else 	if (data['status'] == '3'){
 
 	//alert("3 - Existe mais de 1 pedido sem finalizar");
 
@@ -347,21 +347,21 @@ setTimeout(function() {
 			
 		}
 
-			else if (data['status'] == '9'){ //8 - voltar para tela mesas
+			else if (data['status'] == '9'){ //9 - voltar para tela mesas
 
-		var num_pedido = data['num_pedido'];
-		var num_mesa = data['num_pedido'];
-		
+				var num_pedido = data['num_pedido'];
+				var num_mesa = data['num_pedido'];
 
 
-					$('#spanPedido').text(num_pedido);
-					$('#inputPedido').val(num_pedido);
+
+				$('#spanPedido').text(num_pedido);
+				$('#inputPedido').val(num_pedido);
 				
 					//$("#spanPedido").html(num_pedido);
 
-	setTimeout(function() {
-				$("#cardMesa").fadeIn();
-			}, 200	);
+					setTimeout(function() {
+						$("#cardMesa").fadeIn();
+					}, 200	);
 
 
 
@@ -381,15 +381,66 @@ setTimeout(function() {
 
 					} else
 
-						if (data == 'falha'){
+					if (data == 'falha'){
 
-							alertify.error('<font color="white">Falha ao setar Param_1</font>');
+						alertify.error('<font color="white">Falha ao setar Param_1</font>');
 
-						} else {
+					} else {
 
-							alertify.error('<font color="white">Erro desconhecido</font>');
-						}
+						alertify.error('<font color="white">Erro desconhecido</font>');
 					}
+				}
+
+});//fim ajax
+
+			
+		}
+
+					else if (data['status'] == '10'){ //10 - novo pedido
+
+						var num_pedido = data['num_pedido'];
+						var num_mesa = data['num_mesa'];
+
+
+
+						$('#spanPedido').text(num_pedido);
+						$('#spanMesa').text(num_mesa);
+						$('#inputPedido').val(num_pedido);
+						$('#inputMesa').val(num_mesa);
+
+					//$("#spanPedido").html(num_pedido);
+
+					setTimeout(function() {
+						$("#cardCategoria").fadeIn();
+					}, 200	);
+
+
+
+			// reseta as colunas de parametros
+			var instrucao = 'reset param_1';
+			$.ajax({
+				type: "POST",
+				url: '../../models/comanda-eletronica/ModelProcessaInstrucoes.php',
+				data: {
+					instrucao:instrucao,
+					num_pedido:num_pedido	
+				},
+				success: function(data) {
+
+					if (data == 'sucesso'){
+
+
+					} else
+
+					if (data == 'falha'){
+
+						alertify.error('<font color="white">Falha ao setar Param_1</font>');
+
+					} else {
+
+						alertify.error('<font color="white">Erro desconhecido</font>');
+					}
+				}
 
 });//fim ajax
 
@@ -411,24 +462,24 @@ setTimeout(function() {
 
 
 
-$(".btnMesa").click(function(){ 
+	$(".btnMesa").click(function(){ 
 
 
 
-	setTimeout(function() {
-		$("#cardMesa").fadeOut();
-	}, 20);
-	setTimeout(function() {
-		$("#cardCategoria").fadeIn();
-	}, 480	);
+		setTimeout(function() {
+			$("#cardMesa").fadeOut();
+		}, 20);
+		setTimeout(function() {
+			$("#cardCategoria").fadeIn();
+		}, 480	);
 
-	var num_mesa =  $(this).attr('num_mesa');
-	var num_pedido = $('#inputPedido').val();
-	$("#inputMesa").val(num_mesa);
-	$('#spanMesa').text(num_mesa);
+		var num_mesa =  $(this).attr('num_mesa');
+		var num_pedido = $('#inputPedido').val();
+		$("#inputMesa").val(num_mesa);
+		$('#spanMesa').text(num_mesa);
 
 
-	
+
 
 
 // cadastra mesa na tabela pedidos na coluna principal do pedido.
@@ -480,61 +531,61 @@ $.ajax({
 
 });
 
-$(".btnResumoMesa").click(function(){ 
+	$(".btnResumoMesa").click(function(){ 
 
-var num_mesa =  $(this).attr('num_mesa');
- $("#inputMesa").val(num_mesa);
+		var num_mesa =  $(this).attr('num_mesa');
+		$("#inputMesa").val(num_mesa);
 
 
-  setTimeout(function() {
-        	$("#cardMesa").fadeOut();
-        }, 150	);
+		setTimeout(function() {
+			$("#cardMesa").fadeOut();
+		}, 150	);
 
-  setTimeout(function() {
-        	$(".cardNumeroPedido").fadeOut();
-        }, 150	);
+		setTimeout(function() {
+			$(".cardNumeroPedido").fadeOut();
+		}, 150	);
 
-	var num_mesa =  $(this).attr('num_mesa');
+		var num_mesa =  $(this).attr('num_mesa');
 
 	        //exibe o resumo mesa
-        $.post("<?php echo BASEURL; ?>views/comanda-eletronica/templates/ResumoMesa.php",
-        {
-        	num_mesa:num_mesa
-        },
-        function (resultado){
-        	$('#includeResumoMesa').html(resultado);
-        	eval(document.getElementById('scriptControllerCapturaDados').innerHTML);  
-        	eval(document.getElementById('scriptDataTable').innerHTML); 
+	        $.post("<?php echo BASEURL; ?>views/comanda-eletronica/templates/ResumoMesa.php",
+	        {
+	        	num_mesa:num_mesa
+	        },
+	        function (resultado){
+	        	$('#includeResumoMesa').html(resultado);
+	        	eval(document.getElementById('scriptControllerCapturaDados').innerHTML);  
+	        	eval(document.getElementById('scriptDataTable').innerHTML); 
 
-        });
+	        });
 
-       
-   
 
-        setTimeout(function() {
-        	$("#cardResumoMesa").fadeIn();
-        }, 650	);
-  
 
-       });
 
-$(".btnVoltarParaMesas").click(function(){ 
+	        setTimeout(function() {
+	        	$("#cardResumoMesa").fadeIn();
+	        }, 650	);
 
-	var num_pedido = $('#inputPedido').val();
 
-	var instrucao = 'voltar para tela mesas';
+	    });
 
-	$.ajax({
-		type: "POST",
-		url: '../../models/comanda-eletronica/ModelProcessaInstrucoes.php',
-		data: {
-			instrucao:instrucao,
-			num_pedido:num_pedido
-			
-		},
-		success: function(data) {
+	$(".btnVoltarParaMesas").click(function(){ 
 
-			if (data == 'sucesso'){
+		var num_pedido = $('#inputPedido').val();
+
+		var instrucao = 'voltar para tela mesas';
+
+		$.ajax({
+			type: "POST",
+			url: '../../models/comanda-eletronica/ModelProcessaInstrucoes.php',
+			data: {
+				instrucao:instrucao,
+				num_pedido:num_pedido
+
+			},
+			success: function(data) {
+
+				if (data == 'sucesso'){
 
     	//alertify.success('<font color="white">voltar para tela mesas ok!</font>');
     	location.reload(); // dar um reload na página
@@ -552,59 +603,24 @@ $(".btnVoltarParaMesas").click(function(){
 });//fim ajax
 
 
-});
+	});
 
-$(".btnVoltarParaResumoPedido").click(function(){ 
+	$(".btnVoltarParaResumoPedido").click(function(){ 
 
-	var num_pedido	  =  $("#inputPedido").val();
+		var num_pedido	  =  $("#inputPedido").val();
 
-	var instrucao = 'voltar para tela resumo de pedidos';
+		var instrucao = 'voltar para tela resumo de pedidos';
 
-	$.ajax({
-		type: "POST",
-		url: '../../models/comanda-eletronica/ModelProcessaInstrucoes.php',
-		data: {
-			instrucao:instrucao,
-			num_pedido:num_pedido	
-		},
-		success: function(data) {
+		$.ajax({
+			type: "POST",
+			url: '../../models/comanda-eletronica/ModelProcessaInstrucoes.php',
+			data: {
+				instrucao:instrucao,
+				num_pedido:num_pedido	
+			},
+			success: function(data) {
 
-			if (data == 'sucesso'){
-
-    	//alertify.success('<font color="white">Sucesso</font>');
-    	location.reload(); // dar um reload na página
-
-    }else if (data == 'falha'){
-
-    	alertify.error('<font color="white">Falha</font>');
-
-    } else {
-
-    	alertify.error('<font color="white">Erro desconhecido</font>');
-    }
-}
-
-});//fim ajax
-
-
-});
-
-$(".btnVoltarParaCategoria").click(function(){ 
-
-	var num_pedido = $("#inputPedido").val();
-
-	var instrucao = 'voltar para tela categorias';
-
-	$.ajax({
-		type: "POST",
-		url: '../../models/comanda-eletronica/ModelProcessaInstrucoes.php',
-		data: {
-			instrucao:instrucao,
-			num_pedido:num_pedido	
-		},
-		success: function(data) {
-
-			if (data == 'sucesso'){
+				if (data == 'sucesso'){
 
     	//alertify.success('<font color="white">Sucesso</font>');
     	location.reload(); // dar um reload na página
@@ -620,101 +636,142 @@ $(".btnVoltarParaCategoria").click(function(){
 }
 
 });//fim ajax
-
-
-});
-
-$(".btnVoltarParaProduto").click(function(){ 
-
-	var num_pedido = $("#inputPedido").val();
-
-	var instrucao = 'voltar para tela produtos';
-	var id_categoria  =  $("#inputIdCategoria").val();
-	var categoria = $("#inputCategoria").val();
-
-	$.ajax({
-		type: "POST",
-		url: '../../models/comanda-eletronica/ModelProcessaInstrucoes.php',
-		data: {
-			instrucao:instrucao,
-			num_pedido:num_pedido,
-			id_categoria:id_categoria,
-			categoria:categoria	
-		},
-		success: function(data) {
-
-			if (data == 'sucesso'){
-
-    	//alertify.success('<font color="white">Sucesso</font>');
-    	location.reload(); // dar um reload na página
-
-    }else if (data == 'falha'){
-
-    	alertify.error('<font color="white">Falha</font>');
-
-    } else {
-
-    	alertify.error('<font color="white">Erro desconhecido</font>');
-    }
-}
-
-});//fim ajax
-
-
-});
-
-$(".btn-voltar-variante").click(function(){ 
-
-	setTimeout(function() {
-		$("#cardVariante").fadeOut();
-	}, 150);
-
-	setTimeout(function() {
-		$("#cardProduto").fadeIn();
-	}, 600	);
-
-});
-
-
-$(".btnCategoria").click(function(){ 
-
-	var id_categoria=  $(this).attr('id_categoria');
-	var categoria=  $(this).attr('categoria');
-	document.getElementById("inputIdCategoria").value = id_categoria;
-	document.getElementById("inputCategoria").value = categoria;
-
-
-	$.post("<?php echo BASEURL; ?>views/comanda-eletronica/templates/Produtos.php",
-	{
-		id_categoria:id_categoria
-	},
-	function (resultado){
-		$('#includeDivProdutos').html(resultado);
-
-		eval(document.getElementById('scriptControllerCapturaDados').innerHTML);  
-		setTimeout(function() {
-			$("#cardCategoria").fadeOut();
-		}, 150);
-		setTimeout(function() {
-			$("#cardProduto").fadeIn();
-		}, 600	);
-
 
 
 	});
 
-});
+	$(".btnVoltarParaCategoria").click(function(){ 
 
-$(".btnAdicionarItem").click(function(){ 
+		var num_pedido = $("#inputPedido").val();
+
+		var instrucao = 'voltar para tela categorias';
+
+		$.ajax({
+			type: "POST",
+			url: '../../models/comanda-eletronica/ModelProcessaInstrucoes.php',
+			data: {
+				instrucao:instrucao,
+				num_pedido:num_pedido	
+			},
+			success: function(data) {
+
+				if (data == 'sucesso'){
+
+    	//alertify.success('<font color="white">Sucesso</font>');
+    	location.reload(); // dar um reload na página
+
+    }else if (data == 'falha'){
+
+    	alertify.error('<font color="white">Falha</font>');
+
+    } else {
+
+    	alertify.error('<font color="white">Erro desconhecido</font>');
+    }
+}
+
+});//fim ajax
+
+
+	});
+
+	$(".btnVoltarParaProduto").click(function(){ 
+
+		var num_pedido = $("#inputPedido").val();
+
+		var instrucao = 'voltar para tela produtos';
+		var id_categoria  =  $("#inputIdCategoria").val();
+		var categoria = $("#inputCategoria").val();
+
+		$.ajax({
+			type: "POST",
+			url: '../../models/comanda-eletronica/ModelProcessaInstrucoes.php',
+			data: {
+				instrucao:instrucao,
+				num_pedido:num_pedido,
+				id_categoria:id_categoria,
+				categoria:categoria	
+			},
+			success: function(data) {
+
+				if (data == 'sucesso'){
+
+    	//alertify.success('<font color="white">Sucesso</font>');
+    	location.reload(); // dar um reload na página
+
+    }else if (data == 'falha'){
+
+    	alertify.error('<font color="white">Falha</font>');
+
+    } else {
+
+    	alertify.error('<font color="white">Erro desconhecido</font>');
+    }
+}
+
+});//fim ajax
+
+
+	});
+
+	$(".btn-voltar-variante").click(function(){ 
+
+		setTimeout(function() {
+			$("#cardVariante").fadeOut();
+		}, 150);
+
+		setTimeout(function() {
+			$("#cardProduto").fadeIn();
+		}, 600	);
+
+	});
+
+
+	$(".btnCategoria").click(function(){ 
+
+		var id_categoria=  $(this).attr('id_categoria');
+		var categoria=  $(this).attr('categoria');
+		document.getElementById("inputIdCategoria").value = id_categoria;
+		document.getElementById("inputCategoria").value = categoria;
+
+
+		$.post("<?php echo BASEURL; ?>views/comanda-eletronica/templates/Produtos.php",
+		{
+			id_categoria:id_categoria
+		},
+		function (resultado){
+			$('#includeDivProdutos').html(resultado);
+
+			eval(document.getElementById('scriptControllerCapturaDados').innerHTML);  
+			setTimeout(function() {
+				$("#cardCategoria").fadeOut();
+			}, 150);
+			setTimeout(function() {
+				$("#cardProduto").fadeIn();
+			}, 600	);
+
+
+
+		});
+
+	});
+
+	$(".btnAdicionarItem").click(function(){ 
+
+
+		var num_pedido	  =  $("#inputPedido").val();
+		var num_mesa = $("#inputMesa").val();
+
 
 // enviar 'numero do pedido' para o arquivo "ModelProcessaInstrucoes"
-var instrucao = 'novo item';
+var instrucao = 'novo pedido';
 $.ajax({
 	type: "POST",
 	url: '../../models/comanda-eletronica/ModelProcessaInstrucoes.php',
 	data: {
 		instrucao:instrucao,
-		num_pedido:num_pedido	
+		num_pedido:num_pedido,
+		num_mesa:num_mesa	
 	},
 	success: function(data) {
 
@@ -738,49 +795,49 @@ $.ajax({
 
 });
 
-$(".btn-voltar-variante").click(function(){ 
+	$(".btn-voltar-variante").click(function(){ 
 
-	setTimeout(function() {
-		$("#cardVariante").fadeOut();
-	}, 150);
-
-	setTimeout(function() {
-		$("#cardProduto").fadeIn();
-	}, 600	);
-
-});
-
-$(".btnProduto").click(function(){ 
-
-	var num_pedido	  =  $("#inputPedido").val();
-	var num_mesa      =  $("#inputMesa").val();
-	var id_categoria  =  $("#inputIdCategoria").val();
-	var categoria     =  $("#inputCategoria").val();
-	var id_produto    =  $(this).attr('id_produto');
-	var produto       =  $(this).attr('produto');
-
-	$("#inputIdProduto").val(id_produto);
-	$("#inputProduto").val(produto);
-
-	$.post("<?php echo BASEURL; ?>views/comanda-eletronica/templates/Variantes.php",
-	{
-		id_produto:id_produto
-	},
-	function (resultado){
-		$('#includeDivVariantes').html(resultado);
-		eval(document.getElementById('scriptControllerCapturaDados').innerHTML);  
 		setTimeout(function() {
-			$("#cardProduto").fadeOut();
-		}, 200);
+			$("#cardVariante").fadeOut();
+		}, 150);
+
 		setTimeout(function() {
-			$("#cardVariante").fadeIn();
+			$("#cardProduto").fadeIn();
 		}, 600	);
 
 	});
 
-});
+	$(".btnProduto").click(function(){ 
 
-$(".btnVariante").click(function(){ 
+		var num_pedido	  =  $("#inputPedido").val();
+		var num_mesa      =  $("#inputMesa").val();
+		var id_categoria  =  $("#inputIdCategoria").val();
+		var categoria     =  $("#inputCategoria").val();
+		var id_produto    =  $(this).attr('id_produto');
+		var produto       =  $(this).attr('produto');
+
+		$("#inputIdProduto").val(id_produto);
+		$("#inputProduto").val(produto);
+
+		$.post("<?php echo BASEURL; ?>views/comanda-eletronica/templates/Variantes.php",
+		{
+			id_produto:id_produto
+		},
+		function (resultado){
+			$('#includeDivVariantes').html(resultado);
+			eval(document.getElementById('scriptControllerCapturaDados').innerHTML);  
+			setTimeout(function() {
+				$("#cardProduto").fadeOut();
+			}, 200);
+			setTimeout(function() {
+				$("#cardVariante").fadeIn();
+			}, 600	);
+
+		});
+
+	});
+
+	$(".btnVariante").click(function(){ 
 
 	//resgatando os valores do formulario que já foram definidos até o momento
 	var num_pedido	  =  $("#inputPedido").val();
@@ -873,16 +930,16 @@ $.ajax({
 });
 
 
-$(".btnRemoverItem").click(function(){ 
-	var item =  $(this).attr('item');
-	var num_pedido = $(this).attr('num_pedido');
-	$.ajax({
-		type: "POST",
-		url: '../../models/comanda-eletronica/ModelExcluiItem.php',
-		data: {item:item},
-		success: function(data) {
-			if(data == 'sucesso'){	
-				alertify.error('<font color="white">Item removido</font>');
+	$(".btnRemoverItem").click(function(){ 
+		var item =  $(this).attr('item');
+		var num_pedido = $(this).attr('num_pedido');
+		$.ajax({
+			type: "POST",
+			url: '../../models/comanda-eletronica/ModelExcluiItem.php',
+			data: {item:item},
+			success: function(data) {
+				if(data == 'sucesso'){	
+					alertify.error('<font color="white">Item removido</font>');
             // [INICIO / INCLUINDO A TELA RESUMO PEDIDO DEPOIS DA EXCLUSAO DO ITEM]
             $.post("<?php echo BASEURL; ?>views/comanda-eletronica/templates/ResumoPedido.php",
             	{num_pedido:num_pedido},
@@ -901,37 +958,37 @@ $(".btnRemoverItem").click(function(){
         }
     }
 	});//fim do ajax
-});
+	});
 
 
-$(".btnFinalizarPedido").click(function(){ 
+	$(".btnFinalizarPedido").click(function(){ 
 
-	setTimeout(function() {
-		$(".cardNumeroPedido").fadeOut();
-	}, 200	);
+		setTimeout(function() {
+			$(".cardNumeroPedido").fadeOut();
+		}, 200	);
 
-	var num_pedido = $(this).attr('num_pedido');
-
-
-
-	$.ajax({
-		type: "POST",
-		url: '../../models/comanda-eletronica/ModelFinalizarPedido.php',
-		data: {num_pedido:num_pedido},
-		success: function(data) {
-			if(data == 'sucesso'){	
-				alertify.success('<font color="white">Pedido finalizado</font>');	
-
-				setTimeout(function() {
-					$("#cardResumoPedido").fadeOut();
-				}, 200	);
+		var num_pedido = $(this).attr('num_pedido');
 
 
 
-				$('#numeroPedido').html(num_pedido);
-				setTimeout(function() {
-					$("#cardFimPedido").fadeIn();
-				}, 600	);
+		$.ajax({
+			type: "POST",
+			url: '../../models/comanda-eletronica/ModelFinalizarPedido.php',
+			data: {num_pedido:num_pedido},
+			success: function(data) {
+				if(data == 'sucesso'){	
+					alertify.success('<font color="white">Pedido finalizado</font>');	
+
+					setTimeout(function() {
+						$("#cardResumoPedido").fadeOut();
+					}, 200	);
+
+
+
+					$('#numeroPedido').html(num_pedido);
+					setTimeout(function() {
+						$("#cardFimPedido").fadeIn();
+					}, 600	);
 
 
 
@@ -946,7 +1003,7 @@ $(".btnFinalizarPedido").click(function(){
 
 
 
-});
+	});
 
 
 

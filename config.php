@@ -41,7 +41,7 @@ if ( !defined('URLSERVER') )
  */ 
  define('DB_NAME', 'projetobar');
  define('DB_USER', 'root');
- define('DB_PASS', 'usbw');
+ define('DB_PASS', '');
  define('DB_HOST', 'localhost');
  
  $conecta = mysqli_connect(DB_HOST, DB_USER, DB_PASS, DB_NAME) or die("Não foi possível estabelecer a conexão com o BD.");

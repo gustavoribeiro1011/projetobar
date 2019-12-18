@@ -95,9 +95,31 @@ if ($result=mysqli_query($conecta,$sql)){
 
 }
 
-} else
+} 
+if ($instrucao == 'novo pedido') {
 
-if ($instrucao == 'reset param_1') { //seta a coluna param_1 para vazio
+
+$sql = "
+UPDATE pedidos SET 
+param_1='novo pedido',
+param_2='".$_POST['num_mesa']."'
+WHERE num_pedido=$num_pedido and status='pedido aberto'
+";
+
+if ($result=mysqli_query($conecta,$sql)){
+
+	echo 'sucesso';
+
+} else {
+
+	echo 'falha';
+
+}
+
+} 
+else
+
+if ($instrucao == 'reset param_1') { //seta as colunas de parametros para vazio
 
 $resetParam_1 = "UPDATE pedidos SET 
 param_1='',

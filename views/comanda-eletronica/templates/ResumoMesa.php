@@ -17,22 +17,19 @@
   	<?php
   	$sql="
 
-  	--  ce = comanda eletronica
+  	--  com = comanda_eletronica
   	--  ped = pedidos
-  	select
-  	ce.aberto,
-  	ce.fechado,
-  	ped.num_pedido,
-  	ped.mesa,
+    select
+    ped.num_pedido,
+    ped.mesa,
+    com.aberto,
+    com.fechado,    
     sum(ped.preco) total_pedido
 
-  	from comanda_eletronica ce
-
-  	left join pedidos ped on (ce.mesa=ped.mesa and ped.cadastro >= ce.aberto)
-
-  	where ce.mesa=$num_mesa
-
-
+    from pedidos ped
+    left join comanda_eletronica com on com.mesa=ped.mesa and not com.fechado 
+    where ped.mesa = $num_mesa
+    group by ped.num_pedido
   	";
   	if ($result=mysqli_query($conecta,$sql))
 
@@ -141,9 +138,11 @@
       <tbody>  
        <?php while ($row=mysqli_fetch_assoc($result)) { ?>
        <tr>
-        <td><?=$row['num_pedido'];?></td>
-        <td>99999</td>
-        <td><i class="fas fa-search"></i></td> 
+         <td><?=$row['num_pedido'];?></td>
+            <td><?=number_format((float)$row['total_pedido'],2,".","");?></td>               
+            <td align="right">                                
+             <button type="button" class="btn btn-danger"><i class="fas fa-search"></i></button>
+           </td>
       </tr>       
       <?php }//while?>
     </tbody>
@@ -155,7 +154,7 @@
           </table>
           <br>
 
-          <div class="col-md-12 col-sm-12 col-xl-12 col-lg-12" align="center" id="adicionar-item-mobile">
+          <div class="col-md-12 col-sm-12 col-xl-12 col-lg-12 py-2" align="center" id="adicionar-item-mobile">
            <button class="btn btn-lg btn-warning btn-block" >Fechar mesa</button>
            <button class="btn btn-lg btn-primary btn-block btnVoltarParaMesas" >Voltar</button>
          </div>

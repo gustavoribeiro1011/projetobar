@@ -21,6 +21,7 @@ $nome_usuario = $_SESSION['login_nome'.$app_token] . " ". $_SESSION['sobrenome'.
  * 7 - Voltar para tela categorias
  * 8 - Voltar para tela produtos
  * 9 - Voltar para tela mesas
+ * 10 - novo pedido
  */
 
 
@@ -126,6 +127,12 @@ else if ($row['param_1'] == 'voltar para tela produtos'){
 else if ($row['param_1'] == 'voltar para tela mesas'){
 
 	$array= array('status' => '9', 'num_pedido' => $row['num_pedido'], 'num_mesa' => $row['mesa']);
+
+	echo json_encode($array);
+}
+else if ($row['param_1'] == 'novo pedido'){
+
+	$array= array('status' => '10', 'num_pedido' => $row['num_pedido'], 'num_mesa' => $row['param_2']);
 
 	echo json_encode($array);
 }
