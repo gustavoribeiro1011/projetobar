@@ -118,7 +118,9 @@ $(".btnRetomarPedido").click(function(){
 
 
 
-   });
+    });
+
+
 
 
 $('#spanNumPedido').html(num_pedido);
@@ -286,10 +288,10 @@ setTimeout(function() {
 		}
 	else if (data['status'] == '8'){ //8 - voltar para tela produtos
 
-							var num_pedido = data['num_pedido'];
-							var num_mesa = data['num_pedido'];
-							var id_categoria  = data['id_categoria'];
-							var categoria  = data['categoria'];
+		var num_pedido = data['num_pedido'];
+		var num_mesa = data['num_pedido'];
+		var id_categoria  = data['id_categoria'];
+		var categoria  = data['categoria'];
 
 
 					//$('#spanPedido').text(num_pedido);
@@ -300,22 +302,22 @@ setTimeout(function() {
 					$("#spanPedido").html(num_pedido);
 
 
-	$.post("<?php echo BASEURL; ?>views/comanda-eletronica/templates/Produtos.php",
-	{
-		id_categoria:id_categoria
-	},
-	function (resultado){
-		$('#includeDivProdutos').html(resultado);
+					$.post("<?php echo BASEURL; ?>views/comanda-eletronica/templates/Produtos.php",
+					{
+						id_categoria:id_categoria
+					},
+					function (resultado){
+						$('#includeDivProdutos').html(resultado);
 
-		eval(document.getElementById('scriptControllerCapturaDados').innerHTML);  
+						eval(document.getElementById('scriptControllerCapturaDados').innerHTML);  
 
-		setTimeout(function() {
-			$("#cardProduto").fadeIn();
-		}, 600	);
+						setTimeout(function() {
+							$("#cardProduto").fadeIn();
+						}, 600	);
 
 
 
-	});					
+					});					
 
 			// reset param_1
 			var instrucao = 'reset param_1';
@@ -344,6 +346,56 @@ setTimeout(function() {
 
 			
 		}
+
+			else if (data['status'] == '9'){ //8 - voltar para tela mesas
+
+		var num_pedido = data['num_pedido'];
+		var num_mesa = data['num_pedido'];
+		
+
+
+					$('#spanPedido').text(num_pedido);
+					$('#inputPedido').val(num_pedido);
+				
+					//$("#spanPedido").html(num_pedido);
+
+	setTimeout(function() {
+				$("#cardMesa").fadeIn();
+			}, 200	);
+
+
+
+			// reset param_1
+			var instrucao = 'reset param_1';
+			$.ajax({
+				type: "POST",
+				url: '../../models/comanda-eletronica/ModelProcessaInstrucoes.php',
+				data: {
+					instrucao:instrucao,
+					num_pedido:num_pedido	
+				},
+				success: function(data) {
+
+					if (data == 'sucesso'){
+
+
+					} else
+
+						if (data == 'falha'){
+
+							alertify.error('<font color="white">Falha ao setar Param_1</font>');
+
+						} else {
+
+							alertify.error('<font color="white">Erro desconhecido</font>');
+						}
+					}
+
+});//fim ajax
+
+			
+		}
+
 
 
 
@@ -424,6 +476,80 @@ $.ajax({
 
 
 
+
+
+});
+
+$(".btnResumoMesa").click(function(){ 
+
+var num_mesa =  $(this).attr('num_mesa');
+ $("#inputMesa").val(num_mesa);
+
+
+  setTimeout(function() {
+        	$("#cardMesa").fadeOut();
+        }, 150	);
+
+  setTimeout(function() {
+        	$(".cardNumeroPedido").fadeOut();
+        }, 150	);
+
+	var num_mesa =  $(this).attr('num_mesa');
+
+	        //exibe o resumo mesa
+        $.post("<?php echo BASEURL; ?>views/comanda-eletronica/templates/ResumoMesa.php",
+        {
+        	num_mesa:num_mesa
+        },
+        function (resultado){
+        	$('#includeResumoMesa').html(resultado);
+        	eval(document.getElementById('scriptControllerCapturaDados').innerHTML);  
+        	eval(document.getElementById('scriptDataTable').innerHTML); 
+
+        });
+
+       
+   
+
+        setTimeout(function() {
+        	$("#cardResumoMesa").fadeIn();
+        }, 650	);
+  
+
+       });
+
+$(".btnVoltarParaMesas").click(function(){ 
+
+	var num_pedido = $('#inputPedido').val();
+
+	var instrucao = 'voltar para tela mesas';
+
+	$.ajax({
+		type: "POST",
+		url: '../../models/comanda-eletronica/ModelProcessaInstrucoes.php',
+		data: {
+			instrucao:instrucao,
+			num_pedido:num_pedido
+			
+		},
+		success: function(data) {
+
+			if (data == 'sucesso'){
+
+    	//alertify.success('<font color="white">voltar para tela mesas ok!</font>');
+    	location.reload(); // dar um reload na página
+
+    }else if (data == 'falha'){
+
+    	alertify.error('<font color="white">Falha</font>');
+
+    } else {
+
+    	alertify.error('<font color="white">Erro desconhecido</font>');
+    }
+}
+
+});//fim ajax
 
 
 });
@@ -802,8 +928,6 @@ $(".btnFinalizarPedido").click(function(){
 
 
 
-
-
 				$('#numeroPedido').html(num_pedido);
 				setTimeout(function() {
 					$("#cardFimPedido").fadeIn();
@@ -820,6 +944,10 @@ $(".btnFinalizarPedido").click(function(){
 }
 	});//fim do ajax
 
+
+
 });
+
+
 
 </script>

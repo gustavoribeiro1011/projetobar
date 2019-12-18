@@ -43,7 +43,6 @@ include('../../inc/header.php');
         <!-- Page Heading -->
         <div class="d-sm-flex align-items-center justify-content-between mb-4">
           <h1 class="h3 mb-0 text-gray-800"><?php echo ucfirst($app_page_name); ?></h1>
-          <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
         </div>
 
         <!-- Alertas -->
@@ -207,6 +206,29 @@ $(document).ready(function() {
           }
         });
 });
+
+
+$(document).ready(function() {
+  $('#DataTableResumoMesaDesktop').DataTable({
+      "dom": '<"top">rt<"bottom"ip><"clear">',
+    "language": {
+      "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Portuguese.json"
+    }
+
+        });
+});
+
+$(document).ready(function() {
+  $('#DataTableResumoMesaMobile').DataTable({
+      "dom": '<"top">rt<"bottom"ip><"clear">',
+      
+    "language": {
+      "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Portuguese.json"
+    }
+
+        });
+});
+
 
 </script>
 

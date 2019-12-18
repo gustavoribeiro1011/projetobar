@@ -52,7 +52,7 @@
               <!-- Desktop/Tablet-->
               <div class="desktop" align="center">
                 <div class="card">
-                  <button class="btn btn-danger btn-block btnMesa" num_mesa="<?=$row['num_mesa'];?>" disabled>
+                  <button class="btn btn-danger btn-block btnResumoMesa" num_mesa="<?=$row['num_mesa'];?>">
                     <span>Mesa</span>            
                     <div style="font-size:30px"><b><?php echo $row['num_mesa']; ?></b></div> 
                   </button>
@@ -62,7 +62,7 @@
               <!-- Mobile -->
               <div class="mobile" align="center">
                 <div class="card">
-                  <button class="btn btn-danger  btn-block btnMesa" num_mesa="<?=$row['num_mesa'];?>" disabled>
+                  <button class="btn btn-danger  btn-block btnResumoMesa" num_mesa="<?=$row['num_mesa'];?>">
                     <span style="font-size:10px;">Mesa</span>
                     <div style="font-size:15px;"><b><?php echo $row['num_mesa']; ?></b></div> 
                   </button>

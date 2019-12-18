@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Máquina: localhost
--- Data de Criação: 09-Dez-2019 às 19:33
+-- Data de Criação: 18-Dez-2019 às 19:47
 -- Versão do servidor: 5.6.13
 -- versão do PHP: 5.4.17
 
@@ -51,6 +51,20 @@ INSERT INTO `categorias` (`id`, `categoria`, `usuario`, `cadastro`, `modificado`
 -- --------------------------------------------------------
 
 --
+-- Estrutura da tabela `comanda_eletronica`
+--
+
+CREATE TABLE IF NOT EXISTS `comanda_eletronica` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `mesa` int(11) NOT NULL,
+  `aberto` datetime NOT NULL,
+  `fechado` datetime NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=11 ;
+
+-- --------------------------------------------------------
+
+--
 -- Estrutura da tabela `mesas`
 --
 
@@ -62,23 +76,7 @@ CREATE TABLE IF NOT EXISTS `mesas` (
   `cadastro` datetime NOT NULL,
   `modificado` datetime NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=41 ;
-
---
--- Extraindo dados da tabela `mesas`
---
-
-INSERT INTO `mesas` (`id`, `num_mesa`, `status`, `usuario`, `cadastro`, `modificado`) VALUES
-(31, 1, 'indisponivel', 1, '2019-12-09 14:02:58', '2019-12-09 15:23:13'),
-(32, 2, 'indisponivel', 1, '2019-12-09 14:02:58', '2019-12-09 14:23:56'),
-(33, 3, 'indisponivel', 1, '2019-12-09 14:02:58', '2019-12-09 14:44:23'),
-(34, 4, 'disponivel', 1, '2019-12-09 14:02:58', '2019-12-09 15:23:12'),
-(35, 5, 'disponivel', 1, '2019-12-09 14:02:58', '0000-00-00 00:00:00'),
-(36, 6, 'disponivel', 1, '2019-12-09 14:02:58', '0000-00-00 00:00:00'),
-(37, 7, 'disponivel', 1, '2019-12-09 14:02:58', '2019-12-09 14:41:31'),
-(38, 8, 'disponivel', 1, '2019-12-09 14:02:58', '0000-00-00 00:00:00'),
-(39, 9, 'disponivel', 1, '2019-12-09 14:02:58', '0000-00-00 00:00:00'),
-(40, 10, 'disponivel', 1, '2019-12-09 14:02:58', '0000-00-00 00:00:00');
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=486 ;
 
 -- --------------------------------------------------------
 
@@ -109,17 +107,7 @@ CREATE TABLE IF NOT EXISTS `pedidos` (
   `cadastro` datetime NOT NULL,
   `modificado` datetime NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=372 ;
-
---
--- Extraindo dados da tabela `pedidos`
---
-
-INSERT INTO `pedidos` (`id`, `num_pedido`, `mesa`, `origem`, `id_produto`, `produto`, `id_preco`, `preco`, `id_unidade_medida`, `unidade_medida`, `medida`, `id_categoria`, `categoria`, `status`, `param_1`, `param_2`, `param_3`, `id_usuario`, `usuario`, `cadastro`, `modificado`) VALUES
-(368, 1, 1, 'comanda eletronica', 0, '', 0, 0, 0, '', 0, 0, '', 'pedido aberto', '', '', '', 1, 'projetobar ', '2019-12-09 15:23:13', '0000-00-00 00:00:00'),
-(369, 1, 1, 'comanda eletronica', 14, 'BRAHMA', 22, 5, 22, 'ml', 350, 1, 'BEBIDAS', 'item cadastrado', '', '', '', 1, 'projetobar ', '2019-12-09 15:23:21', '0000-00-00 00:00:00'),
-(370, 1, 1, 'comanda eletronica', 26, 'PASTEL DE PIZZA', 35, 5, 35, 'un', 1, 4, 'PASTÉIS', 'item cadastrado', '', '', '', 1, 'projetobar ', '2019-12-09 15:23:30', '0000-00-00 00:00:00'),
-(371, 1, 1, 'comanda eletronica', 9, 'PEPSI', 17, 3.5, 17, 'ml', 350, 1, 'BEBIDAS', 'item cadastrado', '', '', '', 1, 'projetobar ', '2019-12-09 15:23:51', '0000-00-00 00:00:00');
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=674 ;
 
 -- --------------------------------------------------------
 
@@ -263,7 +251,7 @@ CREATE TABLE IF NOT EXISTS `sidebar` (
 --
 
 INSERT INTO `sidebar` (`id`, `id_usuario`, `status`, `cadastro`) VALUES
-(4, 1, '', '2019-12-09 14:02:48'),
+(4, 1, 'toggled', '2019-12-18 15:03:08'),
 (5, 2, 'toggled', '2019-11-14 14:06:25');
 
 -- --------------------------------------------------------

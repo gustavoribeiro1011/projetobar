@@ -26,6 +26,20 @@ if ($result=mysqli_query($conecta,$sql)){
 
 }
 
+} if ($instrucao == 'voltar para tela mesas') {
+
+$sql = "UPDATE pedidos SET param_1='voltar para tela mesas' WHERE num_pedido=$num_pedido and status='pedido aberto'";
+
+if ($result=mysqli_query($conecta,$sql)){
+
+	echo 'sucesso';
+
+} else {
+
+	echo 'falha';
+
+}
+
 } else
 
 if ($instrucao == 'voltar para tela resumo de pedidos') {

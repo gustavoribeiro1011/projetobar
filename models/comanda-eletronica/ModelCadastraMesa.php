@@ -21,6 +21,9 @@ $idPrincipalPedido = $row['id'];
 
 $updateMesaNaLinhaPrincipalPedido = "UPDATE pedidos SET mesa=$num_mesa WHERE id=$idPrincipalPedido";
 
+//cadastra a data e hora da abertura da mesa na tabela comanda eletronica
+$cadastraAberturaMesa = "insert comanda_eletronica (mesa,aberto) values ( $num_mesa, now() )";
+$conecta->query($cadastraAberturaMesa);
 
 if ( $conecta->query($updateMesaNaLinhaPrincipalPedido) === TRUE) {
 	echo "sucesso";
