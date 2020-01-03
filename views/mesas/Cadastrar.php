@@ -13,6 +13,8 @@ include('../../inc/header.php');
 
 ?>
 
+<link href="<?php echo BASEURL;?>views/mesas/css/stylesheet.css" rel="stylesheet">
+
 <body id="page-top">
 
   <!-- Page Wrapper -->

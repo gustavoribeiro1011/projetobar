@@ -41,7 +41,7 @@ if ( !defined('URLSERVER') )
  */ 
  define('DB_NAME', 'projetobar');
  define('DB_USER', 'root');
- define('DB_PASS', '');
+ define('DB_PASS', 'usbw');
  define('DB_HOST', 'localhost');
  
  $conecta = mysqli_connect(DB_HOST, DB_USER, DB_PASS, DB_NAME) or die("Não foi possível estabelecer a conexão com o BD.");
@@ -131,6 +131,15 @@ $ControllerCapturaDados .= BASEURL . "controllers/comanda-eletronica/ControllerC
 $ModalPedidoExistente = $_SERVER['DOCUMENT_ROOT'];
 $ModalPedidoExistente .= BASEURL . "views/comanda-eletronica/templates/ModalPedidoExistente.php";
 
-
 $ModalMesaInexistente = $_SERVER['DOCUMENT_ROOT'];
 $ModalMesaInexistente .= BASEURL . "views/comanda-eletronica/templates/ModalMesaInexistente.php";
+
+$ModalDetalhesPedido = $_SERVER['DOCUMENT_ROOT'];
+$ModalDetalhesPedido .= BASEURL . "views/comanda-eletronica/templates/ModalDetalhesPedido.php";
+
+$ModalPedidoEmProducao = $_SERVER['DOCUMENT_ROOT'];
+$ModalPedidoEmProducao .= BASEURL . "views/comanda-eletronica/templates/ModalPedidoEmProducao.php";
+
+//Monitor de Pedidos
+$ControllerMainMonitorPedidos = $_SERVER['DOCUMENT_ROOT'];
+$ControllerMainMonitorPedidos .= BASEURL . "controllers/monitor-pedidos/ControllerMain.php";

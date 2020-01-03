@@ -19,6 +19,7 @@ $FimPedido .= BASEURL . "views/comanda-eletronica/templates/FimPedido.php";
 <div class="container-fluid">
   <!-- Content Row -->
   <div class="row">
+
    <?php include ($Mesas); ?>
 
    <?php include ($Categorias); ?>
@@ -39,7 +40,7 @@ $FimPedido .= BASEURL . "views/comanda-eletronica/templates/FimPedido.php";
 
 
 <!-- Início: Formulário para cadastro de pedido -->
-<div class="container-fluid" style="display:none;">
+<div class="container-fluid" style="display:block;">
   <div class="row">
     <div class="col-sm-12">
       <div class="card shadow">
@@ -59,6 +60,8 @@ $FimPedido .= BASEURL . "views/comanda-eletronica/templates/FimPedido.php";
                 <label for="">ID Unidade de Medida:</label>  <input type='text' class="form-control" id="inputIdUnidadeMedida" disabled></input>
                 <label for="">Unidade de Medida:</label>  <input type='text' class="form-control" id="inputUnidadeMedida" disabled></input>
                 <label for="">Medida:</label>  <input type='text' class="form-control" id="inputMedida" disabled></input>
+                <label for="">Data/Hora mesa aberta:</label>  <input type='text' class="form-control" id="inputDataHoraMesaAberta" disabled></input>
+
               </form>
             </div>
           </div>

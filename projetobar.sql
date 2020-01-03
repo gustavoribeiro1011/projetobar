@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Máquina: localhost
--- Data de Criação: 18-Dez-2019 às 19:47
+-- Data de Criação: 03-Jan-2020 às 19:47
 -- Versão do servidor: 5.6.13
 -- versão do PHP: 5.4.17
 
@@ -35,32 +35,20 @@ CREATE TABLE IF NOT EXISTS `categorias` (
   `cadastro` datetime NOT NULL,
   `modificado` datetime NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=8 ;
 
 --
 -- Extraindo dados da tabela `categorias`
 --
 
 INSERT INTO `categorias` (`id`, `categoria`, `usuario`, `cadastro`, `modificado`) VALUES
-(1, 'BEBIDAS', 1, '2019-11-27 11:34:15', '2019-11-28 09:32:21'),
+(1, 'REFRIGERANTES', 1, '2019-11-27 11:34:15', '2019-12-30 11:44:02'),
 (2, 'LANCHES', 1, '2019-11-28 11:23:08', '2019-12-03 11:40:39'),
 (3, 'PORÇÕES', 1, '2019-11-28 16:24:46', '0000-00-00 00:00:00'),
 (4, 'PASTÉIS', 1, '2019-12-03 11:38:21', '0000-00-00 00:00:00'),
-(5, 'PIZZAS', 1, '2019-12-03 11:40:48', '0000-00-00 00:00:00');
-
--- --------------------------------------------------------
-
---
--- Estrutura da tabela `comanda_eletronica`
---
-
-CREATE TABLE IF NOT EXISTS `comanda_eletronica` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `mesa` int(11) NOT NULL,
-  `aberto` datetime NOT NULL,
-  `fechado` datetime NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=11 ;
+(5, 'PIZZAS', 1, '2019-12-03 11:40:48', '0000-00-00 00:00:00'),
+(6, 'SUCOS', 1, '2019-12-30 11:43:52', '0000-00-00 00:00:00'),
+(7, 'CERVEJAS', 1, '2019-12-30 11:44:13', '0000-00-00 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -76,7 +64,7 @@ CREATE TABLE IF NOT EXISTS `mesas` (
   `cadastro` datetime NOT NULL,
   `modificado` datetime NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=486 ;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -99,6 +87,7 @@ CREATE TABLE IF NOT EXISTS `pedidos` (
   `id_categoria` int(11) NOT NULL COMMENT 'fk',
   `categoria` varchar(200) NOT NULL,
   `status` varchar(100) NOT NULL,
+  `finalizadoem` datetime NOT NULL,
   `param_1` varchar(200) NOT NULL,
   `param_2` varchar(200) NOT NULL,
   `param_3` varchar(200) NOT NULL,
@@ -107,7 +96,22 @@ CREATE TABLE IF NOT EXISTS `pedidos` (
   `cadastro` datetime NOT NULL,
   `modificado` datetime NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=674 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=18 ;
+
+--
+-- Extraindo dados da tabela `pedidos`
+--
+
+INSERT INTO `pedidos` (`id`, `num_pedido`, `mesa`, `origem`, `id_produto`, `produto`, `id_preco`, `preco`, `id_unidade_medida`, `unidade_medida`, `medida`, `id_categoria`, `categoria`, `status`, `finalizadoem`, `param_1`, `param_2`, `param_3`, `id_usuario`, `usuario`, `cadastro`, `modificado`) VALUES
+(4, 1, 2, 'comanda eletronica', 0, '', 0, 0, 0, '', 0, 0, '', 'pedido em processamento', '0000-00-00 00:00:00', '', '', '', 1, 'projetobar ', '2020-01-02 11:36:19', '0000-00-00 00:00:00'),
+(5, 1, 2, 'comanda eletronica', 14, 'BRAHMA', 23, 8, 23, 'l', 1.5, 1, 'REFRIGERANTES', 'item cadastrado', '0000-00-00 00:00:00', '', '', '', 1, 'projetobar ', '2020-01-02 10:36:28', '0000-00-00 00:00:00'),
+(6, 2, 1, 'comanda eletronica', 0, '', 0, 0, 0, '', 0, 0, '', 'pedido em processamento', '0000-00-00 00:00:00', '', '', '', 1, 'projetobar ', '2020-01-02 10:36:31', '0000-00-00 00:00:00'),
+(7, 2, 1, 'comanda eletronica', 37, 'PIZZA DE QUATRO QUEIJO MÉDIA', 46, 20, 46, 'un', 1, 5, 'PIZZAS', 'item cadastrado', '0000-00-00 00:00:00', '', '', '', 1, 'projetobar ', '2020-01-02 10:37:00', '0000-00-00 00:00:00'),
+(8, 3, 2, 'comanda eletronica', 0, '', 0, 0, 0, '', 0, 0, '', 'pedido em processamento', '0000-00-00 00:00:00', '', '', '', 1, 'projetobar ', '2020-01-02 10:37:06', '0000-00-00 00:00:00'),
+(9, 3, 2, 'comanda eletronica', 42, 'LARANJA', 54, 4, 54, 'ml', 500, 6, 'SUCOS', 'item cadastrado', '0000-00-00 00:00:00', '', '', '', 1, 'projetobar ', '2020-01-02 10:38:58', '0000-00-00 00:00:00'),
+(14, 4, 1, 'comanda eletronica', 0, '', 0, 0, 0, '', 0, 0, '', 'pedido em processamento', '0000-00-00 00:00:00', '', '', '', 1, 'projetobar ', '2020-01-03 16:25:58', '0000-00-00 00:00:00'),
+(15, 4, 1, 'comanda eletronica', 37, 'PIZZA DE QUATRO QUEIJO MÉDIA', 46, 20, 46, 'un', 1, 5, 'PIZZAS', 'item cadastrado', '0000-00-00 00:00:00', '', '', '', 1, 'projetobar ', '2020-01-03 16:26:06', '0000-00-00 00:00:00'),
+(17, 5, 0, 'comanda eletronica', 0, '', 0, 0, 0, '', 0, 0, '', 'pedido aberto', '0000-00-00 00:00:00', '', '', '', 1, 'projetobar ', '2020-01-03 16:26:53', '0000-00-00 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -123,7 +127,7 @@ CREATE TABLE IF NOT EXISTS `precos` (
   `cadastro` datetime NOT NULL,
   `modificado` datetime NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=48 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=60 ;
 
 --
 -- Extraindo dados da tabela `precos`
@@ -139,8 +143,8 @@ INSERT INTO `precos` (`id`, `id_produto`, `variacao`, `preco`, `cadastro`, `modi
 (11, 5, 1, 20, '2019-11-28 11:23:38', '0000-00-00 00:00:00'),
 (12, 6, 1, 14, '2019-11-28 11:24:02', '0000-00-00 00:00:00'),
 (13, 7, 1, 14, '2019-11-28 11:24:22', '0000-00-00 00:00:00'),
-(14, 8, 1, 5, '2019-11-28 11:24:55', '0000-00-00 00:00:00'),
-(15, 8, 2, 8, '2019-11-28 11:24:55', '0000-00-00 00:00:00'),
+(14, 8, 1, 5, '2019-11-28 11:24:55', '2019-12-30 11:44:28'),
+(15, 8, 2, 8, '2019-11-28 11:24:55', '2019-12-30 11:44:28'),
 (16, 9, 1, 6, '2019-11-28 11:26:16', '2019-11-28 16:24:39'),
 (17, 9, 2, 3.5, '2019-11-28 11:26:16', '2019-11-28 16:24:39'),
 (18, 10, 1, 20, '2019-11-28 16:25:14', '2019-12-06 15:51:38'),
@@ -172,7 +176,19 @@ INSERT INTO `precos` (`id`, `id_produto`, `variacao`, `preco`, `cadastro`, `modi
 (44, 35, 1, 30, '2019-12-03 11:45:55', '2019-12-06 15:53:47'),
 (45, 36, 1, 15, '2019-12-03 11:46:07', '2019-12-06 15:54:20'),
 (46, 37, 1, 20, '2019-12-03 11:46:21', '2019-12-06 15:54:08'),
-(47, 3, 3, 3.5, '2019-12-06 15:56:37', '0000-00-00 00:00:00');
+(47, 3, 3, 3.5, '2019-12-06 15:56:37', '0000-00-00 00:00:00'),
+(48, 38, 1, 12, '2019-12-20 15:36:49', '2019-12-30 11:44:41'),
+(49, 39, 1, 3, '2019-12-26 16:22:44', '0000-00-00 00:00:00'),
+(50, 40, 1, 4, '2019-12-30 11:45:16', '0000-00-00 00:00:00'),
+(51, 40, 2, 8, '2019-12-30 11:45:16', '0000-00-00 00:00:00'),
+(52, 41, 1, 4, '2019-12-30 11:45:37', '0000-00-00 00:00:00'),
+(53, 41, 2, 8, '2019-12-30 11:45:37', '0000-00-00 00:00:00'),
+(54, 42, 1, 4, '2019-12-30 11:46:04', '0000-00-00 00:00:00'),
+(55, 42, 2, 8, '2019-12-30 11:46:04', '0000-00-00 00:00:00'),
+(56, 43, 1, 7, '2019-12-30 11:46:43', '0000-00-00 00:00:00'),
+(57, 43, 2, 3, '2019-12-30 11:46:43', '0000-00-00 00:00:00'),
+(58, 44, 1, 4.5, '2019-12-30 11:47:05', '0000-00-00 00:00:00'),
+(59, 45, 1, 4, '2019-12-30 11:47:30', '0000-00-00 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -188,7 +204,7 @@ CREATE TABLE IF NOT EXISTS `produtos` (
   `cadastro` datetime NOT NULL,
   `modificado` datetime NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=38 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=46 ;
 
 --
 -- Extraindo dados da tabela `produtos`
@@ -201,7 +217,7 @@ INSERT INTO `produtos` (`id`, `produto`, `categoria`, `usuario`, `cadastro`, `mo
 (5, 'X-TUDO', 2, 1, '2019-11-28 11:23:38', '0000-00-00 00:00:00'),
 (6, 'X-EGG', 2, 1, '2019-11-28 11:24:02', '0000-00-00 00:00:00'),
 (7, 'X-FRANGO', 2, 1, '2019-11-28 11:24:22', '0000-00-00 00:00:00'),
-(8, 'SKOL', 1, 1, '2019-11-28 11:24:55', '0000-00-00 00:00:00'),
+(8, 'SKOL', 7, 1, '2019-11-28 11:24:55', '2019-12-30 11:44:28'),
 (9, 'PEPSI', 1, 1, '2019-11-28 11:26:16', '2019-11-28 16:24:39'),
 (10, 'PORÇÃO DE BATATA FRITA COM QUEIJO', 3, 1, '2019-11-28 16:25:14', '2019-12-06 15:51:38'),
 (11, 'PORÇÃO DE BATATA FRITA', 3, 1, '2019-11-28 16:25:31', '2019-12-06 15:51:47'),
@@ -230,7 +246,15 @@ INSERT INTO `produtos` (`id`, `produto`, `categoria`, `usuario`, `cadastro`, `mo
 (34, 'PIZZA À MODA DA CASA GRANDE', 5, 1, '2019-12-03 11:45:22', '2019-12-06 15:53:31'),
 (35, 'PIZZA DE QUATRO QUEIJO GRANDE', 5, 1, '2019-12-03 11:45:55', '2019-12-06 15:53:47'),
 (36, 'PIZZA DE QUATRO QUEIJO PEQUENA', 5, 1, '2019-12-03 11:46:07', '2019-12-06 15:54:20'),
-(37, 'PIZZA DE QUATRO QUEIJO MÉDIA', 5, 1, '2019-12-03 11:46:21', '2019-12-06 15:54:08');
+(37, 'PIZZA DE QUATRO QUEIJO MÉDIA', 5, 1, '2019-12-03 11:46:21', '2019-12-06 15:54:08'),
+(38, 'vodka ice smirnoff', 7, 1, '2019-12-20 15:36:49', '2019-12-30 11:44:41'),
+(39, 'AGUA MINERAL', 1, 1, '2019-12-26 16:22:44', '0000-00-00 00:00:00'),
+(40, 'MORANGO', 6, 1, '2019-12-30 11:45:16', '0000-00-00 00:00:00'),
+(41, 'MARACUJÁ', 6, 1, '2019-12-30 11:45:37', '0000-00-00 00:00:00'),
+(42, 'LARANJA', 6, 1, '2019-12-30 11:46:04', '0000-00-00 00:00:00'),
+(43, 'BRAHMA', 7, 1, '2019-12-30 11:46:43', '0000-00-00 00:00:00'),
+(44, 'SUBZERO', 7, 1, '2019-12-30 11:47:05', '0000-00-00 00:00:00'),
+(45, 'UVA', 6, 1, '2019-12-30 11:47:30', '0000-00-00 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -251,7 +275,7 @@ CREATE TABLE IF NOT EXISTS `sidebar` (
 --
 
 INSERT INTO `sidebar` (`id`, `id_usuario`, `status`, `cadastro`) VALUES
-(4, 1, 'toggled', '2019-12-18 15:03:08'),
+(4, 1, '', '2020-01-03 16:10:38'),
 (5, 2, 'toggled', '2019-11-14 14:06:25');
 
 -- --------------------------------------------------------
@@ -269,7 +293,7 @@ CREATE TABLE IF NOT EXISTS `unidade_medida` (
   `cadastro` datetime NOT NULL,
   `modificado` datetime NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=48 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=60 ;
 
 --
 -- Extraindo dados da tabela `unidade_medida`
@@ -285,8 +309,8 @@ INSERT INTO `unidade_medida` (`id`, `id_produto`, `variacao`, `medida`, `unidade
 (11, 5, 1, 1, 'un', '2019-11-28 11:23:38', '0000-00-00 00:00:00'),
 (12, 6, 1, 1, 'un', '2019-11-28 11:24:02', '0000-00-00 00:00:00'),
 (13, 7, 1, 1, 'un', '2019-11-28 11:24:22', '0000-00-00 00:00:00'),
-(14, 8, 1, 350, 'ml', '2019-11-28 11:24:55', '0000-00-00 00:00:00'),
-(15, 8, 2, 1, 'l', '2019-11-28 11:24:55', '0000-00-00 00:00:00'),
+(14, 8, 1, 350, 'ml', '2019-11-28 11:24:55', '2019-12-30 11:44:28'),
+(15, 8, 2, 1, 'l', '2019-11-28 11:24:55', '2019-12-30 11:44:28'),
 (16, 9, 1, 1, 'l', '2019-11-28 11:26:16', '2019-11-28 16:24:39'),
 (17, 9, 2, 350, 'ml', '2019-11-28 11:26:16', '2019-11-28 16:24:39'),
 (18, 10, 1, 1, 'un', '2019-11-28 16:25:14', '2019-12-06 15:51:38'),
@@ -318,7 +342,19 @@ INSERT INTO `unidade_medida` (`id`, `id_produto`, `variacao`, `medida`, `unidade
 (44, 35, 1, 1, 'un', '2019-12-03 11:45:55', '2019-12-06 15:53:47'),
 (45, 36, 1, 1, 'un', '2019-12-03 11:46:07', '2019-12-06 15:54:20'),
 (46, 37, 1, 1, 'un', '2019-12-03 11:46:21', '2019-12-06 15:54:08'),
-(47, 3, 3, 350, 'ml', '2019-12-06 15:56:37', '0000-00-00 00:00:00');
+(47, 3, 3, 350, 'ml', '2019-12-06 15:56:37', '0000-00-00 00:00:00'),
+(48, 38, 1, 1, 'un', '2019-12-20 15:36:49', '2019-12-30 11:44:41'),
+(49, 39, 1, 600, 'ml', '2019-12-26 16:22:44', '0000-00-00 00:00:00'),
+(50, 40, 1, 500, 'ml', '2019-12-30 11:45:16', '0000-00-00 00:00:00'),
+(51, 40, 2, 1, 'l', '2019-12-30 11:45:16', '0000-00-00 00:00:00'),
+(52, 41, 1, 500, 'ml', '2019-12-30 11:45:37', '0000-00-00 00:00:00'),
+(53, 41, 2, 1, 'l', '2019-12-30 11:45:37', '0000-00-00 00:00:00'),
+(54, 42, 1, 500, 'ml', '2019-12-30 11:46:04', '0000-00-00 00:00:00'),
+(55, 42, 2, 1, 'l', '2019-12-30 11:46:04', '0000-00-00 00:00:00'),
+(56, 43, 1, 1, 'l', '2019-12-30 11:46:43', '0000-00-00 00:00:00'),
+(57, 43, 2, 350, 'ml', '2019-12-30 11:46:43', '0000-00-00 00:00:00'),
+(58, 44, 1, 350, 'ml', '2019-12-30 11:47:05', '0000-00-00 00:00:00'),
+(59, 45, 1, 500, 'ml', '2019-12-30 11:47:30', '0000-00-00 00:00:00');
 
 -- --------------------------------------------------------
 

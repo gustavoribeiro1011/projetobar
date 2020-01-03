@@ -22,6 +22,7 @@ if ( $qtd_mesas['count'] > 0 ) {
   if ($result=mysqli_query($conecta,$sql))
 
   {
+     $i='0';
 
 
     ?>
@@ -40,24 +41,66 @@ if ( $qtd_mesas['count'] > 0 ) {
         
 
         <div class="row">
+<?php
+          while ($row=mysqli_fetch_assoc($result))
+          {
+            $i++;
 
-          <?php  while ($row=mysqli_fetch_assoc($result)) { ?>
+            if ($row['status'] == 'disponivel'){
+              ?>
 
-          <div class="card" > 
+              <!-- Desktop/Tablet-->
+              <div class=" desktop" align="center">
+                <div class="card">
+                  <button class="btn btn-success  btn-block btnMesa" num_mesa="<?=$row['num_mesa'];?>" disabled>
+                    <span>Mesa</span>            
+                    <div style="font-size:30px"><b><?php echo $row['num_mesa']; ?></b></div> 
+                  </button>
+                </div>
+              </div>
 
-            <button class="btn btn-success btn-block">
+              <!-- Mobile -->
+              <div class="mobile" align="center">
+                <div class="card">
+                  <button class="btn btn-success  btn-block btnMesa" num_mesa="<?=$row['num_mesa'];?>" disabled>
+                    <span style="font-size:10px;">Mesa</span> 
+                    <div style="font-size:15px;"><b><?php echo $row['num_mesa']; ?></b></div> 
+                  </button>
+                </div>
+              </div>
+              <?php
+            } else if ($row['status'] == 'indisponivel'){
+              ?>
+              
+              <!-- Desktop/Tablet-->
+              <div class="desktop" align="center">
+                <div class="card">
+                  <button class="btn btn-danger btn-block btnResumoMesa" num_mesa="<?=$row['num_mesa'];?>" disabled>
+                    <span>Mesa</span>            
+                    <div style="font-size:30px"><b><?php echo $row['num_mesa']; ?></b></div> 
+                  </button>
+                </div>
+              </div>
 
-              Mesa
+              <!-- Mobile -->
+              <div class="mobile" align="center">
+                <div class="card">
+                  <button class="btn btn-danger  btn-block btnResumoMesa" num_mesa="<?=$row['num_mesa'];?>" disabled>
+                    <span style="font-size:10px;">Mesa</span>
+                    <div style="font-size:15px;"><b><?php echo $row['num_mesa']; ?></b></div> 
+                  </button>
+                </div>
+              </div>
 
-              <h3><b><?=$row['num_mesa'];?></b></h3>
 
-            </button>    
+              <?php
+            }
+            
+          }
 
-          </div>
 
-          <?php } ?>
 
-  
+  ?>
 
       </div>
 

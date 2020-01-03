@@ -31,7 +31,7 @@
                 <div class="h4 mb-0 font-weight-bold text-gray-800" id="adicionar-item-desktop">Resumo do pedido</div> 
               </div>
               <div class="col-auto">
-                <button type="button" class="btn btn-primary btnAdicionarItem" id="adicionar-item-desktop">Adicionar mais um item</button>         
+                <button type="button" class="btn btn-primary btnAdicionarItem" id="adicionar-item-desktop">Adicionar item</button>         
               </div>
             </div>    
           </div>

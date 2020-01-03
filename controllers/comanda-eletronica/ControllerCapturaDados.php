@@ -10,10 +10,9 @@
 
 		//alert(data['status']);
 
-
+		var id_num_pedido = data['id_num_pedido'];
 		var num_pedido = data['num_pedido'];
 		var num_mesa = data['num_mesa'];
-
 
 		
 
@@ -22,11 +21,18 @@
 		if (data['status'] == '1'){
 
 			//alert("1 - Inclusao do primeiro pedido.");
+
+			var id_num_pedido = data['id_num_pedido'];
+			
+			
 			
 			$('#spanPedido').text(num_pedido);
-
 			
 			$('#inputPedido').val(num_pedido);
+
+			
+		
+
 
 			setTimeout(function() {
 				$("#cardMesa").fadeIn();
@@ -35,45 +41,43 @@
 		} else 	if (data['status'] == '2'){ //2 - Existe 1 pedido sem finaliza
 
 			//alert(' Existe 1 pedido sem finalizar');
+			var id_num_pedido = data['id_num_pedido'];			
+		
 
-			$(".btnDescartarPedido").click(function(){ 
 
 
-				//exclui o pedido
+$(".btnDescartarPedido").click(function(){ 
+           // aLtera status da mesa para disponivel
+                 $.ajax({
+                 	type: "POST",
+                 	url: '../../models/comanda-eletronica/ModelAlteraStatusMesa.php',
+                 	data: {
+                 		instrucao:'disponivel',
+                 		num_mesa:num_mesa
+                 	},
+                 	success: function(data) {
+        		//alert(data);
+        		if(data == 'sucesso'){
+
+              //alert("status alterado para disponivel");
+
+            
+
 				$.ajax({
 					type: "POST",
 					url: '../../models/comanda-eletronica/ModelDescartaPedido.php',
-					data: {num_pedido:num_pedido},
+					data: {
+						num_pedido:num_pedido,
+						id_num_pedido:id_num_pedido						
+					},
 					success: function(data) {
 
 						if(data == 'sucesso'){	
 
 
-                                     // aLtera status da mesa para indisponivel
-                                     $.ajax({
-                                     	type: "POST",
-                                     	url: '../../models/comanda-eletronica/ModelAlteraStatusMesa.php',
-                                     	data: {
-                                     		instrucao:'disponivel',
-                                     		num_mesa:num_mesa
-                                     	},
-                                     	success: function(data) {
-                                     		if(data == 'sucesso'){
-
-                                     	//alert("status alterado para disponivel");
-
-                                     //recarrega a página
+        
+    //recarrega a página
                                      location.reload();
-
-                                 }else 	if(data == 'falha'){
-                                 	alertify.error('<font color="white">Falha ao alterar status da mesa</font>');
-                                 } else {
-                                 	alertify.error('<font color="white">Erro desconhecido</font>');
-
-                                 }
-                             }                                     
-                                     });//fim ajax
-
 
 
                                  }else if (data == 'falha'){
@@ -86,6 +90,20 @@
                              }
 
                          });
+
+                                 
+
+                                 }else 	if(data == 'falha'){
+                                 	alertify.error('<font color="white">Falha ao alterar status da mesa</font>');
+                                 } else {
+                                 	alertify.error('<font color="white">Erro desconhecido</font>');
+
+                                 }
+                             }                                     
+                                     });//fim ajax
+
+
+
 
 			});
 
@@ -104,6 +122,7 @@
 		});
 
 		$("#spanPedido").html(num_pedido);
+		$("#spanMesa").html(num_mesa);
 
 		setTimeout(function() {
 			$("#cardResumoPedido").fadeIn();
@@ -190,9 +209,9 @@
 		else if (data['status'] == '6'){ //6 - voltar para tela resumo de pedidos
 
 			var num_pedido = data['num_pedido'];
-			var num_mesa = data['num_pedido'];
+			var num_mesa = data['num_mesa'];
 
-			//$('#spanPedido').text(num_pedido);
+			$('#spanMesa').text(num_mesa);
 			$('#inputPedido').val(num_pedido);
 			$('#inputMesa').val(num_mesa);
 
@@ -246,18 +265,24 @@ setTimeout(function() {
 				else if (data['status'] == '7'){ //7 - voltar para tela categorias
 
 					var num_pedido = data['num_pedido'];
-					var num_mesa = data['num_pedido'];
+					var num_mesa = data['num_mesa'];
 
-					//$('#spanPedido').text(num_pedido);
+
+					// passa valores para o formulário
 					$('#inputPedido').val(num_pedido);
 					$('#inputMesa').val(num_mesa);
 
 
-					$("#spanPedido").html(num_pedido);
-
 					setTimeout(function() {
 						$("#cardCategoria").fadeIn();
+					    //exibe valores no cabeçalho
+					    $("#spanPedido").html(num_pedido).fadeIn();
+					    $("#spanMesa").html(num_mesa).fadeIn();
 					}, 600	);
+
+
+
+					
 
 			// reset param_1
 			var instrucao = 'reset param_1';
@@ -289,7 +314,7 @@ setTimeout(function() {
 	else if (data['status'] == '8'){ //8 - voltar para tela produtos
 
 		var num_pedido = data['num_pedido'];
-		var num_mesa = data['num_pedido'];
+		var num_mesa = data['num_mesa'];
 		var id_categoria  = data['id_categoria'];
 		var categoria  = data['categoria'];
 
@@ -299,7 +324,7 @@ setTimeout(function() {
 					$('#inputMesa').val(num_mesa);
 					$('#inputIdCategoria').val(id_categoria);
 					$('#inputCategoria').val(categoria);
-					$("#spanPedido").html(num_pedido);
+					
 
 
 					$.post("<?php echo BASEURL; ?>views/comanda-eletronica/templates/Produtos.php",
@@ -313,6 +338,8 @@ setTimeout(function() {
 
 						setTimeout(function() {
 							$("#cardProduto").fadeIn();
+							$("#spanPedido").html(num_pedido).fadeIn();
+							$("#spanMesa").html(num_mesa).fadeIn();
 						}, 600	);
 
 
@@ -483,13 +510,14 @@ setTimeout(function() {
 
 
 // cadastra mesa na tabela pedidos na coluna principal do pedido.
-
+var instrucao = '';
 $.ajax({
 	type: "POST",
 	url: '../../models/comanda-eletronica/ModelCadastraMesa.php',
 	data: {
 		num_pedido:num_pedido,
-		num_mesa:num_mesa
+		num_mesa:num_mesa,
+		instrucao:instrucao
 	},
 	success: function(data) {
 
@@ -519,6 +547,7 @@ $.ajax({
 		num_mesa:num_mesa
 	},
 	success: function(data) {
+	
 		
 	}
 
@@ -532,7 +561,7 @@ $.ajax({
 });
 
 	$(".btnResumoMesa").click(function(){ 
-
+		var num_pedido = $("#inputPedido").val();
 		var num_mesa =  $(this).attr('num_mesa');
 		$("#inputMesa").val(num_mesa);
 
@@ -558,6 +587,35 @@ $.ajax({
 	        	eval(document.getElementById('scriptDataTable').innerHTML); 
 
 	        });
+
+
+	        // cadastra mesa na tabela pedidos na coluna principal do pedido.
+var instrucao = 'cadastra mesa';
+$.ajax({
+	type: "POST",
+	url: '../../models/comanda-eletronica/ModelCadastraMesa.php',
+	data: {
+		num_pedido:num_pedido,
+		num_mesa:num_mesa,
+		instrucao:instrucao
+	},
+	success: function(data) {
+
+		if (data == 'sucesso'){
+
+    	//alertify.success('<font color="white">"num_mesa" cadastrada com sucesso</font>');
+
+    }else if (data == 'falha'){
+
+    	//alertify.error('<font color="white">Falha ao cadastrar "num_mesa" na tabela "pedidos"</font>');
+
+    } else {
+
+    	alertify.error('<font color="white">Erro desconhecido ao cadastrar numero da mesa na tabela pedidos</font>');
+    }
+}
+
+});//fim ajax
 
 
 
@@ -608,6 +666,7 @@ $.ajax({
 	$(".btnVoltarParaResumoPedido").click(function(){ 
 
 		var num_pedido	  =  $("#inputPedido").val();
+		var num_mesa	  =  $("#inputMesa").val();
 
 		var instrucao = 'voltar para tela resumo de pedidos';
 
@@ -961,6 +1020,34 @@ $.ajax({
 	});
 
 
+
+
+$(".btnDetalhesPedido").click(function(){ 
+
+var num_pedido = $(this).attr('num_pedido'); 
+
+$("#spanModalNumPedido").text(num_pedido);
+	
+  // faz a inclusão do arq. 'IncludeDetalhesPedido.php' dentro da div div '.includeDetalhesPedido'
+  	$.post("<?php echo BASEURL; ?>views/comanda-eletronica/templates/IncludeDetalhesPedido.php",
+     { 
+       num_pedido:num_pedido    
+     },
+     function(resultado){
+         	
+       $('.includeDetalhesPedido').html(resultado);
+       //eval(document.getElementById('scriptModalDetalhesPedido').innerHTML); 
+
+      
+     });
+
+
+      $('#modalDetalhesPedido').modal('show');
+
+});
+
+
+
 	$(".btnFinalizarPedido").click(function(){ 
 
 		setTimeout(function() {
@@ -994,6 +1081,7 @@ $.ajax({
 
 // dar um reload na pagina
 
+
 }else if (data == 'falha'){
 	
 	alertify.error('<font color="white">Falha ao finalizar pedido</font>');
@@ -1004,6 +1092,55 @@ $.ajax({
 
 
 	});
+
+	$(".btnFecharMesa").click(function(){ 
+
+// 		setTimeout(function() {
+// 			$(".cardNumeroPedido").fadeOut();
+// 		}, 200	);
+// 
+
+var num_mesa = $("#inputMesa").val();
+var data_hora_mesa_aberta = $('#spanDataHoraMesaAberta').text();
+
+$("#inputDataHoraMesaAberta").val(data_hora_mesa_aberta);
+
+
+$.ajax({
+	type: "POST",
+	url: '../../models/comanda-eletronica/ModelFecharMesa.php',
+	data: {
+		num_mesa:num_mesa,
+		data_hora_mesa_aberta:data_hora_mesa_aberta
+	},
+	success: function(data) {
+
+		if(data['msg'] == 'sucesso'){	
+			alertify.success('<font color="white">Mesa '+ num_mesa +' fechada</font>');	
+            // dar um reload na pagina
+            location.reload();}
+
+		else if (data['msg'] == 'falha'){
+			alertify.error('<font color="white">Falha ao fechar mesa '+ num_mesa +'</font>');
+		}
+
+		else if (data['msg'] == 'tem pedido em aberto'){
+	
+		//abre modal 
+		$(document).ready(function() {
+		$('#modalPedidoEmProducao').modal('show');
+		$("#spanQtdPedidosEmProducao").text(data['qtdPedidosEmProducao']);
+		})
+
+}
+
+},
+dataType:"json"
+ 	});//fim do ajax
+
+
+
+});
 
 
 

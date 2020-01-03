@@ -8,12 +8,15 @@ session_start();
 include ('../../config.php');
 
 $num_pedido = $_POST['num_pedido'];
+$id_num_pedido = $_POST['id_num_pedido'];
 
 
 
-$descartaPedido = "DELETE FROM pedidos WHERE num_pedido=".$num_pedido;
+$descartaPedido = "DELETE FROM pedidos WHERE num_pedido=$num_pedido";
 
 if ($conecta->query($descartaPedido) === TRUE) {
+
+
 	echo "sucesso";
 } else {
 	echo "falha";

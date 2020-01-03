@@ -7,6 +7,8 @@
 session_start();
 include ('../../config.php');
 
+$agora = date("Y-m-d H:i:s");
+
 $id_usuario = $_SESSION['id'.$app_token];
 $nome_usuario = $_SESSION['login_nome'.$app_token] . " ". $_SESSION['sobrenome'.$app_token];
 
@@ -33,32 +35,43 @@ $qtd_mesas=mysqli_fetch_assoc($result);
 if ( $qtd_mesas['count'] > 0 ) {
 
 
-$verificarPedidoExistente = "SELECT COUNT(num_pedido) as count FROM pedidos ORDER BY num_pedido DESC LIMIT 1"; 
+	$verificarPedidoExistente = "SELECT COUNT(num_pedido) as count FROM pedidos ORDER BY num_pedido DESC LIMIT 1"; 
 
-if ($result=mysqli_query($conecta,$verificarPedidoExistente))
+	if ($result=mysqli_query($conecta,$verificarPedidoExistente))
 
-{
-	$row=mysqli_fetch_assoc($result);
+	{
+		$row=mysqli_fetch_assoc($result);
 
 	if ($row['count'] <  1){ //se nao tiver nenhum pedido ou seja, count < 1 faz a primeira inclusão
 
+		
+
 		$num_pedido = 1;
+		
+
 		$inserePedido = "INSERT INTO pedidos (num_pedido,origem,status,id_usuario,usuario,cadastro)
 		VALUES (
-			'".$num_pedido."',
+			'".$num_pedido."',		
 			'comanda eletronica',
 			'pedido aberto',
 			'$id_usuario',
 			'$nome_usuario',
-			now()
+			'$agora'
 			)"; 
 
 $conecta->query($inserePedido);
-$array= array( "status" => '1', "num_pedido" => $num_pedido );
+$id_num_pedido = $conecta->insert_id;
+
+
+$array= array( 
+	"status" => '1',
+	"id_num_pedido" => $id_num_pedido,
+	"num_pedido" => $num_pedido	
+	);
 echo json_encode($array);
 
 
-} else if ($row['count'] > 0){// se existir pedidos sem finalizar
+} else if ($row['count'] > 0){// se existir pedidos
 
 	$verificaPedidoNaoFinalizado = "SELECT COUNT(num_pedido) count FROM pedidos WHERE status = 'pedido aberto' AND id_usuario = '$id_usuario' ";
 	$result=mysqli_query($conecta,$verificaPedidoNaoFinalizado);
@@ -66,10 +79,11 @@ echo json_encode($array);
 
 	if ($row['count'] == 0) { // se nao tiver pedidos sem finalizar
 
-		$pegaUltimoPedido = "SELECT num_pedido FROM pedidos ORDER BY num_pedido DESC LIMIT 1";
+		$pegaUltimoPedido = "SELECT num_pedido FROM pedidos WHERE id_usuario = '$id_usuario' ORDER BY num_pedido DESC LIMIT 1";
 		$result=mysqli_query($conecta,$pegaUltimoPedido);
 		$row=mysqli_fetch_assoc($result);
 		$num_pedido = $row['num_pedido'] + 1;
+		
 		
 
 		$inserePedido = "INSERT INTO pedidos (num_pedido,origem,status,id_usuario,usuario,cadastro)
@@ -84,6 +98,8 @@ echo json_encode($array);
 
 $conecta->query($inserePedido);
 
+
+
 $array= array( 'status'=> '1', 'num_pedido' => $num_pedido);
 echo json_encode($array);
 
@@ -96,7 +112,12 @@ $row=mysqli_fetch_assoc($result);
 
 if($row['param_1'] == ''){
 
-$array= array('status' => '2', 'num_pedido' => $row['num_pedido'], 'num_mesa' => $row['mesa']);
+$array= array(
+'status' => '2',
+'id_num_pedido' => $row['id'],
+'num_pedido' => $row['num_pedido'],
+'num_mesa' => $row['mesa']
+);
 
 echo json_encode($array);
 

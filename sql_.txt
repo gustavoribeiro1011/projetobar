@@ -1,0 +1,10 @@
+truncate mesas;
+truncate comanda_eletronica;
+truncate pedidos;
+
+insert mesas (num_mesa,status,usuario,cadastro) values 
+(1,'disponivel','projetobar',now()),
+(2,'disponivel','projetobar',now()),
+(3,'disponivel','projetobar',now()),
+(4,'disponivel','projetobar',now()),
+(5,'disponivel','projetobar',now())
