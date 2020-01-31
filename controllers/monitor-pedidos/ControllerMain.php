@@ -1,36 +1,76 @@
 <script>
 
-$(".btnAlteraStatusParaConcluido").click(function(){ 
+$(".periodoExibicao").click(function(){ 
+	var periodoExibicao = $(this).attr('periodoExibicao');
 
-	var instrucao = 'alterar status para concluido';
-	var num_pedido	  =  $(this).attr('num_pedido');
+	var instrucao = 'periodoExibicao';
 
 	$.ajax({
 		type: "POST",
 		url: '../../models/monitor-pedidos/ModelProcessaInstrucoes.php',
 		data: {
 			instrucao:instrucao,
-			num_pedido:num_pedido	
+			periodoExibicao:periodoExibicao		
 		},
 		success: function(data) {
 
 			if (data == 'sucesso'){
 
-    	alertify.success('<font color="white">Status alterado com sucesso</font>');
-    	location.reload(); // dar um reload na página
+				location.reload();
 
-    }else if (data == 'falha'){
+			}else if (data == 'falha'){
 
-    	alertify.error('<font color="white">Falha ao alterar status</font>');
+				alertify.error('<font color="white">Falha</font>');
 
-    } else {
+			} else {
 
-    	alertify.error('<font color="white">Erro desconhecido</font>');
-    }
-}
+				alertify.error('<font color="white">Falha desconhecida</font>');
+			}
+		}
 
 });//fim ajax
 
 
 });
+
+$('#formPeriodoExibicao').on('submit', function () {
+	var instrucao = 'periodoExibicao';
+	var periodoExibicao = 'personalizado';
+	var d1 = $(this).find('input[id=d1]').val();
+	var d2 = $(this).find('input[id=d2]').val();
+
+
+	$.ajax({
+		type: "POST",
+		url: '../../models/monitor-pedidos/ModelProcessaInstrucoes.php',
+		data: {
+			instrucao:instrucao,
+			periodoExibicao:periodoExibicao,
+			d1:d1,
+			d2:d2		
+		},
+		success: function(data) {
+
+			if (data == 'sucesso'){
+
+				location.reload();
+
+			}else if (data == 'falha'){
+
+				alertify.error('<font color="white">Falha</font>');
+
+			} else {
+
+				alertify.error('<font color="white">Falha desconhecida</font>');
+			}
+		}
+
+});//fim ajax
+
+
+
+});
+
+
+
 </script>

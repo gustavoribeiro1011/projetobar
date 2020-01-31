@@ -11,6 +11,12 @@
                     <input type="text" id="categoria_editar" class="form-control"  required />
                   </div>
                 </div>
+                <div class="row">
+                  <div class="col-8 col-md-10 col-xl-9 col-lg-9 py-1">
+                    <div id="divPaiCollapseEditar"></div>
+                    <div id="divFilhoCollapseEditar"></div>               
+                  </div>
+                </div>
                 <div class="row"> 
                   <div class="col-12 col-md-12 col-xl-12 col-lg-12 py-1">                 
                     <button class="btn btn-primary botaoEditarCategoria">Salvar</button>

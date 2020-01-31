@@ -40,7 +40,7 @@ $FimPedido .= BASEURL . "views/comanda-eletronica/templates/FimPedido.php";
 
 
 <!-- Início: Formulário para cadastro de pedido -->
-<div class="container-fluid" style="display:block;">
+<div class="container-fluid" style="display:none;">
   <div class="row">
     <div class="col-sm-12">
       <div class="card shadow">
@@ -49,7 +49,10 @@ $FimPedido .= BASEURL . "views/comanda-eletronica/templates/FimPedido.php";
             <div class="col-xl-12 col-lg-12">
               <form>
                 <h6 class="m-0 font-weight-bold text-primary">Dados da comanda eletronica para cadastrar pedido no BD:</h6>
+                Agora: <u><?php echo $agora = date("d/m/Y H:i:s");?></u><br>
                 <label for="">Nº Pedido:</label>  <input type='text' class="form-control" id="inputPedido" disabled></input>
+                <label for="">Data/Hora cadastro do pedido:</label>  <input type='text' class="form-control" id="inputDataHoraCadastroPedido" disabled></input>
+                <label for="">Num Comanda:</label>  <input type='text' class="form-control" id="inputIdComanda" disabled></input>
                 <label for="">Mesa:</label>  <input type='text' class="form-control" id="inputMesa" disabled></input>
                 <label for="">ID Categoria:</label>   <input type='text' class="form-control" id="inputIdCategoria" disabled></input>
                 <label for="">Categoria:</label>  <input type='text' class="form-control" id="inputCategoria" disabled></input>

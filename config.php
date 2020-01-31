@@ -2,7 +2,7 @@
 
 // @Criação 28/10/2019 
 
-$app_name= 'PROJETO';
+$app_name= 'projeto';
 
 $app_directory= 'projetobar';
 
@@ -68,7 +68,9 @@ if ( !defined('URLSERVER') )
  *
  */ 
 setlocale(LC_TIME, 'portuguese'); 
+
 date_default_timezone_set('America/Sao_Paulo');
+
 
 
 /**

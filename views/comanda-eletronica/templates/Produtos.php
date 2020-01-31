@@ -31,7 +31,7 @@ $id_categoria = $_POST['id_categoria'];
       if ($result=mysqli_query($conecta,$sql))
       {
         ?>
-        <div class="col-md-3">
+        <div class="col-md-6 col-xl-3">
          <div class="card">  
           <button class="btn btn-primary btn-block btnVoltarParaCategoria">
           <div align="left"><i class="fas fa-arrow-left"></i> VOLTAR</div>
@@ -43,7 +43,7 @@ $id_categoria = $_POST['id_categoria'];
     {
 
       ?>
-      <div class="col-md-3">
+      <div class="col-md-6 col-xl-3">
        <div class="card">  
         <button class="btn btn-primary btn-block btnProduto"
         id_produto="<?php echo $row['id']; ?>"

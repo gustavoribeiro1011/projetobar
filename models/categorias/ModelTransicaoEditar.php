@@ -13,6 +13,7 @@ $consultarCategoria = "
 select 
 a.id,
 a.categoria,
+a.icone,
 a.usuario,
 a.cadastro,
 a.modificado
@@ -28,12 +29,13 @@ if ($result=mysqli_query($conecta,$consultarCategoria))
 	{
 		$array= array(
 			"id" => $row['id'],
-			"categoria" => $row['categoria']
-			);
+			"categoria" => $row['categoria'],
+			"icone" => $row['icone']
+		);
 
 		
 		echo json_encode($array);
-        
+
 
 	}
 }

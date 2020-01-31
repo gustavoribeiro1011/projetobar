@@ -13,6 +13,8 @@
 		var id_num_pedido = data['id_num_pedido'];
 		var num_pedido = data['num_pedido'];
 		var num_mesa = data['num_mesa'];
+		var data_hora_cadastro_pedido = data['cadastro'];
+		
 
 		
 
@@ -30,6 +32,8 @@
 			
 			$('#inputPedido').val(num_pedido);
 
+			$('#inputDataHoraCadastroPedido').val(data_hora_cadastro_pedido);
+
 			
 		
 
@@ -41,8 +45,12 @@
 		} else 	if (data['status'] == '2'){ //2 - Existe 1 pedido sem finaliza
 
 			//alert(' Existe 1 pedido sem finalizar');
-			var id_num_pedido = data['id_num_pedido'];			
-		
+			var id_num_pedido = data['id_num_pedido'];		
+			var data_hora_cadastro_pedido = data['cadastro'];
+			var num_comanda = data['num_comanda'];
+			var num_mesa = data['num_mesa'];
+			
+			$('#inputIdComanda').val(num_comanda);
 
 
 
@@ -53,7 +61,10 @@ $(".btnDescartarPedido").click(function(){
                  	url: '../../models/comanda-eletronica/ModelAlteraStatusMesa.php',
                  	data: {
                  		instrucao:'disponivel',
-                 		num_mesa:num_mesa
+                 		num_mesa:num_mesa,
+                 		num_pedido:num_pedido,
+                 		data_hora_cadastro_pedido:data_hora_cadastro_pedido,
+                 		num_comanda:num_comanda
                  	},
                  	success: function(data) {
         		//alert(data);
@@ -67,36 +78,29 @@ $(".btnDescartarPedido").click(function(){
 					type: "POST",
 					url: '../../models/comanda-eletronica/ModelDescartaPedido.php',
 					data: {
-						num_pedido:num_pedido,
-						id_num_pedido:id_num_pedido						
+						num_pedido:num_pedido											
 					},
 					success: function(data) {
 
 						if(data == 'sucesso'){	
-
-
         
     //recarrega a página
                                      location.reload();
 
-
                                  }else if (data == 'falha'){
 
                                  	alertify.error('<font color="white">Falha ao descartar pedido</font>');
-
 
                                  }
 
                              }
 
                          });
-
-                                 
-
+                               
                                  }else 	if(data == 'falha'){
                                  	alertify.error('<font color="white">Falha ao alterar status da mesa</font>');
                                  } else {
-                                 	alertify.error('<font color="white">Erro desconhecido</font>');
+                                 	alertify.error('<font color="white">Erro desconhecido (#1) (data: '+data+')</font>');
 
                                  }
                              }                                     
@@ -197,7 +201,7 @@ $(".btnDescartarPedido").click(function(){
 
 						} else {
 
-							alertify.error('<font color="white">Erro desconhecido</font>');
+							alertify.error('<font color="white">Erro desconhecido (#2)</font>');
 						}
 					}
 
@@ -253,7 +257,7 @@ setTimeout(function() {
 
 						} else {
 
-							alertify.error('<font color="white">Erro desconhecido</font>');
+							alertify.error('<font color="white">Erro desconhecido (#3)</font>');
 						}
 					}
 
@@ -303,7 +307,7 @@ setTimeout(function() {
 
 						} else {
 
-							alertify.error('<font color="white">Erro desconhecido</font>');
+							alertify.error('<font color="white">Erro desconhecido (#4)</font>');
 						}
 					}
 
@@ -365,7 +369,7 @@ setTimeout(function() {
 
 						} else {
 
-							alertify.error('<font color="white">Erro desconhecido</font>');
+							alertify.error('<font color="white">Erro desconhecido (#5)</font>');
 						}
 					}
 
@@ -414,7 +418,7 @@ setTimeout(function() {
 
 					} else {
 
-						alertify.error('<font color="white">Erro desconhecido</font>');
+						alertify.error('<font color="white">Erro desconhecido (#5)</font>');
 					}
 				}
 
@@ -465,7 +469,7 @@ setTimeout(function() {
 
 					} else {
 
-						alertify.error('<font color="white">Erro desconhecido</font>');
+						alertify.error('<font color="white">Erro desconhecido (#6)</font>');
 					}
 				}
 
@@ -502,6 +506,7 @@ setTimeout(function() {
 
 		var num_mesa =  $(this).attr('num_mesa');
 		var num_pedido = $('#inputPedido').val();
+		var data_hora_cadastro_pedido = $('#inputDataHoraCadastroPedido').val();
 		$("#inputMesa").val(num_mesa);
 		$('#spanMesa').text(num_mesa);
 
@@ -544,7 +549,9 @@ $.ajax({
 	url: '../../models/comanda-eletronica/ModelAlteraStatusMesa.php',
 	data: {
 		instrucao:'indisponivel',
-		num_mesa:num_mesa
+		num_pedido:num_pedido,
+		num_mesa:num_mesa,
+		data_hora_cadastro_pedido:data_hora_cadastro_pedido
 	},
 	success: function(data) {
 	
@@ -564,7 +571,7 @@ $.ajax({
 		var num_pedido = $("#inputPedido").val();
 		var num_mesa =  $(this).attr('num_mesa');
 		$("#inputMesa").val(num_mesa);
-
+        
 
 		setTimeout(function() {
 			$("#cardMesa").fadeOut();
@@ -654,7 +661,7 @@ $.ajax({
 
     } else {
 
-    	alertify.error('<font color="white">Erro desconhecido</font>');
+    	alertify.error('<font color="white">Erro desconhecido (#7)</font>');
     }
 }
 
@@ -690,7 +697,7 @@ $.ajax({
 
     } else {
 
-    	alertify.error('<font color="white">Erro desconhecido</font>');
+    	alertify.error('<font color="white">Erro desconhecido (#8)</font>');
     }
 }
 
@@ -725,7 +732,7 @@ $.ajax({
 
     } else {
 
-    	alertify.error('<font color="white">Erro desconhecido</font>');
+    	alertify.error('<font color="white">Erro desconhecido (#9)</font>');
     }
 }
 
@@ -764,7 +771,7 @@ $.ajax({
 
     } else {
 
-    	alertify.error('<font color="white">Erro desconhecido</font>');
+    	alertify.error('<font color="white">Erro desconhecido (#10)</font>');
     }
 }
 
@@ -845,7 +852,7 @@ $.ajax({
 
     } else {
 
-    	alertify.error('<font color="white">Erro desconhecido</font>');
+    	alertify.error('<font color="white">Erro desconhecido (#11)</font>');
     }
 }
 
@@ -1095,23 +1102,20 @@ $("#spanModalNumPedido").text(num_pedido);
 
 	$(".btnFecharMesa").click(function(){ 
 
-// 		setTimeout(function() {
-// 			$(".cardNumeroPedido").fadeOut();
-// 		}, 200	);
-// 
-
 var num_mesa = $("#inputMesa").val();
-var data_hora_mesa_aberta = $('#spanDataHoraMesaAberta').text();
+var data_hora_mesa_aberto = $('#spanDataHoraMesaAberta').text();
 
-$("#inputDataHoraMesaAberta").val(data_hora_mesa_aberta);
 
+$("#inputDataHoraMesaAberta").val(data_hora_mesa_aberto);
+
+//alert(num_mesa + "...." + data_hora_mesa_aberto);
 
 $.ajax({
 	type: "POST",
 	url: '../../models/comanda-eletronica/ModelFecharMesa.php',
 	data: {
 		num_mesa:num_mesa,
-		data_hora_mesa_aberta:data_hora_mesa_aberta
+		data_hora_mesa_aberto:data_hora_mesa_aberto
 	},
 	success: function(data) {
 

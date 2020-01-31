@@ -17,10 +17,10 @@
   	<?php
 
 
-    $sqlComandaEletronica = "select * from comanda_eletronica where mesa = '1' and not fechado";
+    $sqlComandaEletronica = "select * from comanda_eletronica where mesa = $num_mesa and not data_hora_fechado";
     $resultCE=mysqli_query($conecta,$sqlComandaEletronica);
     $rowCE=mysqli_fetch_assoc($resultCE);
-    $CE = $rowCE['id'];
+    $CE = $rowCE['num_comanda'];
     
 
     $sql="
@@ -33,7 +33,7 @@
     from pedidos ped
     where 
     ped.mesa = $num_mesa and 
-    ped.cadastro >='".$rowCE['aberto']."' and
+    ped.cadastro >='".$rowCE['data_hora_aberto']."' and
     status not like '%pedido aberto%' 
     group by ped.num_pedido
     ";
@@ -63,8 +63,8 @@
        <div class='row'>
         <div class="col mr-2" style="margin-left:-12px;">
          <i class="far fa-clock"></i>
-         <span id="spanDataHoraMesaAberta" style="display:none;"><?=date("Y-m-d H:i:s",strtotime($rowCE['aberto']));?></span>
-         <?=date("H:i:s", strtotime($rowCE['aberto']));?> ~ <span class="badge badge-success">aberto</span></div>  
+         <span id="spanDataHoraMesaAberta" style="display:none;"><?=date("Y-m-d H:i:s",strtotime($rowCE['data_hora_aberto']));?></span>
+         <?=date("H:i:s", strtotime($rowCE['data_hora_aberto']));?> ~ <span class="badge badge-success">aberto</span></div>  
        </div>	
      </div>
 
@@ -85,7 +85,7 @@
     <div class="row">
       <div class="col mr-2 py-3">
        <i class="far fa-clock"></i>
-       <?=date("H:i:s", strtotime($rowCE['aberto']));?> ~ <span class="badge badge-success">aberto</span>
+       <?=date("H:i:s", strtotime($rowCE['data_hora_aberto']));?> ~ <span class="badge badge-success">aberto</span>
      </div>  
    </div> 
  </div>
@@ -113,7 +113,7 @@ if ($result=mysqli_query($conecta,$sql))
 
   if ($row['status'] == 'concluido'){
     $status='<span class="badge badge-success">'.$row['status']."</span>";
-  } else if ($row['status'] == 'pedido em processamento'){
+  } else if ($row['status'] == 'em produção'){
     $status='<span class="badge badge-warning">'.$row['status']."</span>";
   } else{
    $status=$row['status'];
@@ -171,7 +171,7 @@ if ($result=mysqli_query($conecta,$sql))
 
    if ($row['status'] == 'concluido'){
     $status='<font color="#1CC88A">●</font>';
-  } else if ($row['status'] == 'pedido em processamento'){
+  } else if ($row['status'] == 'em produção'){
     $status='<font color="red">●</span>';
   } else{
    $status=$row['status'];

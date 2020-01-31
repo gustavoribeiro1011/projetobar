@@ -9,7 +9,7 @@
 					</button>
 				</div>
 				<div class="modal-body">					
-					Essa mesa possui <span id="spanQtdPedidosEmProducao"></span>
+					Não é possivel fechar essa mesa pois existe <span id="spanQtdPedidosEmProducao"></span>.					
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>

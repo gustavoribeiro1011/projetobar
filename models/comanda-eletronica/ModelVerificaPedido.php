@@ -56,17 +56,24 @@ if ( $qtd_mesas['count'] > 0 ) {
 			'pedido aberto',
 			'$id_usuario',
 			'$nome_usuario',
-			'$agora'
+			now()
 			)"; 
 
 $conecta->query($inserePedido);
 $id_num_pedido = $conecta->insert_id;
 
+$pegaDataDoPedido = "select * from pedidos where id =".$id_num_pedido;
+$resultpegaDataDoPedido=mysqli_query($conecta,$pegaDataDoPedido);
+$rowpegaDataDoPedido=mysqli_fetch_assoc($resultpegaDataDoPedido);
+
+
 
 $array= array( 
 	"status" => '1',
 	"id_num_pedido" => $id_num_pedido,
-	"num_pedido" => $num_pedido	
+	"num_pedido" => $num_pedido,
+	"cadastro" => $rowpegaDataDoPedido['cadastro'] 	
+
 	);
 echo json_encode($array);
 
@@ -97,10 +104,20 @@ echo json_encode($array);
 			)"; 
 
 $conecta->query($inserePedido);
+$id_num_pedido = $conecta->insert_id;
+
+$pegaDataDoPedido = "select * from pedidos where id =".$id_num_pedido;
+$resultpegaDataDoPedido=mysqli_query($conecta,$pegaDataDoPedido);
+$rowpegaDataDoPedido=mysqli_fetch_assoc($resultpegaDataDoPedido);
 
 
 
-$array= array( 'status'=> '1', 'num_pedido' => $num_pedido);
+$array= array( 
+'status'=> '1',
+'num_pedido' => $num_pedido,
+'cadastro' => $rowpegaDataDoPedido['cadastro'],
+'num_comanda' => $rowpegaDataDoPedido['num_comanda']
+);
 echo json_encode($array);
 
 
@@ -110,13 +127,22 @@ $pegaUltimoPedidoSemFinalizar = "SELECT * FROM pedidos WHERE id_usuario = '$id_u
 $result=mysqli_query($conecta,$pegaUltimoPedidoSemFinalizar);
 $row=mysqli_fetch_assoc($result);
 
+$id_num_pedido = $row['id'];
+
+$pegaDataDoPedido = "select * from pedidos where id =".$id_num_pedido;
+$resultpegaDataDoPedido=mysqli_query($conecta,$pegaDataDoPedido);
+$rowpegaDataDoPedido=mysqli_fetch_assoc($resultpegaDataDoPedido);
+
+
 if($row['param_1'] == ''){
 
 $array= array(
 'status' => '2',
 'id_num_pedido' => $row['id'],
 'num_pedido' => $row['num_pedido'],
-'num_mesa' => $row['mesa']
+'num_mesa' => $row['mesa'],
+'cadastro' => $rowpegaDataDoPedido['cadastro'],
+'num_comanda' => $row['num_comanda']
 );
 
 echo json_encode($array);

@@ -9,26 +9,27 @@ include ('../../config.php');
 
 $id_usuario = $_SESSION['id'.$app_token];
 $num_mesa = $_POST['num_mesa'];
-$data_hora_mesa_aberta = $_POST['data_hora_mesa_aberta'];
+$data_hora_mesa_aberto = $_POST['data_hora_mesa_aberto'];
 
 
 
-$verificaPedidoNaoFinalizado = "SELECT COUNT(num_pedido) count FROM pedidos WHERE status = 'pedido em processamento' AND id_usuario = '$id_usuario' AND mesa=$num_mesa";
+$verificaPedidoNaoFinalizado = "SELECT COUNT(num_pedido) count FROM pedidos WHERE status = 'em produção' AND id_usuario = '$id_usuario' AND mesa=$num_mesa";
 $result=mysqli_query($conecta,$verificaPedidoNaoFinalizado);
 $row=mysqli_fetch_assoc($result);
 
 	if ($row['count'] == 0) { // se nao tiver pedidos sem finalizar	
 		
 		
-		if ($conecta->query($fecharMesa) === TRUE) {
-			
+				
 			$alteraStatusMesa = "UPDATE mesas SET status='disponivel',modificado=now() WHERE num_mesa=$num_mesa";
 			
 			if ( $conecta->query($alteraStatusMesa) === TRUE ) {
 				
-				$descartaPedido = "DELETE FROM pedidos WHERE num_pedido=".$num_pedido;
+				$alteraDataHoraFechado= "
+				UPDATE comanda_eletronica SET data_hora_fechado = now() 
+				WHERE mesa=".$num_mesa." AND data_hora_aberto = '$data_hora_mesa_aberto'";
 				
-				if ($conecta->query($descartaPedido) === TRUE) {
+				if ($conecta->query($alteraDataHoraFechado) === TRUE) {
 					$array= array('msg'=>'sucesso');
 					echo json_encode($array);
 				} else {
@@ -41,9 +42,7 @@ $row=mysqli_fetch_assoc($result);
 				echo json_encode($array);
 			}
 			
-		} else {
-			echo "falha";
-		}
+		
 		
 
 	} else {

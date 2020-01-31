@@ -13,7 +13,7 @@
 
     </div>
     <div class="modal-footer">
-      <button type="button" class="btn btn-warning btnDescartarPedido" data-dismiss="modal">Descatar pedido</button>
+      <button type="button" class="btn btn-warning btnDescartarPedido" data-dismiss="modal">Descartar pedido</button>
       <button type="button" class="btn btn-primary btnRetomarPedido" data-dismiss="modal">Retomar pedido</button>
     </div>
   </div>

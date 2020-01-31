@@ -8,7 +8,7 @@ session_start();
 include ('../../config.php');
 
 $num_pedido = $_POST['num_pedido'];
-$id_num_pedido = $_POST['id_num_pedido'];
+
 
 
 

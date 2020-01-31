@@ -53,7 +53,7 @@ sum((
  AND num_pedido = a.num_pedido
 )) soma
 FROM pedidos a
-WHERE a.status = 'pedido em processamento'
+WHERE a.status = 'em produção'
 ";
 $conecta->query($sqlPedidosEmAberto);
 $row_PedidosEmAberto=mysqli_fetch_assoc(mysqli_query($conecta,$sqlPedidosEmAberto));

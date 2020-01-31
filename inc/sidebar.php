@@ -34,7 +34,8 @@
         <div class="bg-white py-2 collapse-inner rounded">
 
           <a class="collapse-item  <?php //if($app_page_name=='novo pedido'){echo "active";}else{echo"";} ?>" href="<?php echo BASEURL; ?>views/comanda-eletronica/index.php">Novo pedido</a>
-         
+          <a class="collapse-item" href="<?php echo BASEURL; ?>views/comanda-eletronica/comandas-fechadas.php">Comandas Fechadas</a>
+
           <div class="collapse-divider"></div>
         </div>
       </div>
@@ -50,7 +51,7 @@
       <div id="collapsePage2" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
       <div class="bg-white py-2 collapse-inner rounded">
         <!-- Menu: Mesas -->
-        <a class="collapse-item <?php if($app_page_name=='monitor de pedidos'){echo "active";}else{echo"";} ?>" href="<?php echo BASEURL."views/monitor-pedidos/index.php";?>">Pedido</a>  
+        <a class="collapse-item <?php if($app_page_name=='monitor de pedidos'){echo "active";}else{echo"";} ?>" href="<?php echo BASEURL."views/monitor-pedidos/aberto.php";?>">Pedido</a>  
           <a class="collapse-item" href="#">Estoque</a>           
         <div class="collapse-divider"></div>
       </div>

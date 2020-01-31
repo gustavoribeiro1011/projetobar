@@ -10,20 +10,64 @@ include ('../../config.php');
 
 $instrucao = $_POST['instrucao'];
 
-$num_pedido = $_POST['num_pedido'];
+
 
 if ($instrucao == 'alterar status para concluido') {
+	$num_pedido = $_POST['num_pedido'];
 
-$sql = "UPDATE pedidos SET status='concluido', finalizadoem=now() WHERE num_pedido=$num_pedido and status='pedido em processamento'";
+	$sql = "UPDATE pedidos SET status='concluido', finalizadoem=now() WHERE num_pedido=$num_pedido and status='em produção'";
 
-if ($result=mysqli_query($conecta,$sql)){
+	if ($result=mysqli_query($conecta,$sql)){
 
-	echo 'sucesso';
+		echo 'sucesso';
 
-} else {
+	} else {
 
-	echo 'falha';
+		echo 'falha';
+
+	}
+
+} else if ($instrucao == 'periodoExibicao') {
+
+	$periodoExibicao = 	$_POST['periodoExibicao'];
+
+	if ($periodoExibicao == "todos"){
+
+		$_SESSION['periodoExibicao'.$app_token] = $periodoExibicao;
+		echo "sucesso";
+
+
+	} else if ($periodoExibicao == "hoje"){
+
+		$_SESSION['periodoExibicao'.$app_token] = $periodoExibicao;
+		echo "sucesso";
+
+	} else if ($periodoExibicao == "ontem"){
+
+		$_SESSION['periodoExibicao'.$app_token] = $periodoExibicao;
+		echo "sucesso";
+
+	} else if ($periodoExibicao == "mes"){
+
+		$_SESSION['periodoExibicao'.$app_token] = $periodoExibicao;
+		echo "sucesso";
+
+	} else if ($periodoExibicao == "personalizado"){
+
+		$d1 = 	$_POST['d1'];
+		$d2 = 	$_POST['d2'];
+		$_SESSION['periodoExibicao'.$app_token] = $periodoExibicao;
+		$_SESSION['periodoExibicaod1'.$app_token] = $d1;
+		$_SESSION['periodoExibicaod2'.$app_token] = $d2;
+		echo "sucesso";
+
+	} else if ($periodoExibicao == "semana"){
+
+		$_SESSION['periodoExibicao'.$app_token] = $periodoExibicao;
+		echo "sucesso";
+
+	} 
+
+
 
 }
-
-} 

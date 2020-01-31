@@ -32,7 +32,7 @@ if ($result=mysqli_query($conecta,$sql))
 {
 	?>
 
-        <div class="col-md-3">
+        <div class="col-md-6 col-xl-3">
          <div class="card">  
           <button class="btn btn-primary btn-block btnVoltarParaProduto">
           <div align="left"><i class="fas fa-arrow-left"></i> VOLTAR</div>
@@ -44,7 +44,7 @@ if ($result=mysqli_query($conecta,$sql))
 while ($row=mysqli_fetch_assoc($result))
 {
 ?>
-<div class="col-md-3">
+<div class="col-md-6 col-xl-3">
 <div class="card">  
 <button class="btn btn-primary btn-block btnVariante"
 id_unidade_medida="<?=$row['id_unidade_medida'];?>"
