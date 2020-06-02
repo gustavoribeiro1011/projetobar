@@ -32,7 +32,7 @@
               <tbody>  
                 <?php while ($row=mysqli_fetch_assoc($result)) { ?>
                 <tr>
-                  <td ><?=strtoupper($row['produto']);?> - <?=$row['medida'];?> <?=strtoupper($row['unidade_medida']);?></td>
+                  <td ><?=strtoupper($row['produto']);?></td>
                   <td><?=$row['categoria'];?></td>
                   <td><?=number_format((float)$row['preco'],2,".","");?></td> 
                 </tr>             
@@ -76,7 +76,7 @@
                     <div class="card-body">
                       <div class="row no-gutters align-items-center">
                         <div class="col mr-2">
-                          <div style="font-size:4vw;" class="h7 mb-0 font-weight-bold text-gray-800"><?=strtoupper($row['produto']);?> - <?=$row['medida'];?> <?=strtoupper($row['unidade_medida']);?></div>
+                          <div style="font-size:4vw;" class="h7 mb-0 font-weight-bold text-gray-800"><?=strtoupper($row['produto']);?></div>
                           <div style="font-size:3vw;" class="text-xs font-weight-bold text-primary text-uppercase mb-1"><?=$row['categoria'];?> - R$<?= number_format($row['preco'], 2, ',', '.');?></div>
                         </div>          
                       </div>

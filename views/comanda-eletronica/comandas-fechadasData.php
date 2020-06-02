@@ -78,7 +78,7 @@
 
          $val_total_consumido = $row3['val_total_consumido'];
 
-          $response .= " - " . $listaPedido['produto'] . " - R$ " .number_format($listaPedido['preco'], 2, ',', '.');
+          $response .= $listaPedido['produto'] . " - R$ " .number_format($listaPedido['preco'], 2, ',', '.');
           $response .="<br>";
         }
 
@@ -91,7 +91,8 @@
 
       <div class="row no-gutters align-items-center">
       <div class="col mr-2">
-
+-------------------------------------<br>
+<h2>Total: R$ '. number_format($val_total_consumido, 2, ',', '.').'</h2>
 
       </div>  
       </div>
@@ -104,7 +105,6 @@
       <div class="card-footer text-muted">
       <i class="fas fa-flag"></i> Data/hora aberto: '.date("d/m/Y H:i:s", strtotime($data['data_hora_aberto'])).'<br>
       <i class="fas fa-flag"></i> Data/hora fechado: '. date("d/m/Y H:i:s", strtotime($data['data_hora_fechado'])).'<br> 
-      <i class="fas fa-flag"></i> Total consumido: R$ '. number_format($val_total_consumido, 2, ',', '.').'<br> 
       <i class="fas fa-flag"></i> Garçom: '.$data['login'] . '<br>  
       </div>
       </div>

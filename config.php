@@ -120,6 +120,7 @@ $ControllerEditarCategoria .= BASEURL . "controllers/categorias/ControllerEditar
 $ControllerExcluirCategoria = $_SERVER['DOCUMENT_ROOT'];
 $ControllerExcluirCategoria .= BASEURL . "controllers/categorias/ControllerExcluir.php";
 
+
 $ModelSelectCategoria = $_SERVER['DOCUMENT_ROOT'];
 $ModelSelectCategoria .= BASEURL . "models/categorias/ModelSelect.php";
 

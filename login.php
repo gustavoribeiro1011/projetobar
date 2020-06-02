@@ -9,17 +9,17 @@ $titulo_pagina = 'Login';
 
 if (isset($_POST['entrar'])) {
 
-$login ='';
+$email ='';
 $entrar= '';
 $senha ='';
 
-$login = $_POST['email'];
+$email = $_POST['email'];
 
 $senha = md5($_POST['senha']);
 
 
   $verifica = mysqli_query($conecta, "SELECT * FROM usuarios WHERE email = 
-    '$login' AND senha = '$senha' ") or die("erro ao selecionar");
+    '$email' AND senha = '$senha' ") or die("erro ao selecionar");
 
   $row = mysqli_fetch_assoc($verifica);
 
@@ -30,7 +30,8 @@ $senha = md5($_POST['senha']);
     die();
   }else{
     $_SESSION['id'.$app_token] = $row['id'];
-    $_SESSION['login'.$app_token] = $login;
+    $_SESSION['email'.$app_token] = $email;
+    $_SESSION['login'.$app_token] =$row['login'];
     $_SESSION['login_nome'.$app_token] = $row['nome'];
     $_SESSION['sobrenome'.$app_token] = $row['sobrenome'];
     $_SESSION['nivel'.$app_token] = $row['nivel'];
