@@ -7,6 +7,8 @@
 session_start();
 include ('../../config.php');
 
+$id_usuario = $_SESSION['id'.$app_token];
+
 $instrucao = $_POST['instrucao'];
 $num_mesa = $_POST['num_mesa'];
 $num_pedido = $_POST['num_pedido'];
@@ -35,7 +37,7 @@ if ($instrucao == "disponivel"){
 		
 	} else {
 
-		$alteraStatusMesa = "UPDATE mesas SET status='disponivel',modificado=now() WHERE num_mesa=$num_mesa";
+		$alteraStatusMesa = "UPDATE mesas SET status='disponivel',usuario=0,modificado=now() WHERE num_mesa=$num_mesa";
 
 		if ( $conecta->query($alteraStatusMesa) === TRUE ) {
 			
@@ -59,7 +61,7 @@ if ($instrucao == "disponivel"){
 
 } else if ($instrucao == "indisponivel"){
 
-	$alteraStatusMesa = "UPDATE mesas SET status='indisponivel',modificado=now() WHERE num_mesa=$num_mesa";
+	$alteraStatusMesa = "UPDATE mesas SET status='indisponivel',usuario=$id_usuario,modificado=now() WHERE num_mesa=$num_mesa";
 
 	if ( $conecta->query($alteraStatusMesa) === TRUE ) {
 

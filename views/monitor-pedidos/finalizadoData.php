@@ -16,7 +16,11 @@ session_start();
     $start = $conecta->real_escape_string($_POST['start']);
     $limit = $conecta->real_escape_string($_POST['limit']);
 
-    $sql = $conecta->query("SELECT * FROM pedidos WHERE status = 'concluido' $periodoExibicao ORDER BY finalizadoem DESC LIMIT $start, $limit");
+    $sql = $conecta->query("
+      SELECT * FROM pedidos a
+      LEFT JOIN usuarios b  on (a.id_usuario=b.id)
+      WHERE a.status = 'concluido' $periodoExibicao 
+      ORDER BY a.finalizadoem DESC LIMIT $start, $limit");
     if ($sql->num_rows > 0) {
       $response = "";
 
@@ -88,7 +92,7 @@ session_start();
     <div class="card-footer text-muted">
 
     <i class="fas fa-clipboard-list"></i> Origem: '.$data['origem'].'<br>
-    <i class="fas fa-user"></i> Garçom: '.$data['usuario'].'<br>
+    <i class="fas fa-user"></i> Garçom: '. ucfirst(strtolower($data['nome'])) . " " . ucfirst(strtolower($data['sobrenome'])). '<br>
     <i class="fas fa-flag"></i> Emissão do pedido: '.date("d/m/Y", strtotime($data['cadastro'])).' às '.date("H:i:s", strtotime($data['cadastro'])).'<br>
     <i class="fas fa-flag-checkered"></i> Finalizado em: '.date("d/m/Y", strtotime($data['finalizadoem'])). ' às '.date("H:i:s", strtotime($data['finalizadoem'])).' <br>
     <i class="fas fa-stopwatch"></i> Tempo total: '.$tempo.'

@@ -105,7 +105,7 @@
       <div class="card-footer text-muted">
       <i class="fas fa-flag"></i> Data/hora aberto: '.date("d/m/Y H:i:s", strtotime($data['data_hora_aberto'])).'<br>
       <i class="fas fa-flag"></i> Data/hora fechado: '. date("d/m/Y H:i:s", strtotime($data['data_hora_fechado'])).'<br> 
-      <i class="fas fa-flag"></i> Garçom: '.$data['login'] . '<br>  
+      <i class="fas fa-flag"></i> Garçom: '.ucfirst(strtolower($data['nome'])) . " " . ucfirst(strtolower($data['sobrenome'])). '<br>  
       </div>
       </div>
 

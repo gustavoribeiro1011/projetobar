@@ -35,7 +35,7 @@ $qtd_mesas=mysqli_fetch_assoc($result);
 if ( $qtd_mesas['count'] > 0 ) {
 
 
-	$verificarPedidoExistente = "SELECT COUNT(num_pedido) as count FROM pedidos ORDER BY num_pedido DESC LIMIT 1"; 
+	$verificarPedidoExistente = "SELECT COUNT(num_pedido) as count FROM pedidos WHERE id_usuario = '$id_usuario' ORDER BY num_pedido DESC LIMIT 1"; 
 
 	if ($result=mysqli_query($conecta,$verificarPedidoExistente))
 
@@ -45,9 +45,11 @@ if ( $qtd_mesas['count'] > 0 ) {
 	if ($row['count'] <  1){ //se nao tiver nenhum pedido ou seja, count < 1 faz a primeira inclusão
 
 		
+		$pegaUltimoPedido = "SELECT num_pedido FROM pedidos ORDER BY num_pedido DESC LIMIT 1";
+		$result=mysqli_query($conecta,$pegaUltimoPedido);
+		$row=mysqli_fetch_assoc($result);
+		$num_pedido = $row['num_pedido'] + 1;
 
-		$num_pedido = 1;
-		
 
 		$inserePedido = "INSERT INTO pedidos (num_pedido,origem,status,id_usuario,usuario,cadastro)
 		VALUES (
@@ -86,7 +88,7 @@ echo json_encode($array);
 
 	if ($row['count'] == 0) { // se nao tiver pedidos sem finalizar
 
-		$pegaUltimoPedido = "SELECT num_pedido FROM pedidos WHERE id_usuario = '$id_usuario' ORDER BY num_pedido DESC LIMIT 1";
+		$pegaUltimoPedido = "SELECT num_pedido FROM pedidos ORDER BY num_pedido DESC LIMIT 1";
 		$result=mysqli_query($conecta,$pegaUltimoPedido);
 		$row=mysqli_fetch_assoc($result);
 		$num_pedido = $row['num_pedido'] + 1;

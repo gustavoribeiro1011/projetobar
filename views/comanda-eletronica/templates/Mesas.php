@@ -14,7 +14,8 @@
         if(!@include_once('../../../config.php')) {
         }
 
-        $sql="SELECT * FROM mesas ORDER BY num_mesa ASC";
+        $sql="SELECT * FROM mesas a 
+        left join usuarios b on a.usuario=b.id ORDER BY a.num_mesa ASC";
         if ($result=mysqli_query($conecta,$sql))
         {
           $i='0';
@@ -32,6 +33,7 @@
                   <button class="btn btn-success  btn-block btnMesa" num_mesa="<?=$row['num_mesa'];?>">
                     <span>Mesa</span>            
                     <div style="font-size:30px"><b><?php echo $row['num_mesa']; ?></b></div> 
+                    <span>Disponível</span>
                   </button>
                 </div>
               </div>
@@ -42,19 +44,26 @@
                   <button class="btn btn-success  btn-block btnMesa" num_mesa="<?=$row['num_mesa'];?>">
                     <span style="font-size:10px;">Mesa</span> 
                     <div style="font-size:15px;"><b><?php echo $row['num_mesa']; ?></b></div> 
+                    <span style="font-size:10px;">Disp.</span>
                   </button>
                 </div>
               </div>
               <?php
             } else if ($row['status'] == 'indisponivel'){
-              ?>
-              
+
+        
+              if ( ($row['id']) == ( $_SESSION['id'.$app_token] ) ){
+                ?>
+       
+
+
               <!-- Desktop/Tablet-->
               <div class="desktop" align="center">
                 <div class="card">
-                  <button class="btn btn-danger btn-block btnResumoMesa" num_mesa="<?=$row['num_mesa'];?>">
+                  <button class="btn btn-warning btn-block btnResumoMesa" num_mesa="<?=$row['num_mesa'];?>">
                     <span>Mesa</span>            
-                    <div style="font-size:30px"><b><?php echo $row['num_mesa']; ?></b></div> 
+                    <div style="font-size:30px"><b><?php echo $row['num_mesa']; ?></b></div>
+                    <span>você está atendendo</span> 
                   </button>
                 </div>
               </div>
@@ -62,12 +71,49 @@
               <!-- Mobile -->
               <div class="mobile" align="center">
                 <div class="card">
-                  <button class="btn btn-danger  btn-block btnResumoMesa" num_mesa="<?=$row['num_mesa'];?>">
+                  <button class="btn btn-warning  btn-block btnResumoMesa" num_mesa="<?=$row['num_mesa'];?>">
                     <span style="font-size:10px;">Mesa</span>
                     <div style="font-size:15px;"><b><?php echo $row['num_mesa']; ?></b></div> 
+                      <span style="font-size:10px;">você</span> 
                   </button>
                 </div>
               </div>
+
+
+              <?php
+              } else {
+
+?>
+
+
+              <!-- Desktop/Tablet-->
+              <div class="desktop" align="center">
+                <div class="card">
+                  <button class="btn btn-danger btn-block btnResumoMesa" num_mesa="<?=$row['num_mesa'];?>" disabled>
+                    <span>Mesa</span>            
+                    <div style="font-size:30px"><b><?php echo $row['num_mesa']; ?></b></div>
+                    <span><i class="fas fa-user"></i> <?=ucfirst(strtolower($row['nome']));?></span> 
+                  </button>
+                </div>
+              </div>
+
+              <!-- Mobile -->
+              <div class="mobile" align="center">
+                <div class="card">
+                  <button class="btn btn-danger  btn-block btnResumoMesa" num_mesa="<?=$row['num_mesa'];?>" disabled>
+                    <span style="font-size:10px;">Mesa</span>
+                    <div style="font-size:15px;"><b><?php echo $row['num_mesa']; ?></b></div> 
+                    <span style="font-size:10px;"><i class="fas fa-user"></i> <?=ucfirst(strtolower($row['nome']));?></span> 
+                  </button>
+                </div>
+              </div>
+
+
+              <?php }
+
+              ?>
+              
+
 
 
               <?php
