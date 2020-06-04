@@ -133,6 +133,19 @@ $("#btnRemoverTodasMesas").click(function(){
         });
         request.send();
 
+      } else if (data == 'possui mesas indisponiveis'){
+
+
+        /*
+         * @title {String or DOMElement} The dialog title.
+         * @message {String or DOMElement} The dialog contents.
+         * @onok {Function} Invoked when the user clicks OK button or closes the dialog.
+         *
+         * alertify.alert(title, message, onok);
+         *
+         */
+        alertify.alert('Oops!', 'Não foi possível excluir todas as mesas porque existem mesas indisponíveis!');
+
       } else if (data == 'falha'){
 
         alertify.error('<font color="white">Falha ao remover as mesas</font>');

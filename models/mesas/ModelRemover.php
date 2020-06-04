@@ -35,12 +35,40 @@ if ($_POST['instrucao'] == 'remover mesas'){
 
 } else if ($_POST['instrucao'] =='remover todas as mesas') {
 
-	try {
 
-		$removerTodasAsMesas = mysqli_query($conecta, "DELETE FROM mesas") or die("falha");
-  		$removerTodosOsPedidosEmAberto = mysqli_query($conecta, "DELETE FROM pedidos WHERE status = 'pedido aberto'") or die("falha");
+		try {
 
-		echo "sucesso";
+		$verificaStatusMesas = "SELECT count(id) as total FROM mesas WHERE status='indisponivel'";
+		$result=mysqli_query($conecta,$verificaStatusMesas);
+	    $row=mysqli_fetch_assoc($result);
+
+	    $total_mesas_indisponivel=$row['total'];
+
+	    if ($total_mesas_indisponivel>0){
+
+	    	echo "possui mesas indisponiveis";
+
+	    } else {
+
+				try {
+
+					$removerTodasAsMesas = mysqli_query($conecta, "DELETE FROM mesas") or die("falha");
+ 					$removerTodosOsPedidosEmAberto = mysqli_query($conecta, "DELETE FROM pedidos WHERE status = 'pedido aberto'") or die("falha");
+
+					echo "sucesso";
+
+
+				} catch (Exception $e) {
+					
+					echo "falha";
+
+					
+				}
+
+
+	    }
+
+	
 
 
 	} catch (Exception $e) {
@@ -49,6 +77,10 @@ if ($_POST['instrucao'] == 'remover mesas'){
 
 		
 	}
+
+
+
+
 
 }
 
