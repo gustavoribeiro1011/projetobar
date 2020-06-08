@@ -20,7 +20,9 @@ $FimPedido .= BASEURL . "views/comanda-eletronica/templates/FimPedido.php";
   <!-- Content Row -->
   <div class="row">
 
-   <?php include ($Mesas); ?>
+   <?php// include ($Mesas); ?>
+
+   <div id="divMesas"></div>
 
    <?php include ($Categorias); ?>
 
@@ -72,7 +74,6 @@ $FimPedido .= BASEURL . "views/comanda-eletronica/templates/FimPedido.php";
       </div>
     </div>
   </div>
-
 
 
 

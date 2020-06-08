@@ -1,4 +1,42 @@
 <script>
+
+			        //script que atualiza mesa de tempos em tempos -INICIO
+
+
+		    var tempo = 2000; //1000ms = 1s
+
+			
+			    			
+			setTimeout(function() {
+				$("#cardMesa").fadeIn();
+			}, 200	);
+
+    	
+            //chama a função atualizaDados 
+            window.setTimeout(atualizaDados, 1);
+
+            function atualizaDados() {
+
+            //carrega o conteúdo do arquivo "ajax.php" para dentro da div#devolucoes-pendentes
+            $("#divMesas").load("<?php echo BASEURL;?>views/comanda-eletronica/templates/Mesas.php");
+
+            setTimeout(function() {
+				$("#cardMesa").fadeIn();
+			}, 0	);
+           
+            // para perpetuar a chamada da função 
+            tempoAtualiza = window.setTimeout(atualizaDados, tempo);
+
+            }
+
+            function StopAtualizaDados() {
+ 			clearTimeout(tempoAtualiza);
+			}
+
+
+		  
+           //script que atualiza mesa de tempos em tempos -FIM
+
 	var data = "1";
 	$.ajax({
 		type: "POST",
@@ -35,12 +73,7 @@
 			$('#inputDataHoraCadastroPedido').val(data_hora_cadastro_pedido);
 
 			
-		
 
-
-			setTimeout(function() {
-				$("#cardMesa").fadeIn();
-			}, 200	);
 
 		} else 	if (data['status'] == '2'){ //2 - Existe 1 pedido sem finaliza
 
@@ -110,6 +143,8 @@ $(".btnDescartarPedido").click(function(){
 
 
 			});
+
+
 
 			$(".btnRetomarPedido").click(function(){ 
 
@@ -390,11 +425,9 @@ setTimeout(function() {
 				
 					//$("#spanPedido").html(num_pedido);
 
-					setTimeout(function() {
-						$("#cardMesa").fadeIn();
-					}, 200	);
+	        //script que atualiza mesa de tempos em tempos -INICIO
 
-
+           //script que atualiza mesa de tempos em tempos -FIM
 
 			// reset param_1
 			var instrucao = 'reset param_1';
@@ -493,146 +526,8 @@ setTimeout(function() {
 
 
 
-	$(".btnMesa").click(function(){ 
 
 
-
-		setTimeout(function() {
-			$("#cardMesa").fadeOut();
-		}, 20);
-		setTimeout(function() {
-			$("#cardCategoria").fadeIn();
-		}, 480	);
-
-		var num_mesa =  $(this).attr('num_mesa');
-		var num_pedido = $('#inputPedido').val();
-		var data_hora_cadastro_pedido = $('#inputDataHoraCadastroPedido').val();
-		$("#inputMesa").val(num_mesa);
-		$('#spanMesa').text(num_mesa);
-
-
-
-
-
-// cadastra mesa na tabela pedidos na coluna principal do pedido.
-var instrucao = '';
-$.ajax({
-	type: "POST",
-	url: '../../models/comanda-eletronica/ModelCadastraMesa.php',
-	data: {
-		num_pedido:num_pedido,
-		num_mesa:num_mesa,
-		instrucao:instrucao
-	},
-	success: function(data) {
-
-		if (data == 'sucesso'){
-
-    	//alertify.success('<font color="white">"num_mesa" cadastrada com sucesso</font>');
-
-    }else if (data == 'falha'){
-
-    	//alertify.error('<font color="white">Falha ao cadastrar "num_mesa" na tabela "pedidos"</font>');
-
-    } else {
-
-    	alertify.error('<font color="white">Erro desconhecido ao cadastrar numero da mesa na tabela pedidos</font>');
-    }
-}
-
-});//fim ajax
-
-
-// aLtera status da mesa para indisponivel
-$.ajax({
-	type: "POST",
-	url: '../../models/comanda-eletronica/ModelAlteraStatusMesa.php',
-	data: {
-		instrucao:'indisponivel',
-		num_pedido:num_pedido,
-		num_mesa:num_mesa,
-		data_hora_cadastro_pedido:data_hora_cadastro_pedido
-	},
-	success: function(data) {
-	
-		
-	}
-
-});//fim ajax
-
-
-
-
-
-
-});
-
-	$(".btnResumoMesa").click(function(){ 
-		var num_pedido = $("#inputPedido").val();
-		var num_mesa =  $(this).attr('num_mesa');
-		$("#inputMesa").val(num_mesa);
-        
-
-		setTimeout(function() {
-			$("#cardMesa").fadeOut();
-		}, 150	);
-
-		setTimeout(function() {
-			$(".cardNumeroPedido").fadeOut();
-		}, 150	);
-
-		var num_mesa =  $(this).attr('num_mesa');
-
-	        //exibe o resumo mesa
-	        $.post("<?php echo BASEURL; ?>views/comanda-eletronica/templates/ResumoMesa.php",
-	        {
-	        	num_mesa:num_mesa
-	        },
-	        function (resultado){
-	        	$('#includeResumoMesa').html(resultado);
-	        	eval(document.getElementById('scriptControllerCapturaDados').innerHTML);  
-	        	eval(document.getElementById('scriptDataTable').innerHTML); 
-
-	        });
-
-
-	        // cadastra mesa na tabela pedidos na coluna principal do pedido.
-var instrucao = 'cadastra mesa';
-$.ajax({
-	type: "POST",
-	url: '../../models/comanda-eletronica/ModelCadastraMesa.php',
-	data: {
-		num_pedido:num_pedido,
-		num_mesa:num_mesa,
-		instrucao:instrucao
-	},
-	success: function(data) {
-
-		if (data == 'sucesso'){
-
-    	//alertify.success('<font color="white">"num_mesa" cadastrada com sucesso</font>');
-
-    }else if (data == 'falha'){
-
-    	//alertify.error('<font color="white">Falha ao cadastrar "num_mesa" na tabela "pedidos"</font>');
-
-    } else {
-
-    	alertify.error('<font color="white">Erro desconhecido ao cadastrar numero da mesa na tabela pedidos</font>');
-    }
-}
-
-});//fim ajax
-
-
-
-
-	        setTimeout(function() {
-	        	$("#cardResumoMesa").fadeIn();
-	        }, 650	);
-
-
-	    });
 
 	$(".btnVoltarParaMesas").click(function(){ 
 
@@ -1149,3 +1044,4 @@ dataType:"json"
 
 
 </script>
+

@@ -197,7 +197,7 @@ if ($result=mysqli_query($conecta,$sql))
 <br>
 
 <div class="col-md-12 col-sm-12 col-xl-12 col-lg-12 py-2" align="center" id="adicionar-item-mobile">
- <button class="btn btn-lg btn-warning btn-block" >Fechar mesa</button>
+ <button class="btn btn-lg btn-warning btn-block btnFecharMesa">Fechar mesa</button>
  <button class="btn btn-lg btn-primary btn-block btnVoltarParaMesas" >Voltar</button>
 </div>
 
