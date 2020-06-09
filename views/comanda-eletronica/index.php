@@ -5,11 +5,12 @@ session_start();
 $app_item="comanda eletronica";
 $app_page_name="novo pedido";
 
-
 include ('../../config.php');
 
 
 include('../../inc/header.php'); 
+
+
 
 ?>
 

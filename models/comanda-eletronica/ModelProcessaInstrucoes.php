@@ -7,6 +7,20 @@
 session_start();
 include ('../../config.php');
 
+/**
+ * STATUS
+ * 1 - Inclusão do pedido
+ * 2 - Existe 1 pedido sem finalizar
+ * 3 - Existe mais de 1 pedido sem finalizar
+ * 4 - Nenhuma mesa foi cadastrada
+ * 5 - Cadastro de novo item
+ * 6 - Voltar para tela resumo de pedidos
+ * 7 - Voltar para tela categorias
+ * 8 - Voltar para tela produtos
+ * 9 - Voltar para tela mesas
+ * 10 - novo pedido
+ */
+
 
 $instrucao = $_POST['instrucao'];
 
@@ -14,7 +28,9 @@ $num_pedido = $_POST['num_pedido'];
 
 if ($instrucao == 'novo item') {
 
-$sql = "UPDATE pedidos SET param_1='novo item' WHERE num_pedido=$num_pedido and status='pedido aberto'";
+
+
+$sql = "UPDtemE pedidos SET param_1='novo item' WHERE num_pedido=$num_pedido and status='pedido aberto'";
 
 if ($result=mysqli_query($conecta,$sql)){
 
@@ -98,6 +114,7 @@ if ($result=mysqli_query($conecta,$sql)){
 } 
 if ($instrucao == 'novo pedido') {
 
+$_SESSION['cardmesa'.$app_token] = 'inativo'; 
 
 $sql = "
 UPDATE pedidos SET 

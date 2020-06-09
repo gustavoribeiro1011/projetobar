@@ -42,7 +42,7 @@ $FimPedido .= BASEURL . "views/comanda-eletronica/templates/FimPedido.php";
 
 
 <!-- Início: Formulário para cadastro de pedido -->
-<div class="container-fluid" style="display:none;">
+<div class="container-fluid" style="display:block;">
   <div class="row">
     <div class="col-sm-12">
       <div class="card shadow">
@@ -52,6 +52,7 @@ $FimPedido .= BASEURL . "views/comanda-eletronica/templates/FimPedido.php";
               <form>
                 <h6 class="m-0 font-weight-bold text-primary">Dados da comanda eletronica para cadastrar pedido no BD:</h6>
                 Agora: <u><?php echo $agora = date("d/m/Y H:i:s");?></u><br>
+                <label for="">Status:</label>  <input type='text' class="form-control" id="inputStatus" disabled></input>
                 <label for="">Nº Pedido:</label>  <input type='text' class="form-control" id="inputPedido" disabled></input>
                 <label for="">Data/Hora cadastro do pedido:</label>  <input type='text' class="form-control" id="inputDataHoraCadastroPedido" disabled></input>
                 <label for="">Num Comanda:</label>  <input type='text' class="form-control" id="inputIdComanda" disabled></input>
@@ -66,6 +67,7 @@ $FimPedido .= BASEURL . "views/comanda-eletronica/templates/FimPedido.php";
                 <label for="">Unidade de Medida:</label>  <input type='text' class="form-control" id="inputUnidadeMedida" disabled></input>
                 <label for="">Medida:</label>  <input type='text' class="form-control" id="inputMedida" disabled></input>
                 <label for="">Data/Hora mesa aberta:</label>  <input type='text' class="form-control" id="inputDataHoraMesaAberta" disabled></input>
+
 
               </form>
             </div>

@@ -15,11 +15,10 @@ $app_token= 'appbar1';
  *	CAMINHO NO SERVER PARA O SISTEMA (INTERNO)
  *
  */ 
-//if ( !defined('BASEURL') )
-//	define('BASEURL', '/'.$app_directory .'/');
-//
-//if ( !defined('URLSERVER') )
-	define('URLSERVER', $_SERVER['HTTP_HOST']);
+if ( !defined('BASEURL') )
+	define('BASEURL', '/'.$app_directory .'/');
+
+if ( !defined('URLSERVER') )define('URLSERVER', $_SERVER['HTTP_HOST']);
 
 
 
@@ -28,21 +27,21 @@ $app_token= 'appbar1';
  *	CAMINHO NO SERVER PARA O SISTEMA (EXTERNO)
  *
  */ 
-if ( !defined('BASEURL') )
-	define('BASEURL', '/');
-
-if ( !defined('URLSERVER') )
-	define('URLSERVER', $_SERVER['HTTP_HOST']);
+//if ( !defined('BASEURL') )
+//	define('BASEURL', '/');
+//
+//if ( !defined('URLSERVER') )
+//	define('URLSERVER', $_SERVER['HTTP_HOST']);
 
 /**
  *
  *	CONEXÃO INTERNA
  *
  */ 
-// define('DB_NAME', 'projetobar');
-// define('DB_USER', 'root');
-// define('DB_PASS', 'usbw');
-// define('DB_HOST', 'localhost');
+ define('DB_NAME', 'projetobar');
+ define('DB_USER', 'root');
+ define('DB_PASS', 'usbw');
+ define('DB_HOST', 'localhost');
  
  $conecta = mysqli_connect(DB_HOST, DB_USER, DB_PASS, DB_NAME) or die("Não foi possível estabelecer a conexão com o BD.");
  $conecta->set_charset("utf8");
@@ -52,13 +51,13 @@ if ( !defined('URLSERVER') )
  *	CONEXÃO EXTERNA
  *
  */ 
-define('DB_NAME', 'epiz_25969040_projetobar');
-define('DB_USER', 'epiz_25969040');
-define('DB_PASS', 'hD8B7N2o62bwKce');
-define('DB_HOST', 'sql300.epizy.com');
-
-$conecta = mysqli_connect(DB_HOST, DB_USER, DB_PASS, DB_NAME) or die("Não foi possível estabelecer a conexão com o BD.");
-$conecta->set_charset("utf8");
+//define('DB_NAME', 'epiz_25969040_projetobar');
+//define('DB_USER', 'epiz_25969040');
+//define('DB_PASS', 'hD8B7N2o62bwKce');
+//define('DB_HOST', 'sql300.epizy.com');
+//
+//$conecta = mysqli_connect(DB_HOST, DB_USER, DB_PASS, DB_NAME) or die("Não foi possível estabelecer a conexão com o BD.")//;
+//$conecta->set_charset("utf8");
 
 
 

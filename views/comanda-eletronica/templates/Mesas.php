@@ -1,7 +1,17 @@
       <?php
       session_start();
+
+
         if(!@include_once('../../../config.php')) {
-        }?>
+        }
+
+
+$valor = isset( $_SESSION['cardmesa'.$app_token] ) ?  : $_SESSION['cardmesa'.$app_token] = 'ativo' ;
+
+
+        if ( $_SESSION['cardmesa'.$app_token] == 'ativo'){
+
+  ?>
 <div class="col-xl-8 col-lg-7" id="cardMesa" >
   <div class="card shadow mb-4">
 
@@ -137,7 +147,8 @@
 </div>
 
 
-
+<?php }  //fim  de carmesa ativo 
+ else {}?>
 <script id="scriptControllerCapturaDadosMesas">
   
   
@@ -285,5 +296,7 @@ $.ajax({
 
       });
 </script>
+
+
 
 

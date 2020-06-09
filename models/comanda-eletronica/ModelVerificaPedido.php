@@ -69,7 +69,6 @@ $resultpegaDataDoPedido=mysqli_query($conecta,$pegaDataDoPedido);
 $rowpegaDataDoPedido=mysqli_fetch_assoc($resultpegaDataDoPedido);
 
 
-
 $array= array( 
 	"status" => '1',
 	"id_num_pedido" => $id_num_pedido,
@@ -113,6 +112,7 @@ $resultpegaDataDoPedido=mysqli_query($conecta,$pegaDataDoPedido);
 $rowpegaDataDoPedido=mysqli_fetch_assoc($resultpegaDataDoPedido);
 
 
+$_SESSION['cardmesa'.$app_token] = 'ativo'; 
 
 $array= array( 
 'status'=> '1',

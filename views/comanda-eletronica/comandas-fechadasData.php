@@ -8,6 +8,8 @@
   if(!@include_once('../../config.php')) {
   // do something
   }
+
+  $val_total_consumido = 0;
   ?>
 
 

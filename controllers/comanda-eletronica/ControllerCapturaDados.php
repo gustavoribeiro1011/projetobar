@@ -1,3 +1,4 @@
+
 <script>
 
 			        //script que atualiza mesa de tempos em tempos -INICIO
@@ -47,6 +48,7 @@
 		success: function(data) {	
 
 		//alert(data['status']);
+		$('#inputStatus').val(data['status']);
 
 		var id_num_pedido = data['id_num_pedido'];
 		var num_pedido = data['num_pedido'];
@@ -60,7 +62,10 @@
 
 		if (data['status'] == '1'){
 
-			//alert("1 - Inclusao do primeiro pedido.");
+//alert("1 - Inclusao do primeiro pedido.");
+
+
+			
 
 			var id_num_pedido = data['id_num_pedido'];
 			
@@ -73,9 +78,11 @@
 			$('#inputDataHoraCadastroPedido').val(data_hora_cadastro_pedido);
 
 			
-
-
 		} else 	if (data['status'] == '2'){ //2 - Existe 1 pedido sem finaliza
+
+
+		
+			
 
 			//alert(' Existe 1 pedido sem finalizar');
 			var id_num_pedido = data['id_num_pedido'];		
@@ -84,6 +91,7 @@
 			var num_mesa = data['num_mesa'];
 			
 			$('#inputIdComanda').val(num_comanda);
+
 
 
 
@@ -462,6 +470,8 @@ setTimeout(function() {
 
 					else if (data['status'] == '10'){ //10 - novo pedido
 
+				StopAtualizaDados()	 
+
 						var num_pedido = data['num_pedido'];
 						var num_mesa = data['num_mesa'];
 
@@ -719,7 +729,7 @@ setTimeout(function() {
 
 	$(".btnAdicionarItem").click(function(){ 
 
-
+		
 		var num_pedido	  =  $("#inputPedido").val();
 		var num_mesa = $("#inputMesa").val();
 
