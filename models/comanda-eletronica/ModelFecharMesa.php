@@ -20,13 +20,14 @@ $row=mysqli_fetch_assoc($result);
 	if ($row['count'] == 0) { // se nao tiver pedidos sem finalizar	
 		
 		
-				
-			$alteraStatusMesa = "UPDATE mesas SET status='disponivel',modificado=now() WHERE num_mesa=$num_mesa";
+			$agora = date('Y-m-d H:i:s');
+	
+			$alteraStatusMesa = "UPDATE mesas SET status='disponivel',modificado='$agora' WHERE num_mesa=$num_mesa";
 			
 			if ( $conecta->query($alteraStatusMesa) === TRUE ) {
-				
+				$agora = date('Y-m-d H:i:s');				
 				$alteraDataHoraFechado= "
-				UPDATE comanda_eletronica SET data_hora_fechado = now() 
+				UPDATE comanda_eletronica SET data_hora_fechado = '$agora' 
 				WHERE mesa=".$num_mesa." AND data_hora_aberto = '$data_hora_mesa_aberto'";
 				
 				if ($conecta->query($alteraDataHoraFechado) === TRUE) {

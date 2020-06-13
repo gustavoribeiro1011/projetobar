@@ -13,7 +13,8 @@ $ConsultaStatus=mysqli_fetch_assoc($resultStatus);
 if ($ConsultaStatus['id']>1) { // se ja existir status cadastrado
 
 	if ($ConsultaStatus['status'] == 'toggled'){
-		$updateStatus = "UPDATE sidebar SET status='', cadastro=now() WHERE id_usuario =".$_SESSION['id'.$app_token]." "; 
+		$agora = ('Y-m-d H:i:s');
+		$updateStatus = "UPDATE sidebar SET status='', cadastro='$agora' WHERE id_usuario =".$_SESSION['id'.$app_token]." "; 
 
 		if ($conecta->query($updateStatus) === TRUE) {
 			echo "sucesso 1";
@@ -23,7 +24,8 @@ if ($ConsultaStatus['id']>1) { // se ja existir status cadastrado
 
 
 	} else {
-		$updateStatus = "UPDATE sidebar SET status='toggled', cadastro=now() WHERE id_usuario =".$_SESSION['id'.$app_token]." "; 
+		$agora = ('Y-m-d H:i:s');
+		$updateStatus = "UPDATE sidebar SET status='toggled', cadastro='$agora' WHERE id_usuario =".$_SESSION['id'.$app_token]." "; 
 
 		if ($conecta->query($updateStatus) === TRUE) {
 			echo "sucesso 2";
@@ -33,8 +35,8 @@ if ($ConsultaStatus['id']>1) { // se ja existir status cadastrado
 	}
 
 } else {
-
-	$insereStatus = "INSERT INTO  sidebar (id_usuario,status,cadastro) VALUES ('".$_SESSION['id'.$app_token]."','".$status."', now())"; 
+$agora = ('Y-m-d H:i:s');
+	$insereStatus = "INSERT INTO  sidebar (id_usuario,status,cadastro) VALUES ('".$_SESSION['id'.$app_token]."','".$status."', '$agora')"; 
 
 	if ($conecta->query($insereStatus) === TRUE) {
 		echo "sucesso 3";

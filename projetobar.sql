@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Máquina: localhost
--- Data de Criação: 31-Jan-2020 às 18:38
+-- Data de Criação: 13-Jun-2020 às 13:43
 -- Versão do servidor: 5.6.13
 -- versão do PHP: 5.4.17
 
@@ -36,7 +36,7 @@ CREATE TABLE IF NOT EXISTS `categorias` (
   `cadastro` datetime NOT NULL,
   `modificado` datetime NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=13 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=10 ;
 
 --
 -- Extraindo dados da tabela `categorias`
@@ -67,6 +67,26 @@ CREATE TABLE IF NOT EXISTS `comanda_eletronica` (
   `usuario` int(11) NOT NULL COMMENT 'FK',
   PRIMARY KEY (`num_comanda`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `configuracoes_sistema`
+--
+
+CREATE TABLE IF NOT EXISTS `configuracoes_sistema` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `usuario` int(11) NOT NULL,
+  `fuso_horario` varchar(100) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
+
+--
+-- Extraindo dados da tabela `configuracoes_sistema`
+--
+
+INSERT INTO `configuracoes_sistema` (`id`, `usuario`, `fuso_horario`) VALUES
+(4, 1, 'America/Sao_Paulo');
 
 -- --------------------------------------------------------
 
@@ -300,8 +320,8 @@ CREATE TABLE IF NOT EXISTS `sidebar` (
 --
 
 INSERT INTO `sidebar` (`id`, `id_usuario`, `status`, `cadastro`) VALUES
-(4, 1, 'toggled', '2020-01-31 09:08:04'),
-(5, 2, 'toggled', '2019-11-14 14:06:25');
+(4, 1, 'toggled', '2020-06-12 15:46:55'),
+(5, 2, '', '2020-06-08 13:36:38');
 
 -- --------------------------------------------------------
 
@@ -414,8 +434,8 @@ CREATE TABLE IF NOT EXISTS `usuarios` (
 --
 
 INSERT INTO `usuarios` (`id`, `login`, `nome`, `sobrenome`, `senha`, `email`, `nivel`) VALUES
-(0000000001, 'projetobar', 'projetobar', '', '5e0b1add25eddd4228e1111d9746b00f', 'projetobar@gmail.com', 'adm'),
-(0000000002, 'gustavo.ribeiro', 'Gustavo', 'Ribeiro', '202cb962ac59075b964b07152d234b70', 'gustavoribeiro1011@gmail.com', 'adm');
+(0000000001, 'projetobar', 'Projeto', 'Bar', '5e0b1add25eddd4228e1111d9746b00f', 'projetobar@gmail.com', 'adm'),
+(0000000002, 'gustavo.ribeiro', 'Gustavo', 'Ribeiro', '3720f0cc1e95a2c206308029c7f47bb5', 'gustavoribeiro1011@gmail.com', 'adm');
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

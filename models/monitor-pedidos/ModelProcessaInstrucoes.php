@@ -14,8 +14,9 @@ $instrucao = $_POST['instrucao'];
 
 if ($instrucao == 'alterar status para concluido') {
 	$num_pedido = $_POST['num_pedido'];
+	$agora = ('Y-m-d H:i:s');
 
-	$sql = "UPDATE pedidos SET status='concluido', finalizadoem=now() WHERE num_pedido=$num_pedido and status='em produção'";
+	$sql = "UPDATE pedidos SET status='concluido', finalizadoem='$agora' WHERE num_pedido=$num_pedido and status='em produção'";
 
 	if ($result=mysqli_query($conecta,$sql)){
 

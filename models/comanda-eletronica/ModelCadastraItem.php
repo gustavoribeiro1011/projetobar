@@ -21,7 +21,7 @@ $unidade_medida=$_POST['unidade_medida'];
 $medida=$_POST['medida'];
 
 
-
+$agora = date('Y-m-d H:i:s');
 $cadastraItem = "INSERT INTO pedidos
 (num_pedido,mesa,origem,id_produto,produto,id_categoria,categoria,id_preco,preco,id_unidade_medida,unidade_medida,medida,status,id_usuario,usuario,cadastro) 
 VALUES(
@@ -40,7 +40,7 @@ VALUES(
 	'item cadastrado',
 	'".$_SESSION['id'.$app_token]."',
 	'".$_SESSION['login_nome'.$app_token]." ".$_SESSION['sobrenome'.$app_token]."',
-	now()
+	'$agora'
 	)
 ";
 

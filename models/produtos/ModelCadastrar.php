@@ -49,8 +49,8 @@ $variacao_unidade_medida=$row_unidade_medida["variacao"];
 if( $variacao_unidade_medida == 0){
 
 	$variacao_unidade_medida=1;
-
-	$cadastrarUnidadeMedida = "INSERT INTO unidade_medida (id_produto,variacao,medida,unidade_medida,cadastro) VALUES ($id_produto,$variacao_unidade_medida,$v1,'$v2',now() )"; 
+    $agora = ('Y-m-d H:i:s');
+	$cadastrarUnidadeMedida = "INSERT INTO unidade_medida (id_produto,variacao,medida,unidade_medida,cadastro) VALUES ($id_produto,$variacao_unidade_medida,$v1,'$v2','$agora' )"; 
 	
 	$conecta->query($cadastrarUnidadeMedida);
 

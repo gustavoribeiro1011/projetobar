@@ -10,11 +10,11 @@ include ('../../config.php');
 $idcategoria = $_POST['idcategoria'];
 $categoria = $_POST['categoria'];
 $icone = $_POST['icone'];
-
+$agora = ('Y-m-d H:i:s');
 $editarCategoria = "UPDATE categorias
 SET categoria='$categoria',
 icone='$icone',
-modificado=now()
+modificado='$agora'
 
 WHERE id='".$idcategoria."'"; 
 

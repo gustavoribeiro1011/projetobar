@@ -9,67 +9,56 @@ $app_directory= 'projetobar';
 
 $app_token= 'appbar1';
 
-
-/**
- *
- *	CAMINHO NO SERVER PARA O SISTEMA (INTERNO)
- *
- */ 
-if ( !defined('BASEURL') )
-	define('BASEURL', '/'.$app_directory .'/');
-
-if ( !defined('URLSERVER') )define('URLSERVER', $_SERVER['HTTP_HOST']);
-
+error_reporting(0);
 
 
 /**
  *
- *	CAMINHO NO SERVER PARA O SISTEMA (EXTERNO)
+ *	CONFIGURAÇÕES INTERNA
  *
  */ 
-//if ( !defined('BASEURL') )
-//	define('BASEURL', '/');
-//
-//if ( !defined('URLSERVER') )
-//	define('URLSERVER', $_SERVER['HTTP_HOST']);
+
+   //CONEXÃO
+   define('DB_NAME', 'projetobar');
+   define('DB_USER', 'root');
+   define('DB_PASS', 'usbw');
+   define('DB_HOST', 'localhost');
+   $conecta = mysqli_connect(DB_HOST, DB_USER, DB_PASS, DB_NAME) or die("Não foi possível estabelecer a conexão com o BD.");
+   $conecta->set_charset("utf8");
+   //CAMINHO NO SERVER PARA O SISTEMA
+   if ( !defined('BASEURL') ) define('BASEURL', '/'.$app_directory .'/');
+   if ( !defined('URLSERVER') ) define('URLSERVER', $_SERVER['HTTP_HOST']);
+
+
 
 /**
  *
- *	CONEXÃO INTERNA
+ *	CONFIGURAÇÕES EXTERNAS
  *
  */ 
- define('DB_NAME', 'projetobar');
- define('DB_USER', 'root');
- define('DB_PASS', 'usbw');
- define('DB_HOST', 'localhost');
+
+   ////CONEXÃO EXTERNA  
+   //define('DB_NAME', 'epiz_25969040_projetobar');
+   //define('DB_USER', 'epiz_25969040');
+   //define('DB_PASS', 'hD8B7N2o62bwKce');
+   //define('DB_HOST', 'sql300.epizy.com');
+   //$conecta = mysqli_connect(DB_HOST, DB_USER, DB_PASS, DB_NAME) or die("Não foi possível estabelecer a conexão com o //.")//;
+   //$conecta->set_charset("utf8");
+
+
+   ////CAMINHO NO SERVER PARA O SISTEMA 
+   // if ( !defined('BASEURL') ) define('BASEURL', '/');
+   //if ( !defined('URLSERVER') ) define('URLSERVER', $_SERVER['HTTP_HOST']);
  
- $conecta = mysqli_connect(DB_HOST, DB_USER, DB_PASS, DB_NAME) or die("Não foi possível estabelecer a conexão com o BD.");
- $conecta->set_charset("utf8");
 
 /**
  *
- *	CONEXÃO EXTERNA
+ *	LOCALIZAÇÃO
  *
  */ 
-//define('DB_NAME', 'epiz_25969040_projetobar');
-//define('DB_USER', 'epiz_25969040');
-//define('DB_PASS', 'hD8B7N2o62bwKce');
-//define('DB_HOST', 'sql300.epizy.com');
-//
-//$conecta = mysqli_connect(DB_HOST, DB_USER, DB_PASS, DB_NAME) or die("Não foi possível estabelecer a conexão com o BD.")//;
-//$conecta->set_charset("utf8");
+ setlocale(LC_TIME, 'portuguese'); 
 
-
-
-/**
- *
- *  LOCALIZACAO
- *
- */ 
-setlocale(LC_TIME, 'portuguese'); 
-
-date_default_timezone_set('America/Sao_Paulo');
-
+ date_default_timezone_set($_SESSION['fuso_horario'.$app_token]);
 
 
 /**
@@ -100,10 +89,6 @@ $ControllerMainProduto .= BASEURL . "controllers/produtos/ControllerMain.php";
 
 $ViewVariacaoEditar = $_SERVER['DOCUMENT_ROOT'];
 $ViewVariacaoEditar .= BASEURL . "views/produtos/templates/VariacaoEditar.php";
-
-
-
-
 
 
 // Categorias

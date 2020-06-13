@@ -1,6 +1,7 @@
   <div class="row" id="cardResumoMesa" style="display:none;">
 
   	<?php
+    error_reporting(0);
 
   	$num_mesa= $_POST['num_mesa'];
 

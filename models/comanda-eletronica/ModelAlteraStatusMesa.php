@@ -37,7 +37,9 @@ if ($instrucao == "disponivel"){
 		
 	} else {
 
-		$alteraStatusMesa = "UPDATE mesas SET status='disponivel',usuario=0,modificado=now() WHERE num_mesa=$num_mesa";
+		$agora = date('Y-m-d H:i:s');
+
+		$alteraStatusMesa = "UPDATE mesas SET status='disponivel',usuario=0,modificado='$agora' WHERE num_mesa=$num_mesa";
 
 		if ( $conecta->query($alteraStatusMesa) === TRUE ) {
 			
@@ -61,7 +63,9 @@ if ($instrucao == "disponivel"){
 
 } else if ($instrucao == "indisponivel"){
 
-	$alteraStatusMesa = "UPDATE mesas SET status='indisponivel',usuario=$id_usuario,modificado=now() WHERE num_mesa=$num_mesa";
+	$agora = date('Y-m-d H:i:s');
+
+	$alteraStatusMesa = "UPDATE mesas SET status='indisponivel',usuario=$id_usuario,modificado='$agora' WHERE num_mesa=$num_mesa";
 
 	if ( $conecta->query($alteraStatusMesa) === TRUE ) {
 

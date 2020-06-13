@@ -36,7 +36,43 @@ $senha = md5($_POST['senha']);
     $_SESSION['sobrenome'.$app_token] = $row['sobrenome'];
     $_SESSION['nivel'.$app_token] = $row['nivel'];
 
-    header("Location: index.php");
+
+//definindo fuso horario
+                $usuario = $_SESSION['id'.$app_token];
+                $verificaSeExisteFuso="SELECT * FROM configuracoes_sistema WHERE usuario='$usuario'";
+                $conecta->query($verificaSeExisteFuso);
+                $r=mysqli_fetch_assoc(mysqli_query($conecta,$verificaSeExisteFuso));
+
+                header("Location: index.php");
+
+
+                if ( $r['usuario'] ){
+
+                $fuso_horario=$r['fuso_horario'];
+
+                $_SESSION['fuso_horario'.$app_token] =  $fuso_horario;
+
+           
+
+
+                } else {
+
+                  session_start();
+
+                  $_SESSION['fuso_horario'.$app_token] =  'America/Sao_Paulo';
+
+                  $_SESSION['msg_erro'.$app_token] = "Por favor, defina um fuso horário";
+
+                  header("Location: views/config/fusoHorario.php");
+
+                 
+
+
+
+              }
+
+
+    
   }
 }
 

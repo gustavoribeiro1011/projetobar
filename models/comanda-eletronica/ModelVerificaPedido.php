@@ -50,6 +50,7 @@ if ( $qtd_mesas['count'] > 0 ) {
 		$row=mysqli_fetch_assoc($result);
 		$num_pedido = $row['num_pedido'] + 1;
 
+$agora = date('Y-m-d H:i:s');
 
 		$inserePedido = "INSERT INTO pedidos (num_pedido,origem,status,id_usuario,usuario,cadastro)
 		VALUES (
@@ -58,7 +59,7 @@ if ( $qtd_mesas['count'] > 0 ) {
 			'pedido aberto',
 			'$id_usuario',
 			'$nome_usuario',
-			now()
+			'$agora'
 			)"; 
 
 $conecta->query($inserePedido);
@@ -93,6 +94,7 @@ echo json_encode($array);
 		$num_pedido = $row['num_pedido'] + 1;
 		
 		
+$agora = date('Y-m-d H:i:s');
 
 		$inserePedido = "INSERT INTO pedidos (num_pedido,origem,status,id_usuario,usuario,cadastro)
 		VALUES (
@@ -101,7 +103,7 @@ echo json_encode($array);
 			'pedido aberto',
 			'$id_usuario',
 			'$nome_usuario',
-			now()
+			'$agora'
 			)"; 
 
 $conecta->query($inserePedido);

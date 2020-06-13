@@ -20,11 +20,11 @@ $arr_precos = $_POST['arr_precos']; //array
 
 
 
-
+$agora = ('Y-m-d H:i:s');
 $editarProduto = "UPDATE produtos SET 
 produto='$produto', 
 categoria='$categoria',
-modificado=now() WHERE id='".$idproduto."'"; 
+modificado='$agora' WHERE id='".$idproduto."'"; 
 
 if ($conecta->query($editarProduto) === TRUE) {
 
@@ -40,9 +40,9 @@ function insertMedidasCallback($v1,$v2,$v3) {
 
 global $conecta;
 global $id_produto;
-
+$agora = ('Y-m-d H:i:s');
 //Calback: Unidade de Medida
-$alteraMedidas= "UPDATE unidade_medida SET medida=$v2, unidade_medida='$v3', modificado=now() WHERE id=$v1";
+$alteraMedidas= "UPDATE unidade_medida SET medida=$v2, unidade_medida='$v3', modificado='$agora' WHERE id=$v1";
 $conecta->query($alteraMedidas);
 
 };
@@ -56,9 +56,9 @@ function insertPrecosCallback($v1,$v2) {
 
 global $conecta;
 global $id_produto;
-
+$agora = ('Y-m-d H:i:s');
 //Calback: Unidade de Medida
-$alteraPrecos= "UPDATE precos SET preco=$v2, modificado=now() WHERE id=$v1";
+$alteraPrecos= "UPDATE precos SET preco=$v2, modificado='$agora' WHERE id=$v1";
 $conecta->query($alteraPrecos);
 
 };
