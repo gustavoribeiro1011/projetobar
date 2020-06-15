@@ -1,9 +1,13 @@
       <?php
       session_start();
 
+      
 
         if(!@include_once('../../../config.php')) {
         }
+
+         //vou setar o cardresumomesa para inativo
+       $_SESSION['cardresumomesa'.$app_token] = 'inativo';
 
 
 $valor = isset( $_SESSION['cardmesa'.$app_token] ) ?  : $_SESSION['cardmesa'.$app_token] = 'ativo' ;
@@ -12,7 +16,7 @@ $valor = isset( $_SESSION['cardmesa'.$app_token] ) ?  : $_SESSION['cardmesa'.$ap
         if ( $_SESSION['cardmesa'.$app_token] == 'ativo'){
 
   ?>
-<div class="col-xl-8 col-lg-7" id="cardMesa" >
+<div class="col-xl-12 col-lg-12" id="cardMesa" >
   <div class="card shadow mb-4">
 
          <!-- Card Header - Dropdown -->

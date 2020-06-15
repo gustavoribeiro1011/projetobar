@@ -1,15 +1,21 @@
   <div class="row" id="cardResumoMesa" style="display:none;">
 
   	<?php
+
+  if(!@include_once('../../../config.php')) {
+
+    }
+
+    session_start();
+
     error_reporting(0);
 
-  	$num_mesa= $_POST['num_mesa'];
+    $num_mesa= $_POST['num_mesa'];
 
-
-  	if(!@include_once('../../../config.php')) {
-
-  	}
-
+          
+       
+   //vou dizer que o 'cardesumomesta' esta ativo 
+    $_SESSION['cardresumomesa'.$app_token] = 'ativo';
   	?>
 
 

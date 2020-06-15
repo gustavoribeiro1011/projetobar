@@ -431,11 +431,8 @@ setTimeout(function() {
 				$('#spanPedido').text(num_pedido);
 				$('#inputPedido').val(num_pedido);
 				
-					//$("#spanPedido").html(num_pedido);
+			//$("#spanPedido").html(num_pedido);
 
-	        //script que atualiza mesa de tempos em tempos -INICIO
-
-           //script que atualiza mesa de tempos em tempos -FIM
 
 			// reset param_1
 			var instrucao = 'reset param_1';
@@ -464,6 +461,10 @@ setTimeout(function() {
 				}
 
 });//fim ajax
+alert("instancia car mesa emm 200mms");
+				setTimeout(function() {
+				$("#cardMesa").fadeIn();
+			}, 200	);
 
 			
 		}
@@ -541,39 +542,12 @@ setTimeout(function() {
 
 	$(".btnVoltarParaMesas").click(function(){ 
 
-		var num_pedido = $('#inputPedido').val();
-
-		var instrucao = 'voltar para tela mesas';
-
-		$.ajax({
-			type: "POST",
-			url: '../../models/comanda-eletronica/ModelProcessaInstrucoes.php',
-			data: {
-				instrucao:instrucao,
-				num_pedido:num_pedido
-
-			},
-			success: function(data) {
-
-				if (data == 'sucesso'){
-
-    	//alertify.success('<font color="white">voltar para tela mesas ok!</font>');
-    	location.reload(); // dar um reload na página
-
-    }else if (data == 'falha'){
-
-    	alertify.error('<font color="white">Falha</font>');
-
-    } else {
-
-    	alertify.error('<font color="white">Erro desconhecido (#7)</font>');
-    }
-}
-
-});//fim ajax
-
+	location.reload(); // dar um reload na página
 
 	});
+
+
+
 
 	$(".btnVoltarParaResumoPedido").click(function(){ 
 
@@ -590,11 +564,12 @@ setTimeout(function() {
 				num_pedido:num_pedido	
 			},
 			success: function(data) {
+				location.reload(); // dar um reload na página
 
 				if (data == 'sucesso'){
 
-    	//alertify.success('<font color="white">Sucesso</font>');
-    	location.reload(); // dar um reload na página
+    	
+    	
 
     }else if (data == 'falha'){
 
