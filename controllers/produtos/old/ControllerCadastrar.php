@@ -1,10 +1,5 @@
 <script id="scriptControllerCadastrar">
 
-  $('.moedaBRL').maskMoney({
-thousands: '.', //separador milhar
-decimal: ',' // separador decimal
-});
-
 var url = 'templates/TemplateMasterUpdateContent.php';
 
 var contentTemplateMaster = document.getElementById("contentTemplateMaster");
@@ -19,9 +14,25 @@ $("#botaoCadastrarProduto").click(function(){
 
   var categoria = $('#categoria').val();
 
-  var preco = $('#preco').val().replace(".", "").replace(",",".");
+  var precos = new Array();
 
- 
+  $("input[name='preco[]']").each(function(){
+  precos.push($(this).val().replace(".", "").replace(",",".")); // replace: converte para formato americano ex. 9999.99
+});
+
+  var medidas = new Array();
+
+  $("input[name='medida[]']").each(function(){
+    medidas.push($(this).val());
+  });
+
+  var unidades_medidas = new Array();
+
+  $("select[name='unidade_medida[]']").each(function(){
+    unidades_medidas.push($(this).val());
+  });
+
+  //alert("Medida: " + medidas + " | Uni. Med.: " + unidades_medidas + " | Preços: " + precos);
 
   if (!produto){ // se variavel for vazia
 
@@ -39,15 +50,6 @@ $("#botaoCadastrarProduto").click(function(){
 
   } else{
 
-  if (!preco){ // se variavel for vazia
-
-    alertify.warning('<font color="#6D6F76">O campo <b>preço</b> precisa ser preenchido</font>');
-
-    button.setAttribute("class","btn btn-primary");
-  } else{
-
-     alert("produto: " + produto + " | categoria: " + categoria + " | preco: " + preco);
-
     $.ajax({
 
       type: "POST",
@@ -60,7 +62,11 @@ $("#botaoCadastrarProduto").click(function(){
 
         categoria:categoria,
 
-        preco:preco      
+        precos:precos,
+
+        medidas:medidas,
+        
+        unidades_medidas:unidades_medidas
 
       },
 
@@ -120,17 +126,103 @@ $("#botaoCadastrarProduto").click(function(){
 
 button.setAttribute("class","btn btn-primary");
 
-
-
-
-
-}// fim do if else para cadastra produtos
-
 }
 
 }
 
 });
+
+</script>
+
+<script id="scriptVariacaoCadastrar">
+
+var qtdeCampos = 0;
+
+var qtdeVariacao = 0;
+
+
+   $('.moedaBRL').maskMoney({ // Plugin mask money para formatar moeda
+
+      thousands: '.', //separador milhar
+
+      decimal: ',' // separador decimal
+
+    });
+
+
+function addCampos() {
+ 
+  var objPai = document.getElementById("campoPai");
+
+var objFilho = document.createElement("div"); //Criando o elemento DIV;
+
+objFilho.setAttribute("id","filho"+qtdeCampos); //Definindo atributos ao objFilho:
+
+objPai.appendChild(objFilho); //Inserindo o elemento no pai:
+
+document.getElementById("filho"+qtdeCampos).innerHTML = 
+
+"<div class='card border-left-primary shadow h-100 py-0'>"+
+
+"<div class='card-body'>"+
+
+"<div class='text-right'>"+
+
+"<button type='button' class='btn btn-light' onClick='removerCampo("+qtdeCampos+")'><i class='fas fa-minus'></i></button>"+
+
+"</div>"+
+
+"<label>Unidade de medida</label>"+ //Unidade de Medida
+
+"<div class='input-group mb-3'>"+
+
+"<input type='text' class='form-control' id='medida"+qtdeCampos+"' name='medida[]'>" +
+
+"<div class='col-5'><select class='form-control' name='unidade_medida[]'>"+
+
+"<option value='un'>UN</option>"+
+
+"<option value='l'>L</option>"+
+
+"<option value='ml'>ML</option></select></div>" +
+
+"<div class='input-group-prepend'>"+
+
+"</div></div>"+
+
+"<label>Preço</label>"+ //Preco
+
+"<div class='input-group mb-3'>"+
+
+"<div class='input-group-prepend'>"+
+
+"<span class='input-group-text'>R$</span>"+
+
+"</div>"+
+
+"<input type='text' class='form-control moedaBRL' name='preco[]' aria-label='Preço'>"+
+
+"</div>"+
+
+"</div></div><br>";
+
+qtdeCampos++; //Escrevendo algo no filho recém-criado:
+
+qtdeVariacao++;
+
+ } 
+
+ function removerCampo(id) {
+
+  var objPai = document.getElementById("campoPai");
+
+  var objFilho = document.getElementById("filho"+id);
+
+var removido = objPai.removeChild(objFilho); //Removendo o DIV com id específico do nó-pai:
+
+qtdeVariacao--;
+
+}
 
 </script>
 

@@ -68,6 +68,7 @@ $FimPedido .= BASEURL . "views/comanda-eletronica/templates/FimPedido.php";
                 <label for="">Medida:</label>  <input type='text' class="form-control" id="inputMedida" disabled></input>
                 <label for="">Data/Hora mesa aberta:</label>  <input type='text' class="form-control" id="inputDataHoraMesaAberta" disabled></input>
                 <label for="">cardResumoMesa [ativo/inativo]</label>  <input type='text' class="form-control" id="inputCardResumoMesa" disabled value="<?=$_SESSION['cardresumomesa'.$app_token];?>"></input>
+                <label for="">cardResumoPedido [ativo/inativo]</label>  <input type='text' class="form-control" id="inputCardResumoMesa" disabled value="<?=$_SESSION['cardresumopedido'.$app_token];?>"></input>
 
 
               </form>

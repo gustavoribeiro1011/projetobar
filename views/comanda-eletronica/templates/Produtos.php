@@ -19,14 +19,15 @@ $id_categoria = $_POST['id_categoria'];
       //$sql="SELECT * FROM produtos ORDER BY id";
       $sql="
       select 
-      a.id,
-      a.produto,
-      a.categoria,     
-      a.usuario,
-      a.cadastro,
-      a.modificado 
-      from produtos a
-      WHERE a.categoria=".$id_categoria." ORDER BY a.produto ASC";
+      id,
+      produto,
+      categoria,  
+      preco,   
+      usuario,
+      cadastro,
+      modificado 
+      from produtos 
+      WHERE categoria=".$id_categoria." ORDER BY produto ASC";
 
       if ($result=mysqli_query($conecta,$sql))
       {
@@ -43,17 +44,24 @@ $id_categoria = $_POST['id_categoria'];
     {
 
       ?>
-      <div class="col-md-6 col-xl-3">
-       <div class="card">  
-        <button class="btn btn-primary btn-block btnProduto"
-        id_produto="<?php echo $row['id']; ?>"
-        produto="<?php echo $row['produto']; ?>">
-        <div align="left">
-          <?=strtoupper($row['produto']);?>
-        </div>
-      </button>
+<div class="col-md-6 col-xl-3">
+      <div class="card mb-3" style="max-width: 540px;">
+  <div class="row no-gutters">
+    <div class="col-md-4">
+      <img src="<?php echo BASEURL; ?>img/200x200.png" class="card-img" alt="<?=strtoupper($row['produto']);?>" >
+    </div>
+    <div class="col-md-8">
+      <div class="card-body">
+        <h6 class="card-title"><?=strtoupper($row['produto']);?></h6>
+        <p class="card-text">R$<?=number_format($row['preco'],2,",",".");?></p>       
+      </div>
     </div>
   </div>
+</div>
+</div>
+
+
+  
 
   <?php     }
 

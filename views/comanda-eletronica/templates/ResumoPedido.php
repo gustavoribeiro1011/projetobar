@@ -1,12 +1,16 @@
   <div class="row" id="cardResumoPedido" style="display:none;">
 
     <?php
+    session_start();
 
     $num_pedido= $_POST['num_pedido'];
 
     if(!@include_once('../../../config.php')) {
 
     }
+
+    $_SESSION['cardresumomesa'.$app_token] = 'inativo';
+    $_SESSION['cardresumopedido'.$app_token] = 'ativo';
 
     ?>
 

@@ -18,30 +18,35 @@
         ?>
 
 
-        <?php if ( $_SESSION['cardresumomesa'.$app_token] == 'ativo' ) { ?>
-
+        <?php if ( $_SESSION['cardresumomesa'.$app_token] == 'ativo' ) {?>
+        <!-- volta para resumo mesa -->
           <div class="col-md-6 col-xl-3">
            <div class="card">
             <button class="btn btn-primary btn-block btnVoltarParaResumoMesa">
-              <div align="left"><i class="fas fa-arrow-left"></i> VOLTAR (volta para tela resumo mesa)</div>
+              <div align="left"><i class="fas fa-arrow-left"></i> VOLTAR  resumo mesa</div>
             </button>
           </div>
         </div>
 
-      <?php } else { ?>
-
-
+      <?php } else if ( $_SESSION['cardresumopedido'.$app_token] == 'ativo' ) {?>
+        <!-- volta para resumo pedido -->
+          <div class="col-md-6 col-xl-3">
+           <div class="card">
+            <button class="btn btn-primary btn-block btnVoltarParaTelaResumoPedido">
+              <div align="left"><i class="fas fa-arrow-left"></i> VOLTAR resumo pedido</div>
+            </button>
+          </div>
+        </div>
+     <?php } else { ?>
+         <!-- volta para mesas -->
         <div class="col-md-6 col-xl-3">
          <div class="card">
           <button class="btn btn-primary btn-block btnVoltarParaMesas">
-            <div align="left"><i class="fas fa-arrow-left"></i> VOLTAR (padrão)</div>
+            <div align="left"><i class="fas fa-arrow-left"></i> VOLTAR padrão</div>
           </button>
         </div>
       </div>
-
-
     <?php } ?>
-
 
     <?php
     while ($row=mysqli_fetch_assoc($result))
@@ -158,6 +163,51 @@ mysqli_free_result($result);
 
 
         });
+
+
+    $(".btnVoltarParaTelaResumoPedido").click(function(){ 
+
+       StopAtualizaDados(); 
+
+          setTimeout(function() {
+      $("#cardCategoria").fadeOut();
+    }, 150  );
+
+
+      var num_pedido = $("#inputPedido").val();
+      var num_mesa = $("#inputMesa").val();
+
+      $('#spanMesa').text(num_mesa);
+      $('#inputPedido').val(num_pedido);
+      $('#inputMesa').val(num_mesa);
+
+
+//exibe o resumo do pedido
+$.post("<?php echo BASEURL; ?>views/comanda-eletronica/templates/ResumoPedido.php",
+{
+  num_pedido:num_pedido
+},
+function (resultado){
+  $('#includeResumoPedido').html(resultado);
+  eval(document.getElementById('scriptControllerCapturaDados').innerHTML);  
+  eval(document.getElementById('scriptDataTable').innerHTML); 
+
+});
+
+$("#spanPedido").html(num_pedido);
+
+setTimeout(function() {
+  $("#cardResumoPedido").fadeIn();
+}, 600  );
+
+
+
+
+});
+
+
+
+
       </script>
 
 

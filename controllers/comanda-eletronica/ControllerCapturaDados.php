@@ -95,7 +95,7 @@
 
 
 
-$(".btnDescartarPedido").click(function(){ 
+
            // aLtera status da mesa para disponivel
                  $.ajax({
                  	type: "POST",
@@ -150,51 +150,51 @@ $(".btnDescartarPedido").click(function(){
 
 
 
-			});
+			
 
 
 
-			$(".btnRetomarPedido").click(function(){ 
+//		$(".btnRetomarPedido").click(function(){ 
 
-		//exibe o resumo do pedido
-		$.post("<?php echo BASEURL; ?>views/comanda-eletronica/templates/ResumoPedido.php",
-		{
-			num_pedido:num_pedido
-		},
-		function (resultado){
-			$('#includeResumoPedido').html(resultado);
-			eval(document.getElementById('scriptControllerCapturaDados').innerHTML);  
-			eval(document.getElementById('scriptDataTable').innerHTML); 
+//	//exibe o resumo do pedido
+//	$.post("<?php echo BASEURL; ?>views/comanda-eletronica/templates/ResumoPedido.php",
+//	{
+//		num_pedido:num_pedido
+//	},
+//	function (resultado){
+//		$('#includeResumoPedido').html(resultado);
+//		eval(document.getElementById('scriptControllerCapturaDados').innerHTML);  
+//		eval(document.getElementById('scriptDataTable').innerHTML); 
 
-		});
+//	});
 
-		$("#spanPedido").html(num_pedido);
-		$("#spanMesa").html(num_mesa);
+//	$("#spanPedido").html(num_pedido);
+//	$("#spanMesa").html(num_mesa);
 
-		setTimeout(function() {
-			$("#cardResumoPedido").fadeIn();
-		}, 200	);
-
-
-
-        //depois precisa setar os values do formulario
-        $("#inputPedido").val(num_pedido);
-        $("#inputMesa").val(num_mesa);
+//	setTimeout(function() {
+//		$("#cardResumoPedido").fadeIn();
+//	}, 200	);
 
 
 
-
-    });
+//     //depois precisa setar os values do formulario
+//     $("#inputPedido").val(num_pedido);
+//     $("#inputMesa").val(num_mesa);
 
 
 
 
-			$('#spanNumPedido').html(num_pedido);
+// });
 
-			$(document).ready(function() {
-				$('#modaoPedidoExistente').modal('show');
-			})
 
+
+//
+//			$('#spanNumPedido').html(num_pedido);
+//
+//			$(document).ready(function() {
+//				$('#modaoPedidoExistente').modal('show');
+//			})
+//
 
 
 

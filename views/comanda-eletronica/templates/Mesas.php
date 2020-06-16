@@ -6,8 +6,9 @@
         if(!@include_once('../../../config.php')) {
         }
 
-         //vou setar o cardresumomesa para inativo
+       //SETA TODOS OS CARDS PARA INATIVO
        $_SESSION['cardresumomesa'.$app_token] = 'inativo';
+       $_SESSION['cardresumopedido'.$app_token] = 'inativo';
 
 
 $valor = isset( $_SESSION['cardmesa'.$app_token] ) ?  : $_SESSION['cardmesa'.$app_token] = 'ativo' ;

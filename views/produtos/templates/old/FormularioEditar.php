@@ -17,14 +17,16 @@
                       <?php include($ModelSelectCategoria); ?>
                     </select>    
                   </div>
-                  <div class="col-12 col-md-12 col-xl-12 col-lg-9 py-1">                    
-                   <label>Preço</label>
-                   <div class='input-group mb-3'>
-                     <div class='input-group-prepend'>
-                      <span class='input-group-text'>R$</span>
-                    </div>
-                    <input type='text' class='form-control moedaBRL' id="preco_editar" aria-label='Preço'>
+                  <div class="col-12 col-md-12 col-xl-12 col-lg-9 py-1">                      
+                    <label>Preço</label>
+                    <input type="text" id="produto_preco" class="form-control"  required />
                   </div>
+                  <div class="col-12 col-md-12 col-xl-12 col-lg-9 py-1">    
+                   <div id="includeVariacaoEditar"></div>
+                 </div>
+                 <div class="col-12 col-md-12 col-xl-12 col-lg-9 py-1">                 
+                  <div id="campoPaiEditar"></div>
+                  <button type="button" class="btn btn-light" onclick="addCamposEditar()"><i class="fas fa-plus"></i> Adicionar variantes</button>
                 </div>
                 <div class="col-12 col-md-12 col-xl-12 col-lg-9 py-1">                   
                 </div>

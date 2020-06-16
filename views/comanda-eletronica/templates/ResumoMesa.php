@@ -16,6 +16,7 @@
        
    //vou dizer que o 'cardesumomesta' esta ativo 
     $_SESSION['cardresumomesa'.$app_token] = 'ativo';
+    $_SESSION['cardresumopedido'.$app_token] = 'inativo';
   	?>
 
 
